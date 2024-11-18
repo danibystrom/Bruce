@@ -1,30 +1,55 @@
 "use client";
-import { Card, CardMedia, Grid } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export default function HeaderImage() {
   return (
-    <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-      <Card
+    <Box
+      sx={{
+        position: "relative",
+        width: "98%",
+        height: "90vh",
+        margin: "auto",
+        borderRadius: 0,
+        overflow: "hidden",
+      }}
+    >
+      <Box
         sx={{
-          width: "98%",
-          maxWidth: "100vw",
-          height: "auto",
-          marginBottom: { xs: 2, md: 4 },
-          borderRadius: 0,
-          boxShadow: "none",
+          backgroundImage: 'url("/hero-img.jpeg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      />
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          color: "#ffffff",
+          textAlign: "center",
         }}
       >
-        <CardMedia
-          component="img"
-          image="/hero-img.jpeg"
-          alt="hero image"
+        <Typography
+          variant="h1"
           sx={{
-            width: "100%",
-            height: "90vh",
-            objectFit: "cover",
+            fontSize: {
+              xs: "8rem",
+              sm: "20rem",
+              md: "23rem",
+              lg: "30rem",
+              xl: "35rem",
+            },
+            fontWeight: 700,
+            opacity: 0.7,
           }}
-        />
-      </Card>
-    </Grid>
+        >
+          BRUCE
+        </Typography>
+      </Box>
+    </Box>
   );
 }
