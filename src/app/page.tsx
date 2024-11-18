@@ -1,3 +1,9 @@
+import HeaderImage from "./components/HeaderImage";
+
 export default function Home() {
-  return <>Hello Bruce!</>;
+  return (
+    <>
+      <HeaderImage />
+    </>
+  );
 }
