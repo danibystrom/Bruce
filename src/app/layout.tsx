@@ -1,4 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import "./globals.css";
 
 export const metadata = {
@@ -14,7 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Box component={"main"}>{children}</Box>
+        <Grid item>
+          <Header />
+        </Grid>
+        <Grid item xs>
+          <Box component={"main"}>{children}</Box>
+        </Grid>
+        <Footer />
       </body>
     </html>
   );
