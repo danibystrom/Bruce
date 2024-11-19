@@ -79,16 +79,17 @@ export default function BestSellerSection() {
               },
             }}
           >
-            <CardActionArea
+            <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
               disableRipple
               sx={{
                 "&:hover": {
-                  background: "none",
+                  background: "none !important",
                 },
                 "&:active": {
-                  background: "none",
+                  background: "none !important",
                 },
                 cursor: "default",
+                backgroundColor: "#FAFAFB",
               }}
             >
               <CardMedia
@@ -101,8 +102,10 @@ export default function BestSellerSection() {
                   width: "100%",
                   objectFit: "cover",
                   transition: "transform 0.3s ease",
+                  backgroundColor: "#FAFAFB",
+
                   ...(hoveredCard === drink.id && {
-                    transform: "scale(1.05)",
+                    transform: "scale(0.85)",
                   }),
                 }}
               />
@@ -156,7 +159,7 @@ export default function BestSellerSection() {
                   width: "45%",
                 }}
               >
-                Buy
+                ADD TO BAG
               </Button>
               <Button
                 variant="contained"
@@ -168,7 +171,7 @@ export default function BestSellerSection() {
                   width: "45%",
                 }}
               >
-                More
+                VIEW MORE
               </Button>
             </Box>
           </Card>
