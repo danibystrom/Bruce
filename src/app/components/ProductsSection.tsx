@@ -42,9 +42,10 @@ export default function ProductsSection() {
           color: "#000000",
           padding: "1rem",
           fontWeight: 700,
+          textTransform: "uppercase",
         }}
       >
-        EVERYONE NEEDS A BRUCE
+        One Big Bruce Family
       </Typography>
 
       <Box
@@ -91,7 +92,6 @@ export default function ProductsSection() {
                   backgroundColor: "#FAFAFB",
                 }}
               />
-              {/* Text ovanför bilden */}
               <Box
                 sx={{
                   position: "absolute",
@@ -99,10 +99,10 @@ export default function ProductsSection() {
                   left: "0",
                   width: "94%",
                   padding: "1rem",
-                  backgroundColor: "transparent", // Bakgrundsfärg för kontrast (valfritt)
+                  backgroundColor: "transparent",
                   display: "flex",
-                  justifyContent: "space-between", // Sprid elementen horisontellt
-                  alignItems: "center", // Vertikal centrering
+                  justifyContent: "space-between",
+                  alignItems: "center",
                   boxsizing: "border-box",
                   color: "#ffffff",
                 }}
@@ -201,7 +201,7 @@ export default function ProductsSection() {
             },
           }}
         >
-          MEET ALL BRUCES
+          MEET THE BRUCE CREW
         </Button>
       </Box>
     </Box>

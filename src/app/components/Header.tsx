@@ -43,7 +43,7 @@ export default function Header() {
             BRUCE
           </Typography>
 
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "right" }}>
             <IconButton color="inherit">
               <PersonOutlineOutlinedIcon />
             </IconButton>
