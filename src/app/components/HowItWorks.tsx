@@ -27,7 +27,7 @@ export default function HowItWorks() {
       <Box
         sx={{
           position: "absolute",
-          width: "50%",
+          width: "60%",
           top: "0",
           left: "0",
           padding: "1rem",
@@ -56,7 +56,8 @@ export default function HowItWorks() {
             borderRadius: 0,
             boxShadow: "none",
             marginTop: "1rem",
-            width: "10vw",
+            width: "auto",
+            paddingX: "2rem",
             "&:hover": {
               boxShadow: "none",
             },
