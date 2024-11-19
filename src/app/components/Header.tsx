@@ -6,17 +6,21 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 
 export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 0 }}>
       <AppBar
         position="static"
         elevation={0}
-        sx={{ bgcolor: "#ffffff", color: "#000000" }}
+        sx={{
+          bgcolor: "#ffffff",
+          color: "#000000",
+        }}
       >
         <Toolbar
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            padding: "0.5rem",
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -43,11 +47,11 @@ export default function Header() {
             BRUCE
           </Typography>
 
-          <Box sx={{ display: "flex", alignItems: "right" }}>
-            <IconButton color="inherit">
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+            <IconButton color="inherit" sx={{ padding: 0 }}>
               <PersonOutlineOutlinedIcon />
             </IconButton>
-            <IconButton color="inherit">
+            <IconButton color="inherit" sx={{ padding: "2px" }}>
               <ShoppingBagOutlinedIcon />
             </IconButton>
           </Box>
