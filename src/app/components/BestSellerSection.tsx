@@ -123,7 +123,9 @@ export default function BestSellerSection() {
                   }),
                 }}
               >
-                <Typography variant="h6">{drink.name}</Typography>
+                <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
+                  {drink.name}
+                </Typography>
                 <Typography variant="body1">EUR {drink.price}€</Typography>
               </CardContent>
             </CardActionArea>
