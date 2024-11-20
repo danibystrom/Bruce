@@ -1,11 +1,12 @@
 "use client";
-import { SpaceBar } from "@mui/icons-material";
 import NavigateBeforeSharpIcon from "@mui/icons-material/NavigateBeforeSharp";
 import NavigateNextSharpIcon from "@mui/icons-material/NavigateNextSharp";
 import {
   Box,
   Button,
   Card,
+  CardActionArea,
+  CardContent,
   CardMedia,
   IconButton,
   Typography,
@@ -13,7 +14,7 @@ import {
 import { useRef, useState } from "react";
 import { drinks } from "../data/drinks";
 
-export default function ProductsSection() {
+export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -42,10 +43,9 @@ export default function ProductsSection() {
           color: "#000000",
           padding: "1rem",
           fontWeight: 700,
-          textTransform: "uppercase",
         }}
       >
-        One Big Bruce Family
+        SHOP BEST SELLERS
       </Typography>
 
       <Box
@@ -65,7 +65,7 @@ export default function ProductsSection() {
             onMouseEnter={() => setHoveredCard(drink.id)}
             onMouseLeave={() => setHoveredCard(null)}
             sx={{
-              width: 580,
+              width: 280,
               flexShrink: 0,
               height: "auto",
               borderRadius: 0,
@@ -79,54 +79,106 @@ export default function ProductsSection() {
               },
             }}
           >
-            <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+            <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
+              disableRipple
+              sx={{
+                "&:hover": {
+                  background: "none !important",
+                },
+                "&:active": {
+                  background: "none !important",
+                },
+                cursor: "default",
+                backgroundColor: "#FAFAFB",
+              }}
+            >
               <CardMedia
                 component="img"
                 src={drink.image}
                 alt={drink.name}
                 loading="lazy"
                 sx={{
-                  height: "100%",
-                  width: "100%",
-                  objectFit: "cover",
+                  height: "auto",
+                  maxHeight: "250px",
+                  width: "auto",
+                  maxWidth: "80%",
+                  margin: "0 auto",
+                  objectFit: "contain",
+                  marginTop: "1rem",
+                  display: "block",
+                  transition: "transform 0.3s ease",
                   backgroundColor: "#FAFAFB",
+                  ...(hoveredCard === drink.id && {
+                    transform: "scale(0.85)",
+                  }),
                 }}
               />
-              <Box
+              <CardContent
                 sx={{
-                  position: "absolute",
-                  bottom: "0",
-                  left: "0",
-                  width: "94%",
-                  padding: "1rem",
-                  backgroundColor: "transparent",
+                  backgroundColor: "#FAFAFB",
                   display: "flex",
-                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  justifyContent: "center",
                   alignItems: "center",
-                  boxsizing: "border-box",
-                  color: "#ffffff",
+                  transition: "transform 0.3s ease",
+                  padding: "1rem",
+                  ...(hoveredCard === drink.id && {
+                    transform: "translateY(-50px)",
+                  }),
                 }}
               >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#000",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {drink.name} <SpaceBar sx={{ color: "transparent" }} /> EUR{" "}
-                  {drink.price}€
+                <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
+                  {drink.name}
                 </Typography>
+                <Typography variant="body1">EUR {drink.price}€</Typography>
+              </CardContent>
+            </CardActionArea>
 
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#000",
-                  }}
-                >
-                  Shop
-                </Typography>
-              </Box>
+            {/* Overlay for buttons */}
+            <Box
+              className="hover-overlay"
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                backgroundColor: "#FAFAFB",
+                color: "#fff",
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                padding: "1rem",
+                transform: "translateY(100%)",
+                transition: "transform 0.3s ease",
+                ...(hoveredCard === drink.id && {
+                  transform: "translateY(0)",
+                }),
+              }}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: "#000",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  width: "45%",
+                }}
+              >
+                ADD TO BAG
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: "#000",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  width: "45%",
+                }}
+              >
+                VIEW MORE
+              </Button>
             </Box>
           </Card>
         ))}
@@ -179,31 +231,6 @@ export default function ProductsSection() {
       >
         <NavigateNextSharpIcon sx={{ color: "#000000", background: "none" }} />
       </IconButton>
-
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          marginY: "3rem",
-        }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            backgroundColor: "#000",
-            borderRadius: 0,
-            boxShadow: "none",
-            width: "auto",
-            paddingX: "2rem",
-            "&:hover": {
-              boxShadow: "none",
-            },
-          }}
-        >
-          MEET THE BRUCE CREW
-        </Button>
-      </Box>
     </Box>
   );
 }
