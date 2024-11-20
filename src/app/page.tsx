@@ -1,16 +1,16 @@
-import BestSellerSection from "./components/BestSellerSection";
+import BestSellerSlider from "./components/BestSellerSlider";
 import HeaderImage from "./components/HeaderImage";
 import HowItWorks from "./components/HowItWorks";
-import ProductsSection from "./components/ProductsSection";
+import ProductsSlider from "./components/ProductsSlider";
 import SustainabilitySection from "./components/SustainabilitySection";
 
 export default function Home() {
   return (
     <>
       <HeaderImage />
-      <BestSellerSection />
+      <BestSellerSlider />
       <HowItWorks />
-      <ProductsSection />
+      <ProductsSlider />
       <SustainabilitySection />
     </>
   );
