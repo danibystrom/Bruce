@@ -104,33 +104,40 @@ export default function BestSellerSlider() {
                   maxWidth: "80%",
                   margin: "0 auto",
                   objectFit: "contain",
-                  marginTop: "1rem",
+                  marginY: "1rem",
                   display: "block",
                   transition: "transform 0.3s ease",
                   backgroundColor: "#FAFAFB",
                   ...(hoveredCard === drink.id && {
-                    transform: "scale(0.85)",
+                    transform: "scale(0.80)",
                   }),
                 }}
               />
               <CardContent
                 sx={{
-                  backgroundColor: "#FAFAFB",
+                  backgroundColor: "transparent",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                   transition: "transform 0.3s ease",
-                  padding: "1rem",
+                  padding: "0.5rem",
                   ...(hoveredCard === drink.id && {
                     transform: "translateY(-50px)",
                   }),
                 }}
               >
-                <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textTransform: "uppercase",
+                    marginTop: "0.5rem",
+                    marginBottom: 0,
+                  }}
+                >
                   {drink.name}
                 </Typography>
-                <Typography variant="body1">EUR {drink.price}€</Typography>
+                <Typography variant="body2">EUR {drink.price}€</Typography>
               </CardContent>
             </CardActionArea>
 
@@ -147,7 +154,7 @@ export default function BestSellerSlider() {
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
-                padding: "1rem",
+                padding: "0.2rem",
                 transform: "translateY(100%)",
                 transition: "transform 0.3s ease",
                 ...(hoveredCard === drink.id && {
@@ -162,7 +169,7 @@ export default function BestSellerSlider() {
                   backgroundColor: "#000",
                   borderRadius: 0,
                   boxShadow: "none",
-                  width: "45%",
+                  width: "48%",
                 }}
               >
                 ADD TO BAG
@@ -174,7 +181,7 @@ export default function BestSellerSlider() {
                   backgroundColor: "#000",
                   borderRadius: 0,
                   boxShadow: "none",
-                  width: "45%",
+                  width: "48%",
                 }}
               >
                 VIEW MORE
