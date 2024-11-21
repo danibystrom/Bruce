@@ -10,23 +10,23 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { drinks } from "../data/drinks";
 
 export default function ProductsSlider() {
-  const bestSellerRef = useRef<HTMLDivElement | null>(null);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const productRef = useRef<HTMLDivElement | null>(null);
+  // const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const handleBestSellerScroll = (scrollOffset: number) => {
-    if (bestSellerRef.current) {
-      bestSellerRef.current.scrollBy({
+  const handleProductScroll = (scrollOffset: number) => {
+    if (productRef.current) {
+      productRef.current.scrollBy({
         left: scrollOffset,
         behavior: "smooth",
       });
     }
   };
 
-  const bestSellerDrinks = drinks.filter((drink) => drink.isBestSeller);
+  // const bestSellerDrinks = drinks.filter((drink) => drink.isBestSeller);
 
   return (
     <Box
@@ -49,7 +49,7 @@ export default function ProductsSlider() {
       </Typography>
 
       <Box
-        ref={bestSellerRef}
+        ref={productRef}
         sx={{
           display: "flex",
           gap: "0.5rem",
@@ -59,11 +59,11 @@ export default function ProductsSlider() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {bestSellerDrinks.map((drink) => (
+        {drinks.map((drink) => (
           <Card
             key={drink.id}
-            onMouseEnter={() => setHoveredCard(drink.id)}
-            onMouseLeave={() => setHoveredCard(null)}
+            // onMouseEnter={() => setHoveredCard(drink.id)}
+            // onMouseLeave={() => setHoveredCard(null)}
             sx={{
               width: 650,
               flexShrink: 0,
@@ -147,7 +147,7 @@ export default function ProductsSlider() {
 
       <IconButton
         color="primary"
-        onClick={() => handleBestSellerScroll(-300)}
+        onClick={() => handleProductScroll(-300)}
         disableRipple
         disableFocusRipple
         sx={{
@@ -172,7 +172,7 @@ export default function ProductsSlider() {
 
       <IconButton
         color="primary"
-        onClick={() => handleBestSellerScroll(300)}
+        onClick={() => handleProductScroll(300)}
         disableRipple
         disableFocusRipple
         sx={{

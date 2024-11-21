@@ -1,7 +1,11 @@
+import ProductGrid from "../components/ProductGrid";
+import ProductsPageHero from "../components/ProductsPageHero";
+
 export default function AllProductsPage() {
   return (
     <>
-      <h1>All Products Page</h1>
+      <ProductsPageHero />
+      <ProductGrid />
     </>
   );
 }
