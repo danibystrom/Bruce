@@ -1,5 +1,6 @@
 "use client";
 import { Box, Button, Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function SustainabilitySection() {
   return (
@@ -55,23 +56,25 @@ export default function SustainabilitySection() {
           hard—it should be second nature. Bruce isn’t just refreshing for you.
           Bruce refreshes the planet too.
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            backgroundColor: "#000",
-            borderRadius: 0,
-            boxShadow: "none",
-            marginTop: "1rem",
-            width: "auto",
-            paddingX: "2rem",
-            "&:hover": {
+        <Link href="/refill" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              backgroundColor: "#000",
+              borderRadius: 0,
               boxShadow: "none",
-            },
-          }}
-        >
-          BRUCE LOVES A REFILL
-        </Button>
+              marginTop: "1rem",
+              width: "auto",
+              paddingX: "2rem",
+              "&:hover": {
+                boxShadow: "none",
+              },
+            }}
+          >
+            BRUCE LOVES A REFILL
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

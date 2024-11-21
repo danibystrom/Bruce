@@ -10,6 +10,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useRef } from "react";
 import { drinks } from "../data/drinks";
 
@@ -88,18 +89,27 @@ export default function ProductsSlider() {
                 backgroundColor: "#FAFAFB",
               }}
             >
-              <CardMedia
-                component="img"
-                src={drink.image}
-                alt={drink.name}
-                loading="lazy"
-                sx={{
-                  maxHeight: "80%",
-                  maxWidth: "100%",
-                  objectFit: "contain",
-                  backgroundColor: "#FAFAFB",
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  src={drink.image}
+                  alt={drink.name}
+                  loading="lazy"
+                  sx={{
+                    maxHeight: "80%",
+                    maxWidth: "100%",
+                    objectFit: "contain",
+                    backgroundColor: "#FAFAFB",
+                  }}
+                />
+              </Link>
               <Box
                 sx={{
                   position: "absolute",
@@ -126,14 +136,24 @@ export default function ProductsSlider() {
                   {drink.price}€
                 </Typography>
 
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#000",
+                <Link
+                  key={drink.id}
+                  href={`/product/${drink.slug}`}
+                  passHref
+                  style={{
+                    textDecoration: "none",
                   }}
                 >
-                  Shop
-                </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Shop
+                  </Typography>
+                </Link>
               </Box>
             </Box>
           </Card>
@@ -195,22 +215,24 @@ export default function ProductsSlider() {
           marginY: "3rem",
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            backgroundColor: "#000",
-            borderRadius: 0,
-            boxShadow: "none",
-            width: "auto",
-            paddingX: "2rem",
-            "&:hover": {
+        <Link href="/products" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              backgroundColor: "#000",
+              borderRadius: 0,
               boxShadow: "none",
-            },
-          }}
-        >
-          MEET THE BRUCE CREW
-        </Button>
+              width: "auto",
+              paddingX: "2rem",
+              "&:hover": {
+                boxShadow: "none",
+              },
+            }}
+          >
+            MEET THE BRUCE CREW
+          </Button>
+        </Link>
       </Box>
     </Box>
   );
