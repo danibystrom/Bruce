@@ -29,6 +29,7 @@ export default function Header() {
   };
 
   const menuItems = [
+    { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Sustainability", href: "/sustainability" },
     { label: "Products", href: "/products" },
@@ -77,18 +78,20 @@ export default function Header() {
             </IconButton>
           </Box>
 
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              color: "#000000",
-              textAlign: "center",
-              flex: 1,
-              fontWeight: "bold",
-            }}
-          >
-            BRUCE
-          </Typography>
+          <Link href="/" sx={{ textDecoration: "none", underline: "none" }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: "#000000",
+                textAlign: "center",
+                flex: 1,
+                fontWeight: "bold",
+              }}
+            >
+              BRUCE
+            </Typography>
+          </Link>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
             <IconButton
@@ -140,7 +143,7 @@ export default function Header() {
           }}
         >
           <IconButton
-            disableRipple   
+            disableRipple
             onClick={handleDrawerClose}
             sx={{
               position: "absolute",
