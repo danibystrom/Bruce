@@ -61,44 +61,44 @@ export default function BestSellerSlider() {
         }}
       >
         {bestSellerDrinks.map((drink) => (
-          <Link
+          <Card
             key={drink.id}
-            href={`/product/${drink.slug}`}
-            passHref
-            style={{
-              textDecoration: "none",
+            onMouseEnter={() => setHoveredCard(drink.id)}
+            onMouseLeave={() => setHoveredCard(null)}
+            sx={{
+              width: 280,
+              flexShrink: 0,
+              height: "auto",
+              borderRadius: 0,
+              border: "none",
+              boxShadow: "none",
+              overflow: "hidden",
+              margin: 0,
+              position: "relative",
+              "&:hover": {
+                background: "none",
+              },
             }}
           >
-            <Card
-              key={drink.id}
-              onMouseEnter={() => setHoveredCard(drink.id)}
-              onMouseLeave={() => setHoveredCard(null)}
+            <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
+              disableRipple
               sx={{
-                width: 280,
-                flexShrink: 0,
-                height: "auto",
-                borderRadius: 0,
-                border: "none",
-                boxShadow: "none",
-                overflow: "hidden",
-                margin: 0,
-                position: "relative",
                 "&:hover": {
-                  background: "none",
+                  background: "none !important",
                 },
+                "&:active": {
+                  background: "none !important",
+                },
+                cursor: "default",
+                backgroundColor: "#FAFAFB",
               }}
             >
-              <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
-                disableRipple
-                sx={{
-                  "&:hover": {
-                    background: "none !important",
-                  },
-                  "&:active": {
-                    background: "none !important",
-                  },
-                  cursor: "default",
-                  backgroundColor: "#FAFAFB",
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
               >
                 <CardMedia
@@ -122,55 +122,76 @@ export default function BestSellerSlider() {
                     }),
                   }}
                 />
-
-                <CardContent
+              </Link>
+              <CardContent
+                sx={{
+                  backgroundColor: "transparent",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transition: "transform 0.3s ease",
+                  padding: "0.5rem",
+                  ...(hoveredCard === drink.id && {
+                    transform: "translateY(-50px)",
+                  }),
+                }}
+              >
+                <Typography
+                  variant="body1"
                   sx={{
-                    backgroundColor: "transparent",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    transition: "transform 0.3s ease",
-                    padding: "0.5rem",
-                    ...(hoveredCard === drink.id && {
-                      transform: "translateY(-50px)",
-                    }),
+                    textTransform: "uppercase",
+                    marginTop: "0.5rem",
+                    marginBottom: 0,
+                    underline: "none",
                   }}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      textTransform: "uppercase",
-                      marginTop: "0.5rem",
-                      marginBottom: 0,
-                      underline: "none",
-                    }}
-                  >
-                    {drink.name}
-                  </Typography>
-                  <Typography variant="body2">EUR {drink.price}€</Typography>
-                </CardContent>
-              </CardActionArea>
+                  {drink.name}
+                </Typography>
+                <Typography variant="body2">EUR {drink.price}€</Typography>
+              </CardContent>
+            </CardActionArea>
 
-              {/* Overlay for buttons */}
-              <Box
-                className="hover-overlay"
+            {/* Overlay for buttons */}
+            <Box
+              className="hover-overlay"
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                backgroundColor: "#FAFAFB",
+                color: "#fff",
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                padding: "0.2rem",
+                transform: "translateY(100%)",
+                transition: "transform 0.3s ease",
+                ...(hoveredCard === drink.id && {
+                  transform: "translateY(0)",
+                }),
+              }}
+            >
+              <Button
+                variant="contained"
+                color="primary"
                 sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  backgroundColor: "#FAFAFB",
-                  color: "#fff",
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  padding: "0.2rem",
-                  transform: "translateY(100%)",
-                  transition: "transform 0.3s ease",
-                  ...(hoveredCard === drink.id && {
-                    transform: "translateY(0)",
-                  }),
+                  backgroundColor: "#000",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  width: "48%",
+                  boxSizing: "border-box",
+                }}
+              >
+                ADD TO BAG
+              </Button>
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
               >
                 <Button
@@ -180,26 +201,15 @@ export default function BestSellerSlider() {
                     backgroundColor: "#000",
                     borderRadius: 0,
                     boxShadow: "none",
-                    width: "48%",
-                  }}
-                >
-                  ADD TO BAG
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    backgroundColor: "#000",
-                    borderRadius: 0,
-                    boxShadow: "none",
-                    width: "48%",
+                    width: "auto",
+                    boxSizing: "border-box",
                   }}
                 >
                   VIEW MORE
                 </Button>
-              </Box>
-            </Card>
-          </Link>
+              </Link>
+            </Box>
+          </Card>
         ))}
       </Box>
 
