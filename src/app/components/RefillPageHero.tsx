@@ -1,7 +1,7 @@
 "use client";
 import { Box, Typography } from "@mui/material";
 
-export default function ProductsPageHero() {
+export default function RefillPageHero() {
   return (
     <Box
       sx={{
@@ -18,7 +18,7 @@ export default function ProductsPageHero() {
     >
       <Box
         sx={{
-          backgroundImage: 'url("/products-hero.jpeg")',
+          backgroundImage: 'url("/refill-hero.jpeg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
@@ -34,7 +34,7 @@ export default function ProductsPageHero() {
           transform: "translate(-50%, -50%)",
           color: "#000",
           textAlign: "center",
-          maxWidth: "80%",
+          maxWidth: "90%",
           wordBreak: "break-word",
         }}
       >
@@ -53,7 +53,7 @@ export default function ProductsPageHero() {
             opacity: 0.7,
           }}
         >
-          Bruce says: Take a pill
+          The Planet Called, Bruce Answered
         </Typography>
       </Box>
     </Box>

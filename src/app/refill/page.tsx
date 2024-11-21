@@ -1,7 +1,11 @@
+import RefillGrid from "../components/RefillGrid";
+import RefillPageHero from "../components/RefillPageHero";
+
 export default function RefillPage() {
   return (
     <>
-      <h1>Refill Page</h1>
+      <RefillPageHero />
+      <RefillGrid />
     </>
   );
 }
