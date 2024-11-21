@@ -11,14 +11,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useRef } from "react";
-import { drinks } from "../data/drinks";
+import { refills } from "../data/refills";
 
-export default function ProductsSlider() {
-  const productRef = useRef<HTMLDivElement | null>(null);
+export default function SuggestedRefills() {
+  const refillRef = useRef<HTMLDivElement | null>(null);
 
-  const handleProductScroll = (scrollOffset: number) => {
-    if (productRef.current) {
-      productRef.current.scrollBy({
+  const handleRefillScroll = (scrollOffset: number) => {
+    if (refillRef.current) {
+      refillRef.current.scrollBy({
         left: scrollOffset,
         behavior: "smooth",
       });
@@ -42,11 +42,11 @@ export default function ProductsSlider() {
           textTransform: "uppercase",
         }}
       >
-        One Big Bruce Family
+        Suggested for you
       </Typography>
 
       <Box
-        ref={productRef}
+        ref={refillRef}
         sx={{
           display: "flex",
           gap: "0.5rem",
@@ -56,9 +56,9 @@ export default function ProductsSlider() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {drinks.map((drink) => (
+        {refills.map((refill) => (
           <Card
-            key={drink.id}
+            key={refill.id}
             sx={{
               width: 650,
               flexShrink: 0,
@@ -90,8 +90,8 @@ export default function ProductsSlider() {
             >
               <CardMedia
                 component="img"
-                src={drink.image}
-                alt={drink.name}
+                src={refill.image}
+                alt={refill.name}
                 loading="lazy"
                 sx={{
                   maxHeight: "80%",
@@ -122,8 +122,8 @@ export default function ProductsSlider() {
                     textTransform: "uppercase",
                   }}
                 >
-                  {drink.name} <SpaceBar sx={{ color: "transparent" }} /> EUR{" "}
-                  {drink.price}€
+                  {refill.name} <SpaceBar sx={{ color: "transparent" }} /> EUR{" "}
+                  {refill.price}€
                 </Typography>
 
                 <Typography
@@ -142,7 +142,7 @@ export default function ProductsSlider() {
 
       <IconButton
         color="primary"
-        onClick={() => handleProductScroll(-300)}
+        onClick={() => handleRefillScroll(-300)}
         disableRipple
         disableFocusRipple
         sx={{
@@ -167,7 +167,7 @@ export default function ProductsSlider() {
 
       <IconButton
         color="primary"
-        onClick={() => handleProductScroll(300)}
+        onClick={() => handleRefillScroll(300)}
         disableRipple
         disableFocusRipple
         sx={{
@@ -192,7 +192,8 @@ export default function ProductsSlider() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginY: "3rem",
+          marginTop: "3rem",
+          marginBottom: "6rem",
         }}
       >
         <Button
@@ -209,7 +210,7 @@ export default function ProductsSlider() {
             },
           }}
         >
-          MEET THE BRUCE CREW
+          Bruce&apos;s Refill Station
         </Button>
       </Box>
     </Box>
