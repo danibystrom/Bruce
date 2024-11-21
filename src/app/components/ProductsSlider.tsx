@@ -219,6 +219,7 @@ export default function ProductsSlider() {
           <Button
             variant="contained"
             color="primary"
+            disableRipple
             sx={{
               backgroundColor: "#000",
               borderRadius: 0,

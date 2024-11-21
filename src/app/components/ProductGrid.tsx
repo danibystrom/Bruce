@@ -8,6 +8,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useState } from "react";
 import { drinks } from "../data/drinks";
 
@@ -67,27 +68,36 @@ export default function ProductGrid() {
                 backgroundColor: "#FAFAFB",
               }}
             >
-              <CardMedia
-                component="img"
-                src={drink.image}
-                alt={drink.name}
-                loading="lazy"
-                sx={{
-                  height: "auto",
-                  maxHeight: "250px",
-                  width: "auto",
-                  maxWidth: "80%",
-                  margin: "0 auto",
-                  objectFit: "contain",
-                  marginY: "1rem",
-                  display: "block",
-                  transition: "transform 0.3s ease",
-                  backgroundColor: "#FAFAFB",
-                  ...(hoveredCard === drink.id && {
-                    transform: "scale(0.80)",
-                  }),
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  src={drink.image}
+                  alt={drink.name}
+                  loading="lazy"
+                  sx={{
+                    height: "auto",
+                    maxHeight: "250px",
+                    width: "auto",
+                    maxWidth: "80%",
+                    margin: "0 auto",
+                    objectFit: "contain",
+                    marginY: "1rem",
+                    display: "block",
+                    transition: "transform 0.3s ease",
+                    backgroundColor: "#FAFAFB",
+                    ...(hoveredCard === drink.id && {
+                      transform: "scale(0.80)",
+                    }),
+                  }}
+                />
+              </Link>
               <CardContent
                 sx={{
                   backgroundColor: "transparent",
@@ -145,22 +155,33 @@ export default function ProductGrid() {
                   borderRadius: 0,
                   boxShadow: "none",
                   width: "48%",
+                  boxSizing: "border-box",
                 }}
               >
                 ADD TO BAG
               </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: "#000",
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  width: "48%",
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
               >
-                VIEW MORE
-              </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#000",
+                    borderRadius: 0,
+                    boxShadow: "none",
+                    width: "auto",
+                    boxSizing: "border-box",
+                  }}
+                >
+                  VIEW MORE
+                </Button>
+              </Link>
             </Box>
           </Card>
         ))}

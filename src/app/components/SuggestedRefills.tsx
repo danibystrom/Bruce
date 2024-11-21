@@ -10,6 +10,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useRef } from "react";
 import { refills } from "../data/refills";
 
@@ -88,18 +89,27 @@ export default function SuggestedRefills() {
                 backgroundColor: "#FAFAFB",
               }}
             >
-              <CardMedia
-                component="img"
-                src={refill.image}
-                alt={refill.name}
-                loading="lazy"
-                sx={{
-                  maxHeight: "80%",
-                  maxWidth: "100%",
-                  objectFit: "contain",
-                  backgroundColor: "#FAFAFB",
+              <Link
+                key={refill.id}
+                href={`/product/${refill.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  src={refill.image}
+                  alt={refill.name}
+                  loading="lazy"
+                  sx={{
+                    maxHeight: "80%",
+                    maxWidth: "100%",
+                    objectFit: "contain",
+                    backgroundColor: "#FAFAFB",
+                  }}
+                />
+              </Link>
               <Box
                 sx={{
                   position: "absolute",
@@ -126,14 +136,25 @@ export default function SuggestedRefills() {
                   {refill.price}€
                 </Typography>
 
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#000",
+                <Link
+                  key={refill.id}
+                  href={`/product/${refill.slug}`}
+                  passHref
+                  style={{
+                    textDecoration: "none",
                   }}
                 >
-                  Shop
-                </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Shop
+                  </Typography>
+                </Link>
               </Box>
             </Box>
           </Card>
@@ -196,22 +217,25 @@ export default function SuggestedRefills() {
           marginBottom: "6rem",
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            backgroundColor: "#000",
-            borderRadius: 0,
-            boxShadow: "none",
-            width: "auto",
-            paddingX: "2rem",
-            "&:hover": {
+        <Link href="/refill" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            disableRipple
+            sx={{
+              backgroundColor: "#000",
+              borderRadius: 0,
               boxShadow: "none",
-            },
-          }}
-        >
-          Bruce&apos;s Refill Station
-        </Button>
+              width: "auto",
+              paddingX: "2rem",
+              "&:hover": {
+                boxShadow: "none",
+              },
+            }}
+          >
+            Bruce&apos;s Refill Station
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

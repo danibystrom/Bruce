@@ -60,6 +60,7 @@ export default function SustainabilitySection() {
           <Button
             variant="contained"
             color="primary"
+            disableRipple
             sx={{
               backgroundColor: "#000",
               borderRadius: 0,
