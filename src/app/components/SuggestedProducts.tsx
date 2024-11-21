@@ -13,7 +13,7 @@ import {
 import { useRef } from "react";
 import { drinks } from "../data/drinks";
 
-export default function ProductsSlider() {
+export default function SuggestedProducts() {
   const productRef = useRef<HTMLDivElement | null>(null);
 
   const handleProductScroll = (scrollOffset: number) => {
@@ -42,7 +42,7 @@ export default function ProductsSlider() {
           textTransform: "uppercase",
         }}
       >
-        One Big Bruce Family
+        Suggested for you
       </Typography>
 
       <Box
@@ -192,7 +192,8 @@ export default function ProductsSlider() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginY: "3rem",
+          marginTop: "3rem",
+          marginBottom: "6rem",
         }}
       >
         <Button
@@ -209,7 +210,7 @@ export default function ProductsSlider() {
             },
           }}
         >
-          MEET THE BRUCE CREW
+          Head to Products
         </Button>
       </Box>
     </Box>
