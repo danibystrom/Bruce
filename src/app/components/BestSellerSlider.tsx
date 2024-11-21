@@ -11,6 +11,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { drinks } from "../data/drinks";
 
@@ -60,134 +61,145 @@ export default function BestSellerSlider() {
         }}
       >
         {bestSellerDrinks.map((drink) => (
-          <Card
+          <Link
             key={drink.id}
-            onMouseEnter={() => setHoveredCard(drink.id)}
-            onMouseLeave={() => setHoveredCard(null)}
-            sx={{
-              width: 280,
-              flexShrink: 0,
-              height: "auto",
-              borderRadius: 0,
-              border: "none",
-              boxShadow: "none",
-              overflow: "hidden",
-              margin: 0,
-              position: "relative",
-              "&:hover": {
-                background: "none",
-              },
+            href={`/product/${drink.slug}`}
+            passHref
+            style={{
+              textDecoration: "none",
             }}
           >
-            <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
-              disableRipple
+            <Card
+              key={drink.id}
+              onMouseEnter={() => setHoveredCard(drink.id)}
+              onMouseLeave={() => setHoveredCard(null)}
               sx={{
+                width: 280,
+                flexShrink: 0,
+                height: "auto",
+                borderRadius: 0,
+                border: "none",
+                boxShadow: "none",
+                overflow: "hidden",
+                margin: 0,
+                position: "relative",
                 "&:hover": {
-                  background: "none !important",
+                  background: "none",
                 },
-                "&:active": {
-                  background: "none !important",
-                },
-                cursor: "default",
-                backgroundColor: "#FAFAFB",
               }}
             >
-              <CardMedia
-                component="img"
-                src={drink.image}
-                alt={drink.name}
-                loading="lazy"
+              <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
+                disableRipple
                 sx={{
-                  height: "auto",
-                  maxHeight: "250px",
-                  width: "auto",
-                  maxWidth: "80%",
-                  margin: "0 auto",
-                  objectFit: "contain",
-                  marginY: "1rem",
-                  display: "block",
-                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    background: "none !important",
+                  },
+                  "&:active": {
+                    background: "none !important",
+                  },
+                  cursor: "default",
                   backgroundColor: "#FAFAFB",
-                  ...(hoveredCard === drink.id && {
-                    transform: "scale(0.80)",
-                  }),
-                }}
-              />
-              <CardContent
-                sx={{
-                  backgroundColor: "transparent",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  transition: "transform 0.3s ease",
-                  padding: "0.5rem",
-                  ...(hoveredCard === drink.id && {
-                    transform: "translateY(-50px)",
-                  }),
                 }}
               >
-                <Typography
-                  variant="body1"
+                <CardMedia
+                  component="img"
+                  src={drink.image}
+                  alt={drink.name}
+                  loading="lazy"
                   sx={{
-                    textTransform: "uppercase",
-                    marginTop: "0.5rem",
-                    marginBottom: 0,
+                    height: "auto",
+                    maxHeight: "250px",
+                    width: "auto",
+                    maxWidth: "80%",
+                    margin: "0 auto",
+                    objectFit: "contain",
+                    marginY: "1rem",
+                    display: "block",
+                    transition: "transform 0.3s ease",
+                    backgroundColor: "#FAFAFB",
+                    ...(hoveredCard === drink.id && {
+                      transform: "scale(0.80)",
+                    }),
+                  }}
+                />
+
+                <CardContent
+                  sx={{
+                    backgroundColor: "transparent",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    transition: "transform 0.3s ease",
+                    padding: "0.5rem",
+                    ...(hoveredCard === drink.id && {
+                      transform: "translateY(-50px)",
+                    }),
                   }}
                 >
-                  {drink.name}
-                </Typography>
-                <Typography variant="body2">EUR {drink.price}€</Typography>
-              </CardContent>
-            </CardActionArea>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      textTransform: "uppercase",
+                      marginTop: "0.5rem",
+                      marginBottom: 0,
+                      underline: "none",
+                    }}
+                  >
+                    {drink.name}
+                  </Typography>
+                  <Typography variant="body2">EUR {drink.price}€</Typography>
+                </CardContent>
+              </CardActionArea>
 
-            {/* Overlay for buttons */}
-            <Box
-              className="hover-overlay"
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                backgroundColor: "#FAFAFB",
-                color: "#fff",
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                padding: "0.2rem",
-                transform: "translateY(100%)",
-                transition: "transform 0.3s ease",
-                ...(hoveredCard === drink.id && {
-                  transform: "translateY(0)",
-                }),
-              }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
+              {/* Overlay for buttons */}
+              <Box
+                className="hover-overlay"
                 sx={{
-                  backgroundColor: "#000",
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  width: "48%",
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  backgroundColor: "#FAFAFB",
+                  color: "#fff",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  padding: "0.2rem",
+                  transform: "translateY(100%)",
+                  transition: "transform 0.3s ease",
+                  ...(hoveredCard === drink.id && {
+                    transform: "translateY(0)",
+                  }),
                 }}
               >
-                ADD TO BAG
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: "#000",
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  width: "48%",
-                }}
-              >
-                VIEW MORE
-              </Button>
-            </Box>
-          </Card>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#000",
+                    borderRadius: 0,
+                    boxShadow: "none",
+                    width: "48%",
+                  }}
+                >
+                  ADD TO BAG
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#000",
+                    borderRadius: 0,
+                    boxShadow: "none",
+                    width: "48%",
+                  }}
+                >
+                  VIEW MORE
+                </Button>
+              </Box>
+            </Card>
+          </Link>
         ))}
       </Box>
 

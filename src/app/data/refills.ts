@@ -6,6 +6,7 @@ export interface Refill {
   image: string;
   price: number;
   isBestSeller?: boolean;
+  slug: string;
 }
 
 export const refills: Refill[] = [
@@ -18,6 +19,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-1",
   },
   {
     id: 2,
@@ -28,6 +30,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-2",
   },
   {
     id: 3,
@@ -38,6 +41,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-3",
   },
   {
     id: 4,
@@ -48,6 +52,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-4",
   },
   {
     id: 5,
@@ -58,6 +63,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-5",
   },
   {
     id: 6,
@@ -68,6 +74,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-6",
   },
   {
     id: 7,
@@ -78,6 +85,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-7",
   },
   {
     id: 8,
@@ -88,6 +96,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-8",
   },
   {
     id: 9,
@@ -98,6 +107,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-9",
   },
   {
     id: 10,
@@ -108,6 +118,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-10",
   },
   {
     id: 11,
@@ -118,6 +129,7 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-11",
   },
   {
     id: 12,
@@ -128,5 +140,6 @@ export const refills: Refill[] = [
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
+    slug: "margarita-refill-12",
   },
 ];
