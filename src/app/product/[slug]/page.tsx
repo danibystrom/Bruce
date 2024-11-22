@@ -1,4 +1,7 @@
 "use client";
+import SuggestedProducts from "@/app/components/SuggestedProducts";
+import SuggestedRefills from "@/app/components/SuggestedRefills";
+import SustainabilitySection from "@/app/components/SustainabilitySection";
 import { product } from "@/app/data/products";
 import { Box, Button, CardMedia, Grid, Link, Typography } from "@mui/material";
 
@@ -28,7 +31,7 @@ export default function ProductPage({ params }: PageProps) {
 
   return (
     <>
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "98%", position: "relative", margin: "auto" }}>
         <Grid container>
           <Grid
             item
@@ -138,6 +141,17 @@ export default function ProductPage({ params }: PageProps) {
             </Box>
           </Grid>
         </Grid>
+      </Box>
+      {/* Suggested products section */}
+      <Box sx={{ backgroundColor: "#fff", marginY: "4rem" }}>
+        {products.category === "cocktail" ? (
+          <SuggestedRefills />
+        ) : (
+          <SuggestedProducts />
+        )}
+      </Box>
+      <Box sx={{ marginBottom: "2rem" }}>
+        <SustainabilitySection />
       </Box>
     </>
   );
