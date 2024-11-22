@@ -38,7 +38,11 @@ export default function RefillGrid() {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
+          gridTemplateColumns: {
+            xs: "repeat(2, 1fr)",
+            sm: "repeat(3, 1fr)",
+            md: "repeat(4, 1fr)",
+          },
           gap: "0.3rem",
           overflowY: "auto",
           paddingBottom: "1rem",
@@ -136,7 +140,50 @@ export default function RefillGrid() {
                 right: 0,
                 backgroundColor: "#FAFAFB",
                 color: "#fff",
-                display: "flex",
+                display: {
+                  xs: "flex",
+                  md: "none",
+                },
+                "@media (min-width: 900px) and (max-width: 1024px)": {
+                  display: "flex", // Lägg till i tema
+                },
+                justifyContent: "space-around",
+                alignItems: "center",
+                padding: "0.2rem",
+                zIndex: 1,
+              }}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: "#000",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  width: "100%",
+                  boxSizing: "border-box",
+                }}
+              >
+                ADD TO BAG
+              </Button>
+            </Box>
+
+            <Box
+              className="hover-overlay-desktop"
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                backgroundColor: "#FAFAFB",
+                color: "#fff",
+                display: {
+                  xs: "none",
+                  md: "flex",
+                },
+                "@media (min-width: 900px) and (max-width: 1024px)": {
+                  display: "none", // Lägg till i tema
+                },
                 justifyContent: "space-around",
                 alignItems: "center",
                 padding: "0.2rem",
@@ -166,6 +213,7 @@ export default function RefillGrid() {
                 passHref
                 style={{
                   textDecoration: "none",
+                  width: "48%",
                 }}
               >
                 <Button
@@ -175,7 +223,7 @@ export default function RefillGrid() {
                     backgroundColor: "#000",
                     borderRadius: 0,
                     boxShadow: "none",
-                    width: "auto",
+                    width: "100%",
                     boxSizing: "border-box",
                   }}
                 >

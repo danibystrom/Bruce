@@ -148,7 +148,8 @@ export default function ProductsSlider() {
                     variant="h6"
                     sx={{
                       color: "#000",
-                      fontWeight: 500,
+                      fontWeight: 700,
+                      textTransform: "uppercase",
                     }}
                   >
                     Shop
