@@ -10,10 +10,12 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
-import { drinks } from "../data/drinks";
+import { product } from "../data/products";
 
 export default function ProductGrid() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const drink = product.filter((products) => products.category === "cocktail");
 
   return (
     <Box
@@ -48,7 +50,7 @@ export default function ProductGrid() {
           paddingBottom: "1rem",
         }}
       >
-        {drinks.map((drink) => (
+        {drink.map((drink) => (
           <Card
             key={drink.id}
             onMouseEnter={() => setHoveredCard(drink.id)}
@@ -178,8 +180,8 @@ export default function ProductGrid() {
                 backgroundColor: "#FAFAFB",
                 color: "#fff",
                 display: {
-                  xs: "none", 
-                  md: "flex", 
+                  xs: "none",
+                  md: "flex",
                 },
                 "@media (min-width: 900px) and (max-width: 1024px)": {
                   display: "none", // Lägg till i tema

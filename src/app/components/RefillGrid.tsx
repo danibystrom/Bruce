@@ -10,10 +10,12 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
-import { refills } from "../data/refills";
+import { product } from "../data/products";
 
 export default function RefillGrid() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const refills = product.filter((products) => products.category === "refill");
 
   return (
     <Box

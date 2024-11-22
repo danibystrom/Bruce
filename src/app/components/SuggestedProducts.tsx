@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useRef } from "react";
-import { drinks } from "../data/drinks";
+import { product } from "../data/products";
 
 export default function SuggestedProducts() {
   const productRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +25,8 @@ export default function SuggestedProducts() {
       });
     }
   };
+
+  const drink = product.filter((products) => products.category === "cocktail");
 
   return (
     <Box
@@ -57,7 +59,7 @@ export default function SuggestedProducts() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {drinks.map((drink) => (
+        {drink.map((drink) => (
           <Card
             key={drink.id}
             sx={{

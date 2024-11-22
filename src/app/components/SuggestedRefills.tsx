@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useRef } from "react";
-import { refills } from "../data/refills";
+import { product } from "../data/products";
 
 export default function SuggestedRefills() {
   const refillRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +25,8 @@ export default function SuggestedRefills() {
       });
     }
   };
+
+  const refills = product.filter((products) => products.category === "refill");
 
   return (
     <Box

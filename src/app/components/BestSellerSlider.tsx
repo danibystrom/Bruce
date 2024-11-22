@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { drinks } from "../data/drinks";
+import { product } from "../data/products";
 
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
@@ -28,7 +28,7 @@ export default function BestSellerSlider() {
     }
   };
 
-  const bestSellerDrinks = drinks.filter((drink) => drink.isBestSeller);
+  const bestSellerDrinks = product.filter((drink) => drink.isBestSeller);
 
   return (
     <Box
