@@ -16,7 +16,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: true,
@@ -28,7 +28,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: false,
@@ -40,7 +40,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: true,
@@ -52,7 +52,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: false,
@@ -64,7 +64,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: true,
@@ -76,7 +76,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: false,
@@ -88,7 +88,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: true,
@@ -100,7 +100,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: false,
@@ -112,7 +112,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: true,
@@ -124,7 +124,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: false,
@@ -136,7 +136,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: true,
@@ -148,7 +148,7 @@ export const product: Product[] = [
     name: "Margarita",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/bruce-case.png",
     price: 35,
     isBestSeller: false,
@@ -160,7 +160,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
@@ -172,7 +172,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: false,
@@ -184,7 +184,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
@@ -196,7 +196,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: false,
@@ -208,7 +208,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
@@ -220,7 +220,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: false,
@@ -232,7 +232,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
@@ -244,7 +244,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: false,
@@ -256,7 +256,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
@@ -268,7 +268,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: false,
@@ -280,7 +280,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: true,
@@ -292,7 +292,7 @@ export const product: Product[] = [
     name: "Margarita Refill",
     description:
       "A timeless classic with a twist. This vibrant cocktail blends the zesty freshness of lime, the smooth richness of tequila, and a touch of orange liqueur, all balanced by a salted rim. Perfectly refreshing, effortlessly chic, and always a crowd-pleaser. The Margarita Refill is your go-to for sun-kissed moments and unforgettable nights.",
-    ingredients: ["Tequila", "Fresh Lime Juice", "Agave Syrup", "Salt"],
+    ingredients: ["Tequila, ", "Fresh Lime Juice. ", "Agave Syrup, ", "Salt"],
     image: "/refill-case.png",
     price: 35,
     isBestSeller: false,
