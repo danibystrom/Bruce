@@ -10,8 +10,9 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useRef } from "react";
-import { drinks } from "../data/drinks";
+import { product } from "../data/products";
 
 export default function SuggestedProducts() {
   const productRef = useRef<HTMLDivElement | null>(null);
@@ -24,6 +25,8 @@ export default function SuggestedProducts() {
       });
     }
   };
+
+  const drink = product.filter((products) => products.category === "cocktail");
 
   return (
     <Box
@@ -56,7 +59,7 @@ export default function SuggestedProducts() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {drinks.map((drink) => (
+        {drink.map((drink) => (
           <Card
             key={drink.id}
             sx={{
@@ -88,18 +91,27 @@ export default function SuggestedProducts() {
                 backgroundColor: "#FAFAFB",
               }}
             >
-              <CardMedia
-                component="img"
-                src={drink.image}
-                alt={drink.name}
-                loading="lazy"
-                sx={{
-                  maxHeight: "80%",
-                  maxWidth: "100%",
-                  objectFit: "contain",
-                  backgroundColor: "#FAFAFB",
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  src={drink.image}
+                  alt={drink.name}
+                  loading="lazy"
+                  sx={{
+                    maxHeight: "80%",
+                    maxWidth: "100%",
+                    objectFit: "contain",
+                    backgroundColor: "#FAFAFB",
+                  }}
+                />
+              </Link>
               <Box
                 sx={{
                   position: "absolute",
@@ -126,14 +138,25 @@ export default function SuggestedProducts() {
                   {drink.price}€
                 </Typography>
 
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#000",
+                <Link
+                  key={drink.id}
+                  href={`/product/${drink.slug}`}
+                  passHref
+                  style={{
+                    textDecoration: "none",
                   }}
                 >
-                  Shop
-                </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Shop
+                  </Typography>
+                </Link>
               </Box>
             </Box>
           </Card>
@@ -196,22 +219,25 @@ export default function SuggestedProducts() {
           marginBottom: "6rem",
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            backgroundColor: "#000",
-            borderRadius: 0,
-            boxShadow: "none",
-            width: "auto",
-            paddingX: "2rem",
-            "&:hover": {
+        <Link href={`/products`} passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            disableRipple
+            sx={{
+              backgroundColor: "#000",
+              borderRadius: 0,
               boxShadow: "none",
-            },
-          }}
-        >
-          Head to Products
-        </Button>
+              width: "auto",
+              paddingX: "2rem",
+              "&:hover": {
+                boxShadow: "none",
+              },
+            }}
+          >
+            Head to Products
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

@@ -1,1 +1,1 @@
-// export type PageProps = Readonly<{ params: { slug: string } }>;
+export type PageProps = Readonly<{ params: { slug: string } }>;

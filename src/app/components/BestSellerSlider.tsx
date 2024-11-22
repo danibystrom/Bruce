@@ -11,8 +11,9 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useRef, useState } from "react";
-import { drinks } from "../data/drinks";
+import { product } from "../data/products";
 
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +28,7 @@ export default function BestSellerSlider() {
     }
   };
 
-  const bestSellerDrinks = drinks.filter((drink) => drink.isBestSeller);
+  const bestSellerDrinks = product.filter((drink) => drink.isBestSeller);
 
   return (
     <Box
@@ -92,27 +93,36 @@ export default function BestSellerSlider() {
                 backgroundColor: "#FAFAFB",
               }}
             >
-              <CardMedia
-                component="img"
-                src={drink.image}
-                alt={drink.name}
-                loading="lazy"
-                sx={{
-                  height: "auto",
-                  maxHeight: "250px",
-                  width: "auto",
-                  maxWidth: "80%",
-                  margin: "0 auto",
-                  objectFit: "contain",
-                  marginY: "1rem",
-                  display: "block",
-                  transition: "transform 0.3s ease",
-                  backgroundColor: "#FAFAFB",
-                  ...(hoveredCard === drink.id && {
-                    transform: "scale(0.80)",
-                  }),
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  src={drink.image}
+                  alt={drink.name}
+                  loading="lazy"
+                  sx={{
+                    height: "auto",
+                    maxHeight: "250px",
+                    width: "auto",
+                    maxWidth: "80%",
+                    margin: "0 auto",
+                    objectFit: "contain",
+                    marginY: "1rem",
+                    display: "block",
+                    transition: "transform 0.3s ease",
+                    backgroundColor: "#FAFAFB",
+                    ...(hoveredCard === drink.id && {
+                      transform: "scale(0.80)",
+                    }),
+                  }}
+                />
+              </Link>
               <CardContent
                 sx={{
                   backgroundColor: "transparent",
@@ -133,6 +143,7 @@ export default function BestSellerSlider() {
                     textTransform: "uppercase",
                     marginTop: "0.5rem",
                     marginBottom: 0,
+                    underline: "none",
                   }}
                 >
                   {drink.name}
@@ -151,7 +162,50 @@ export default function BestSellerSlider() {
                 right: 0,
                 backgroundColor: "#FAFAFB",
                 color: "#fff",
-                display: "flex",
+                display: {
+                  xs: "flex",
+                  md: "none",
+                },
+                "@media (min-width: 900px) and (max-width: 1024px)": {
+                  display: "flex", // Lägg till i tema
+                },
+                justifyContent: "space-around",
+                alignItems: "center",
+                padding: "0.2rem",
+                zIndex: 1,
+              }}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: "#000",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  width: "100%",
+                  boxSizing: "border-box",
+                }}
+              >
+                ADD TO BAG
+              </Button>
+            </Box>
+
+            <Box
+              className="hover-overlay-desktop"
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                backgroundColor: "#FAFAFB",
+                color: "#fff",
+                display: {
+                  xs: "none",
+                  md: "flex",
+                },
+                "@media (min-width: 900px) and (max-width: 1024px)": {
+                  display: "none", // Lägg till i tema
+                },
                 justifyContent: "space-around",
                 alignItems: "center",
                 padding: "0.2rem",
@@ -170,22 +224,34 @@ export default function BestSellerSlider() {
                   borderRadius: 0,
                   boxShadow: "none",
                   width: "48%",
+                  boxSizing: "border-box",
                 }}
               >
                 ADD TO BAG
               </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: "#000",
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  width: "48%",
+              <Link
+                key={drink.id}
+                href={`/product/${drink.slug}`}
+                passHref
+                style={{
+                  textDecoration: "none",
+                  width: "45%",
                 }}
               >
-                VIEW MORE
-              </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#000",
+                    borderRadius: 0,
+                    boxShadow: "none",
+                    width: "100%",
+                    boxSizing: "border-box",
+                  }}
+                >
+                  VIEW MORE
+                </Button>
+              </Link>
             </Box>
           </Card>
         ))}
