@@ -106,18 +106,20 @@ export default function Header() {
             >
               <PersonOutlineOutlinedIcon />
             </IconButton>
-            <IconButton
-              disableRipple
-              color="inherit"
-              sx={{
-                padding: "2px",
-                "&:hover": {
-                  backgroundColor: "transparent",
-                },
-              }}
-            >
-              <ShoppingBagOutlinedIcon />
-            </IconButton>
+            <Link href="/checkout">
+              <IconButton
+                disableRipple
+                color="inherit"
+                sx={{
+                  padding: "2px",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <ShoppingBagOutlinedIcon sx={{ color: "#000" }} />
+              </IconButton>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>
