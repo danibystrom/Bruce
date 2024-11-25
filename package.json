@@ -13,6 +13,8 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.4",
     "@mui/material": "^6.1.4",
+    "@prisma/client": "^5.22.0",
+    "@prisma/extension-accelerate": "^1.2.1",
     "lottie-react": "^2.4.0",
     "next": "14.2.15",
     "react": "^18",
@@ -26,11 +28,12 @@
     "@types/react-scroll": "^1.8.10",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "prisma": "^5.22.0",
     "typescript": "^5"
   },
-    "extends": "next",
-    "rules": {
-      "react/no-unescaped-entities": "off",
-      "@next/next/no-page-custom-font": "off"
-    }
+  "extends": "next",
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
+  }
 }
