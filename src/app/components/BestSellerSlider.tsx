@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { product } from "../data/products";
 import { getBestSellers } from "../server-actions/products/handler";
 
 export default function BestSellerSlider() {
@@ -42,8 +41,6 @@ export default function BestSellerSlider() {
       });
     }
   };
-
-  const bestSellerDrinks = product.filter((drink) => drink.isBestSeller);
 
   return (
     <Box

@@ -21,3 +21,17 @@ export async function getProductBySlug(slug: string) {
   });
   return product;
 }
+
+export async function getProductsByCategory(category: string) {
+  const products = await db.product.findMany({
+    where: {
+      categories: {
+        some: {
+          name: category,
+        },
+      },
+    },
+    orderBy: { productId: "asc" },
+  });
+  return products;
+}
