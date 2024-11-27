@@ -11,13 +11,28 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
-import { useRef, useState } from "react";
-import { product } from "../data/products";
+import { useEffect, useRef, useState } from "react";
+import { getBestSellers } from "../server-actions/products/handler";
 
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [bestSeller, setBestSeller] = useState<Product[]>([]);
+
+  const fetchBestSellers = async () => {
+    try {
+      const data = await getBestSellers();
+      setBestSeller(data);
+    } catch (error) {
+      console.error("Failed to fetch best sellers:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBestSellers();
+  }, []);
 
   const handleBestSellerScroll = (scrollOffset: number) => {
     if (bestSellerRef.current) {
@@ -27,8 +42,6 @@ export default function BestSellerSlider() {
       });
     }
   };
-
-  const bestSellerDrinks = product.filter((drink) => drink.isBestSeller);
 
   return (
     <Box
@@ -60,7 +73,7 @@ export default function BestSellerSlider() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {bestSellerDrinks.map((drink) => (
+        {bestSeller.map((drink) => (
           <Card
             key={drink.id}
             onMouseEnter={() => setHoveredCard(drink.id)}

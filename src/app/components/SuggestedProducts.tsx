@@ -10,11 +10,14 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
-import { useRef } from "react";
-import { product } from "../data/products";
+import { useEffect, useRef, useState } from "react";
+import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function SuggestedProducts() {
+  const [drinks, setDrinks] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const productRef = useRef<HTMLDivElement | null>(null);
 
   const handleProductScroll = (scrollOffset: number) => {
@@ -26,7 +29,24 @@ export default function SuggestedProducts() {
     }
   };
 
-  const drink = product.filter((products) => products.category === "cocktail");
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await getProductsByCategory("Cocktails");
+        setDrinks(fetchedProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
 
   return (
     <Box
@@ -59,7 +79,7 @@ export default function SuggestedProducts() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {drink.map((drink) => (
+        {drinks.map((drink) => (
           <Card
             key={drink.id}
             sx={{

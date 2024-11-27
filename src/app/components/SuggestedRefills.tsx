@@ -10,11 +10,14 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
-import { useRef } from "react";
-import { product } from "../data/products";
+import { useEffect, useRef, useState } from "react";
+import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function SuggestedRefills() {
+  const [refills, setRefills] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const refillRef = useRef<HTMLDivElement | null>(null);
 
   const handleRefillScroll = (scrollOffset: number) => {
@@ -26,8 +29,24 @@ export default function SuggestedRefills() {
     }
   };
 
-  const refills = product.filter((products) => products.category === "refill");
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await getProductsByCategory("Refills");
+        setRefills(fetchedProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
 
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
   return (
     <Box
       sx={{

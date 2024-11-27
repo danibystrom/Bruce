@@ -2,24 +2,41 @@
 import SuggestedProducts from "@/app/components/SuggestedProducts";
 import SuggestedRefills from "@/app/components/SuggestedRefills";
 import SustainabilitySection from "@/app/components/SustainabilitySection";
-import { product } from "@/app/data/products";
+import { getProductBySlug } from "@/app/server-actions/products/handler";
 import { Box, Button, CardMedia, Grid, Link, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
 type PageProps = { params: { slug: string } };
 
 export default function ProductPage({ params }: PageProps) {
-  const { slug: urlslug } = params;
-  const slug = decodeURIComponent(urlslug);
+  const { slug } = params;
+  const [product, setProduct] = useState<any | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const products =
-    product.find((products) => products.slug.toString() === slug) || null;
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const fetchedProduct = await getProductBySlug(slug);
+        if (!fetchedProduct) {
+          setError(`The product with id "${slug}" does not exist.`);
+          return;
+        }
+        setProduct(fetchedProduct);
+      } catch (err) {
+        setError("An error occurred while fetching the product.");
+        console.error(err);
+      }
+    };
 
-  if (!products) {
+    fetchProduct();
+  }, [slug]);
+
+  if (error) {
     return (
       <div>
-        <Typography variant="h2">{`The product with id ${params.slug} unfortunately does not exist...`}</Typography>
+        <Typography variant="h2">{`The product does unfortunately not exist...`}</Typography>
         <Typography variant="body1">
-          {`We could not find the product with id "${params.slug}". Go back to `}
+          {`Go back to `}
           <Link href="/" variant="body1">
             start page
           </Link>
@@ -27,6 +44,10 @@ export default function ProductPage({ params }: PageProps) {
         </Typography>
       </div>
     );
+  }
+
+  if (!product) {
+    return <Typography variant="h2">Loading...</Typography>;
   }
 
   return (
@@ -42,7 +63,7 @@ export default function ProductPage({ params }: PageProps) {
             }}
           >
             <Box
-              key={products.id}
+              key={product.id}
               sx={{
                 height: {
                   xs: "calc(40dvh)",
@@ -53,8 +74,8 @@ export default function ProductPage({ params }: PageProps) {
             >
               <CardMedia
                 component="img"
-                src={products.image}
-                alt={`Product Image ${products.name}`}
+                src={product.image}
+                alt={`Product Image ${product.name}`}
                 sx={{
                   maxHeight: "100%",
                   maxWidth: "100%",
@@ -97,10 +118,10 @@ export default function ProductPage({ params }: PageProps) {
                 }}
               >
                 <Typography sx={{ fontSize: "1.25rem", fontWeight: "700" }}>
-                  {products.name}
+                  {product.name}
                 </Typography>
                 <Typography sx={{ fontSize: "0.6rem", fontWeight: "200" }}>
-                  {products.description}
+                  {product.description}
                 </Typography>
                 <Typography
                   sx={{
@@ -109,10 +130,10 @@ export default function ProductPage({ params }: PageProps) {
                     fontStyle: "italic",
                   }}
                 >
-                  {products.ingredients}
+                  {product.ingredients}
                 </Typography>
                 <Typography sx={{ fontSize: "1rem", fontWeight: "200" }}>
-                  EUR {products.price}€
+                  EUR {product.price}€
                 </Typography>
               </Box>
               <Box
@@ -142,9 +163,13 @@ export default function ProductPage({ params }: PageProps) {
           </Grid>
         </Grid>
       </Box>
+
       {/* Suggested products section */}
       <Box sx={{ backgroundColor: "#fff", marginY: "4rem" }}>
-        {products.category === "cocktail" ? (
+        {product.categories.some(
+          (category: { name: string }) =>
+            category.name.toLowerCase() === "cocktails"
+        ) ? (
           <SuggestedRefills />
         ) : (
           <SuggestedProducts />
