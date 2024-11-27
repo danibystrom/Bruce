@@ -8,12 +8,13 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function RefillGrid() {
-  const [refills, setRefills] = useState<any[]>([]);
+  const [refills, setRefills] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 

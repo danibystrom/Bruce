@@ -10,12 +10,13 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function SuggestedRefills() {
-  const [refills, setRefills] = useState<any[]>([]);
+  const [refills, setRefills] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const refillRef = useRef<HTMLDivElement | null>(null);
 

@@ -10,12 +10,13 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function SuggestedProducts() {
-  const [drinks, setDrinks] = useState<any[]>([]);
+  const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const productRef = useRef<HTMLDivElement | null>(null);
 

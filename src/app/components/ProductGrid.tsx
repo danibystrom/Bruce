@@ -8,12 +8,13 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function ProductGrid() {
-  const [drinks, setDrinks] = useState<any[]>([]);
+  const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -35,8 +36,6 @@ export default function ProductGrid() {
   if (loading) {
     return <Typography>Loading...</Typography>;
   }
-
-  // const drink = product.filter((products) => products.category === "cocktail");
 
   return (
     <Box

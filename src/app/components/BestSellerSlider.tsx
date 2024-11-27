@@ -11,6 +11,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { getBestSellers } from "../server-actions/products/handler";
@@ -18,7 +19,7 @@ import { getBestSellers } from "../server-actions/products/handler";
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [bestSeller, setBestSeller] = useState<any[]>([]);
+  const [bestSeller, setBestSeller] = useState<Product[]>([]);
 
   const fetchBestSellers = async () => {
     try {
