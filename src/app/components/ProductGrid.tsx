@@ -9,13 +9,34 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
-import { product } from "../data/products";
+import { useEffect, useState } from "react";
+import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function ProductGrid() {
+  const [drinks, setDrinks] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const drink = product.filter((products) => products.category === "cocktail");
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await getProductsByCategory("Cocktails");
+        setDrinks(fetchedProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
+
+  // const drink = product.filter((products) => products.category === "cocktail");
 
   return (
     <Box
@@ -50,7 +71,7 @@ export default function ProductGrid() {
           paddingBottom: "1rem",
         }}
       >
-        {drink.map((drink) => (
+        {drinks.map((drink) => (
           <Card
             key={drink.id}
             onMouseEnter={() => setHoveredCard(drink.id)}
