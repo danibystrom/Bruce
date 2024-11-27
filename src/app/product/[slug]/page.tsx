@@ -10,7 +10,6 @@ type PageProps = { params: { slug: string } };
 
 export default function ProductPage({ params }: PageProps) {
   const { slug } = params;
-  // const slug = decodeURIComponent(urlslug);
   const [product, setProduct] = useState<any | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,9 +30,6 @@ export default function ProductPage({ params }: PageProps) {
 
     fetchProduct();
   }, [slug]);
-
-  // const products =
-  //   product.find((products) => products.slug.toString() === slug) || null;
 
   if (error) {
     return (
@@ -167,9 +163,13 @@ export default function ProductPage({ params }: PageProps) {
           </Grid>
         </Grid>
       </Box>
+
       {/* Suggested products section */}
       <Box sx={{ backgroundColor: "#fff", marginY: "4rem" }}>
-        {product.category === "cocktail" ? (
+        {product.categories.some(
+          (category: { name: string }) =>
+            category.name.toLowerCase() === "cocktails"
+        ) ? (
           <SuggestedRefills />
         ) : (
           <SuggestedProducts />

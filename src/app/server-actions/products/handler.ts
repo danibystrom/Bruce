@@ -18,6 +18,7 @@ export async function getBestSellers() {
 export async function getProductBySlug(slug: string) {
   const product = await db.product.findUnique({
     where: { slug },
+    include: { categories: true },
   });
   return product;
 }
