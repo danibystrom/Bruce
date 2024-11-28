@@ -1,20 +1,6 @@
 "use client";
 
-import AddIcon from "@mui/icons-material/Add";
-import CloseIcon from "@mui/icons-material/Close";
-import RemoveIcon from "@mui/icons-material/Remove";
-import {
-  Box,
-  Button,
-  CardContent,
-  Divider,
-  Grid,
-  IconButton,
-  MenuItem,
-  Select,
-  Typography,
-} from "@mui/material";
-import { product } from "../data/products";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 
 export default function CheckoutPage() {
   return (
@@ -46,7 +32,7 @@ export default function CheckoutPage() {
             </Typography>
             <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
 
-            {product.map((item) => (
+            {/* {product.map((item) => (
               <Box
                 key={item.id}
                 sx={{
@@ -144,7 +130,7 @@ export default function CheckoutPage() {
                 </Grid>
                 <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
               </Box>
-            ))}
+            ))} */}
           </Grid>
 
           {/* Summary Column */}

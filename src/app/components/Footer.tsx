@@ -13,10 +13,6 @@ export default function Footer() {
         justifyContent: "space-between",
         alignItems: "flex-start",
         padding: "1rem",
-        // position: "fixed",
-        // bottom: 0,
-        // left: 0,
-        // width: "100%",
         boxSizing: "border-box",
       }}
     >
