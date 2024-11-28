@@ -4,14 +4,16 @@ import SuggestedRefills from "@/app/components/SuggestedRefills";
 import SustainabilitySection from "@/app/components/SustainabilitySection";
 import { getProductBySlug } from "@/app/server-actions/products/handler";
 import { Box, Button, CardMedia, Grid, Link, Typography } from "@mui/material";
+import { Category, Product } from "@prisma/client";
 import { useEffect, useState } from "react";
 
 type PageProps = { params: { slug: string } };
 
 export default function ProductPage({ params }: PageProps) {
-  const { slug } = params;
-  const [product, setProduct] = useState<any | null>(null);
+  type ProductWithCategories = Product & { categories: Category[] };
+  const [product, setProduct] = useState<ProductWithCategories | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { slug } = params;
 
   useEffect(() => {
     const fetchProduct = async () => {
