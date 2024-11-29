@@ -2,6 +2,7 @@
 import SuggestedProducts from "@/app/components/SuggestedProducts";
 import SuggestedRefills from "@/app/components/SuggestedRefills";
 import SustainabilitySection from "@/app/components/SustainabilitySection";
+import { useCart } from "@/app/context/CartContext";
 import { getProductBySlug } from "@/app/server-actions/products/handler";
 import { Box, Button, CardMedia, Grid, Link, Typography } from "@mui/material";
 import { Category, Product } from "@prisma/client";
@@ -14,6 +15,7 @@ export default function ProductPage({ params }: PageProps) {
   const [product, setProduct] = useState<ProductWithCategories | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { slug } = params;
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -157,6 +159,7 @@ export default function ProductPage({ params }: PageProps) {
                     width: "100%",
                     boxSizing: "border-box",
                   }}
+                  onClick={() => addToCart(product)}
                 >
                   ADD TO BAG
                 </Button>

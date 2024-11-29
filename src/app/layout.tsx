@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { CartProvider } from "./context/CartContext";
 import "./globals.css";
 
 export const metadata = {
@@ -16,13 +17,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Grid item>
-          <Header />
-        </Grid>
-        <Grid item xs>
-          <Box component={"main"}>{children}</Box>
-        </Grid>
-        <Footer />
+        <CartProvider>
+          <Grid item>
+            <Header />
+          </Grid>
+          <Grid item xs>
+            <Box component={"main"}>{children}</Box>
+          </Grid>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );
