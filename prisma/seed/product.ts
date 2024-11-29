@@ -17,10 +17,8 @@ export async function seedProducts(db: PrismaClient) {
     },
   });
 
-  const margarita = await db.product.upsert({
-    where: { productId: 1 },
-    update: {},
-    create: {
+  const products = [
+    {
       productId: 1,
       name: "Margarita",
       description: "A delicious and refreshing cocktail",
@@ -29,16 +27,9 @@ export async function seedProducts(db: PrismaClient) {
       slug: "margarita",
       price: 10.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: cocktailCategory.id },
-      },
+      categoryId: cocktailCategory.id,
     },
-  });
-
-  const mojito = await db.product.upsert({
-    where: { productId: 2 },
-    update: {},
-    create: {
+    {
       productId: 2,
       name: "Mojito",
       description: "A refreshing minty cocktail",
@@ -47,16 +38,9 @@ export async function seedProducts(db: PrismaClient) {
       slug: "mojito",
       price: 9.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: cocktailCategory.id },
-      },
+      categoryId: cocktailCategory.id,
     },
-  });
-
-  const pornstarMartini = await db.product.upsert({
-    where: { productId: 3 },
-    update: {},
-    create: {
+    {
       productId: 3,
       name: "Pornstar Martini",
       description: "A fruity and sweet cocktail",
@@ -65,16 +49,9 @@ export async function seedProducts(db: PrismaClient) {
       slug: "pornstar-martini",
       price: 12.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: cocktailCategory.id },
-      },
+      categoryId: cocktailCategory.id,
     },
-  });
-
-  const tequilaSunrise = await db.product.upsert({
-    where: { productId: 4 },
-    update: {},
-    create: {
+    {
       productId: 4,
       name: "Tequila Sunrise",
       description: "A bottle of tequila",
@@ -83,16 +60,10 @@ export async function seedProducts(db: PrismaClient) {
       slug: "tequila-sunrise",
       price: 29.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: cocktailCategory.id },
-      },
+      categoryId: cocktailCategory.id,
     },
-  });
-
-  const margaritaRefill = await db.product.upsert({
-    where: { productId: 5 },
-    update: {},
-    create: {
+    // Refills
+    {
       productId: 5,
       name: "Margarita Refill",
       description: "A fizzy refill of margarita",
@@ -101,16 +72,9 @@ export async function seedProducts(db: PrismaClient) {
       slug: "margarita-refill",
       price: 29.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: refillCategory.id },
-      },
+      categoryId: refillCategory.id,
     },
-  });
-
-  const mojitoRefill = await db.product.upsert({
-    where: { productId: 6 },
-    update: {},
-    create: {
+    {
       productId: 6,
       name: "Mojito Refill",
       description: "A fizzy refill of mojito",
@@ -119,16 +83,9 @@ export async function seedProducts(db: PrismaClient) {
       slug: "mojito-refill",
       price: 29.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: refillCategory.id },
-      },
+      categoryId: refillCategory.id,
     },
-  });
-
-  const pornstarMartiniRefill = await db.product.upsert({
-    where: { productId: 7 },
-    update: {},
-    create: {
+    {
       productId: 7,
       name: "Pornstar Martini Refill",
       description: "A fizzy refill of pornstar martini",
@@ -137,16 +94,9 @@ export async function seedProducts(db: PrismaClient) {
       slug: "pornstar-martini-refill",
       price: 29.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: refillCategory.id },
-      },
+      categoryId: refillCategory.id,
     },
-  });
-
-  const tequilaSunriseRefill = await db.product.upsert({
-    where: { productId: 8 },
-    update: {},
-    create: {
+    {
       productId: 8,
       name: "Tequila Sunrise Refill",
       description: "A fizzy refill of tequila sunrise",
@@ -155,9 +105,26 @@ export async function seedProducts(db: PrismaClient) {
       slug: "tequila-sunrise-refill",
       price: 29.99,
       isBestSeller: true,
-      categories: {
-        connect: { id: refillCategory.id },
-      },
+      categoryId: refillCategory.id,
     },
-  });
+  ];
+
+  // Iterera över produkterna och skapa/uppdatera dem i databasen
+  for (const product of products) {
+    await db.product.upsert({
+      where: { productId: product.productId },
+      update: {},
+      create: {
+        productId: product.productId,
+        name: product.name,
+        description: product.description,
+        ingredients: product.ingredients,
+        image: product.image,
+        slug: product.slug,
+        price: product.price,
+        isBestSeller: product.isBestSeller,
+        categories: { connect: { id: product.categoryId } },
+      },
+    });
+  }
 }

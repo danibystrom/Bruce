@@ -1,8 +1,24 @@
 "use client";
 
-import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import RemoveIcon from "@mui/icons-material/Remove";
+import {
+  Box,
+  Button,
+  CardContent,
+  Divider,
+  Grid,
+  IconButton,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
+import { useCart } from "../context/CartContext";
 
 export default function CheckoutPage() {
+  const { cart } = useCart();
+
   return (
     <>
       <Box>
@@ -32,9 +48,9 @@ export default function CheckoutPage() {
             </Typography>
             <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
 
-            {/* {product.map((item) => (
+            {cart.map((item) => (
               <Box
-                key={item.id}
+                key={item.product.id}
                 sx={{
                   backgroundColor: "#fff",
                 }}
@@ -42,8 +58,8 @@ export default function CheckoutPage() {
                 <Grid container alignItems="center" spacing={2}>
                   <Grid item xs={12} sm={3}>
                     <img
-                      src={item.image}
-                      alt={item.name}
+                      src={item.product.image}
+                      alt={item.product.name}
                       style={{
                         width: "100%",
                         height: "120px",
@@ -68,7 +84,7 @@ export default function CheckoutPage() {
                             fontWeight: "500",
                           }}
                         >
-                          {item.name}
+                          {item.product.name}
                         </Typography>
                         <IconButton aria-label="delete" color="default">
                           <CloseIcon sx={{ fontSize: "1rem" }} />
@@ -83,7 +99,7 @@ export default function CheckoutPage() {
                           marginBottom: "0.5rem",
                         }}
                       >
-                        EUR{item.price}€
+                        EUR{item.product.price}€
                       </Typography>
                       <Box
                         sx={{
@@ -130,7 +146,7 @@ export default function CheckoutPage() {
                 </Grid>
                 <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
               </Box>
-            ))} */}
+            ))}
           </Grid>
 
           {/* Summary Column */}
