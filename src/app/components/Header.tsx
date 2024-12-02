@@ -2,7 +2,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import {
   AppBar,
   Box,
@@ -16,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import ShopCartWithBadge from "./ShopCartWithBadge";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -98,7 +98,7 @@ export default function Header() {
               disableRipple
               color="inherit"
               sx={{
-                padding: 0,
+                paddingRight: 0.1,
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
@@ -106,20 +106,7 @@ export default function Header() {
             >
               <PersonOutlineOutlinedIcon />
             </IconButton>
-            <Link href="/checkout">
-              <IconButton
-                disableRipple
-                color="inherit"
-                sx={{
-                  padding: "2px",
-                  "&:hover": {
-                    backgroundColor: "transparent",
-                  },
-                }}
-              >
-                <ShoppingBagOutlinedIcon sx={{ color: "#000" }} />
-              </IconButton>
-            </Link>
+            <ShopCartWithBadge />
           </Box>
         </Toolbar>
       </AppBar>
