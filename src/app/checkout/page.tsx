@@ -17,11 +17,34 @@ import {
 import { useCart } from "../context/CartContext";
 
 export default function CheckoutPage() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, changeQuantity } = useCart();
 
   const handleRemoveFromCart = (productId: number) => {
     removeFromCart(productId);
   };
+
+  const handleDecreaseQuantity = (productId: number) => {
+    const currentItem = cart.find((item) => item.product.id === productId);
+    if (currentItem && currentItem.quantity > 1) {
+      changeQuantity(productId, currentItem.quantity - 1);
+    } else if (currentItem && currentItem.quantity === 1) {
+      removeFromCart(productId);
+    }
+  };
+
+  const handleIncreaseQuantity = (productId: number) => {
+    const currentItem = cart.find((item) => item.product.id === productId);
+    if (currentItem) {
+      changeQuantity(productId, currentItem.quantity + 1);
+    }
+  };
+
+  const subTotal = cart.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
+  const estDeliveryCost = 10;
+  const totalCost = subTotal + estDeliveryCost;
 
   return (
     <>
@@ -122,6 +145,13 @@ export default function CheckoutPage() {
                         }}
                       >
                         <Select
+                          value={item.quantity}
+                          onChange={(event) =>
+                            changeQuantity(
+                              item.product.id,
+                              Number(event.target.value)
+                            )
+                          }
                           size="small"
                           style={{
                             fontSize: "0.8rem",
@@ -145,11 +175,17 @@ export default function CheckoutPage() {
                         <Box sx={{ display: "flex", gap: "8px" }}>
                           <IconButton>
                             <RemoveIcon
+                              onClick={() =>
+                                handleDecreaseQuantity(item.product.id)
+                              }
                               sx={{ fontSize: "0.8rem", color: "#000" }}
                             />
                           </IconButton>
                           <IconButton>
                             <AddIcon
+                              onClick={() =>
+                                handleIncreaseQuantity(item.product.id)
+                              }
                               sx={{ fontSize: "0.8rem", color: "#000" }}
                             />
                           </IconButton>
@@ -188,7 +224,7 @@ export default function CheckoutPage() {
                   <Typography variant="body1">Subtotal</Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body1">TOTAL €</Typography>
+                  <Typography variant="body1">{subTotal}€</Typography>
                 </Grid>
               </Grid>
               <Grid container justifyContent="space-between">
@@ -196,7 +232,7 @@ export default function CheckoutPage() {
                   <Typography variant="body1">Estimated Delivery</Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body1">EUR 105€</Typography>
+                  <Typography variant="body1">{estDeliveryCost}€</Typography>
                 </Grid>
               </Grid>
               <Grid container justifyContent="space-between">
@@ -204,7 +240,7 @@ export default function CheckoutPage() {
                   <Typography variant="body1">Total</Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body1">SHIPPING €</Typography>
+                  <Typography variant="body1">{totalCost}€</Typography>
                 </Grid>
               </Grid>
 
