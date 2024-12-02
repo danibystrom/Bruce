@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { CartItem } from "../types"; 
+import { CartItem } from "../types";
 
 export default function useLocalStorageCart(initialValue: CartItem[]) {
   const [cart, setCart] = useState<CartItem[]>(initialValue);
@@ -19,14 +19,18 @@ export default function useLocalStorageCart(initialValue: CartItem[]) {
 
   const clearLocalStorage = () => {
     localStorage.removeItem("cart");
-    setCart([]); 
+    setCart([]);
+  };
+
+  const removeFromCart = (productId: number) => {
+    const updatedCart = cart.filter((item) => item.product.id !== productId);
+    setCart(updatedCart);
+    saveCartToLocalStorage(updatedCart);
   };
 
   const changeQuantity = (productId: number, newQuantity: number) => {
     const updatedCart = cart.map((item) =>
-      item.product.id === productId 
-        ? { ...item, quantity: newQuantity }
-        : item
+      item.product.id === productId ? { ...item, quantity: newQuantity } : item
     );
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
@@ -40,7 +44,7 @@ export default function useLocalStorageCart(initialValue: CartItem[]) {
     if (existingCartItem) {
       changeQuantity(product.id, existingCartItem.quantity + 1);
     } else {
-      const newCartItem: CartItem = { product, quantity: 1 }; 
+      const newCartItem: CartItem = { product, quantity: 1 };
       const updatedCart = [...cart, newCartItem];
       console.log("Adding product:", product);
       setCart(updatedCart);
@@ -48,5 +52,5 @@ export default function useLocalStorageCart(initialValue: CartItem[]) {
     }
   };
 
-  return { cart, addToCart, changeQuantity, clearLocalStorage };
+  return { cart, addToCart, changeQuantity, removeFromCart, clearLocalStorage };
 }
