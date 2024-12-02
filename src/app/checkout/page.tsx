@@ -17,7 +17,11 @@ import {
 import { useCart } from "../context/CartContext";
 
 export default function CheckoutPage() {
-  const { cart } = useCart();
+  const { cart, removeFromCart } = useCart();
+
+  const handleRemoveFromCart = (productId: number) => {
+    removeFromCart(productId);
+  };
 
   return (
     <>
@@ -86,8 +90,14 @@ export default function CheckoutPage() {
                         >
                           {item.product.name}
                         </Typography>
-                        <IconButton aria-label="delete" color="default">
-                          <CloseIcon sx={{ fontSize: "1rem" }} />
+                        <IconButton
+                          aria-label="delete"
+                          color="default"
+                          onClick={() => handleRemoveFromCart(item.product.id)}
+                        >
+                          <CloseIcon
+                            sx={{ fontSize: "0.8rem", color: "#000" }}
+                          />
                         </IconButton>
                       </Box>
 
@@ -134,10 +144,14 @@ export default function CheckoutPage() {
                         </Select>
                         <Box sx={{ display: "flex", gap: "8px" }}>
                           <IconButton>
-                            <RemoveIcon sx={{ fontSize: "1rem" }} />
+                            <RemoveIcon
+                              sx={{ fontSize: "0.8rem", color: "#000" }}
+                            />
                           </IconButton>
                           <IconButton>
-                            <AddIcon sx={{ fontSize: "1rem" }} />
+                            <AddIcon
+                              sx={{ fontSize: "0.8rem", color: "#000" }}
+                            />
                           </IconButton>
                         </Box>
                       </Box>
