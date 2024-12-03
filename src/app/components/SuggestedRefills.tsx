@@ -21,6 +21,7 @@ export default function SuggestedRefills() {
   const [refills, setRefills] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const refillRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
@@ -50,6 +51,7 @@ export default function SuggestedRefills() {
 
   const handleClick = (product: Product) => {
     addToCart(product);
+    setSelectedProduct(product);
     setOpen(true);
   };
 
@@ -190,11 +192,11 @@ export default function SuggestedRefills() {
                     Shop
                   </Typography>
                 </Button>
-                <Toast open={open} onClose={handleClose} />
               </Box>
             </Box>
           </Card>
         ))}
+        <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
 
       <IconButton

@@ -21,6 +21,7 @@ export default function SuggestedProducts() {
   const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const productRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
@@ -50,6 +51,7 @@ export default function SuggestedProducts() {
 
   const handleClick = (product: Product) => {
     addToCart(product);
+    setSelectedProduct(product);
     setOpen(true);
   };
 
@@ -191,11 +193,11 @@ export default function SuggestedProducts() {
                     Shop
                   </Typography>
                 </Button>
-                <Toast open={open} onClose={handleClose} />
               </Box>
             </Box>
           </Card>
         ))}
+        <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
 
       <IconButton

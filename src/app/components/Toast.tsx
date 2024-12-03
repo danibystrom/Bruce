@@ -1,13 +1,18 @@
-import { IconButton, Slide } from "@mui/material";
+import { Slide } from "@mui/material";
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import * as React from "react";
 
 interface ToastProps {
   open: boolean;
   onClose: () => void;
+  product: Product | null;
 }
 
-export default function Toast({ open, onClose }: ToastProps) {
+interface Product {
+  name: string;
+}
+
+export default function Toast({ open, onClose, product }: ToastProps) {
   const handleClose = (
     event: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
@@ -22,15 +27,6 @@ export default function Toast({ open, onClose }: ToastProps) {
     return <Slide {...props} direction="up" />;
   };
 
-  const action = (
-    <IconButton
-      size="small"
-      aria-label="close"
-      color="inherit"
-      onClick={handleClose}
-    ></IconButton>
-  );
-
   return (
     <Snackbar
       open={open}
@@ -38,9 +34,19 @@ export default function Toast({ open, onClose }: ToastProps) {
       onClose={handleClose}
       TransitionComponent={SlideTransition}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      message="Nice, you added a bruce to the cart!"
-      action={action}
+      message={
+        product ? `Nice, you added fizzy ${product.name} to the cart!` : ""
+      }
       key={SlideTransition.name}
+      sx={{
+        "& .MuiSnackbarContent-root": {
+          backgroundColor: "#F2F961",
+          color: "black",
+          fontSize: "0.8rem",
+          textTransform: "uppercase",
+          borderRadius: 20,
+        },
+      }}
     />
   );
 }

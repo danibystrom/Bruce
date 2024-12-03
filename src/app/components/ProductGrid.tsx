@@ -17,7 +17,7 @@ export default function ProductGrid() {
   const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
-
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -37,6 +37,7 @@ export default function ProductGrid() {
 
   const handleClick = (product: Product) => {
     addToCart(product);
+    setSelectedProduct(product);
     setOpen(true);
   };
 
@@ -127,11 +128,11 @@ export default function ProductGrid() {
                   ADD TO CART
                 </Typography>
               </Button>
-              <Toast open={open} onClose={handleClose} />
             </CardContent>
           </Card>
         ))}
       </Box>
+      <Toast open={open} onClose={handleClose} product={selectedProduct} />
     </Box>
   );
 }

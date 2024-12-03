@@ -20,6 +20,7 @@ export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
   const [bestSeller, setBestSeller] = useState<Product[]>([]);
   const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
 
   const fetchBestSellers = async () => {
@@ -46,6 +47,7 @@ export default function BestSellerSlider() {
 
   const handleClick = (product: Product) => {
     addToCart(product);
+    setSelectedProduct(product);
     setOpen(true);
   };
 
@@ -128,10 +130,10 @@ export default function BestSellerSlider() {
                   ADD TO CART
                 </Typography>
               </Button>
-              <Toast open={open} onClose={handleClose} />
             </CardContent>
           </Card>
         ))}
+        <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
 
       <IconButton
