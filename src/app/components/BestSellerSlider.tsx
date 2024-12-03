@@ -5,21 +5,20 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   IconButton,
   Typography,
 } from "@mui/material";
 import { Product } from "@prisma/client";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useCart } from "../context/CartContext";
 import { getBestSellers } from "../server-actions/products/handler";
 
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [bestSeller, setBestSeller] = useState<Product[]>([]);
+  const { addToCart } = useCart();
 
   const fetchBestSellers = async () => {
     try {
@@ -73,199 +72,54 @@ export default function BestSellerSlider() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {bestSeller.map((drink) => (
+        {bestSeller.map((product) => (
           <Card
-            key={drink.id}
-            onMouseEnter={() => setHoveredCard(drink.id)}
-            onMouseLeave={() => setHoveredCard(null)}
+            key={product.id}
             sx={{
-              width: 280,
+              width: "280px",
               flexShrink: 0,
-              height: "auto",
-              borderRadius: 0,
-              border: "none",
               boxShadow: "none",
+              borderRadius: 0,
               overflow: "hidden",
-              margin: 0,
-              position: "relative",
-              "&:hover": {
-                background: "none",
-              },
             }}
           >
-            <CardActionArea // Förstår inte varför jag inte får bort hover-effekten på CardActionArea
-              disableRipple
+            <CardMedia
+              component="img"
+              src={product.image}
+              alt={product.name}
               sx={{
-                "&:hover": {
-                  background: "none !important",
-                },
-                "&:active": {
-                  background: "none !important",
-                },
-                cursor: "default",
-                backgroundColor: "#FAFAFB",
+                height: "300px",
+                objectFit: "scale-down",
+                backgroundColor: "#f5f5f5",
               }}
-            >
-              <Link
-                key={drink.id}
-                href={`/product/${drink.slug}`}
-                passHref
-                style={{
-                  textDecoration: "none",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  src={drink.image}
-                  alt={drink.name}
-                  loading="lazy"
-                  sx={{
-                    height: "auto",
-                    maxHeight: "250px",
-                    width: "auto",
-                    maxWidth: "80%",
-                    margin: "0 auto",
-                    objectFit: "contain",
-                    marginY: "1rem",
-                    display: "block",
-                    transition: "transform 0.3s ease",
-                    backgroundColor: "#FAFAFB",
-                    ...(hoveredCard === drink.id && {
-                      transform: "scale(0.80)",
-                    }),
-                  }}
-                />
-              </Link>
-              <CardContent
+            />
+
+            <CardContent sx={{ padding: "0.5rem", textAlign: "left" }}>
+              <Typography variant="body1" sx={{ textTransform: "uppercase" }}>
+                {product.name}
+              </Typography>
+              <Typography variant="body2" sx={{}}>
+                CHF {product.price}
+              </Typography>
+              <Button
+                variant="outlined"
                 sx={{
-                  backgroundColor: "transparent",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  transition: "transform 0.3s ease",
-                  padding: "0.5rem",
-                  ...(hoveredCard === drink.id && {
-                    transform: "translateY(-50px)",
-                  }),
+                  backgroundColor: "#fff",
+                  border: "1px solid #000",
+                  marginTop: "0.5rem",
+                  color: "#000",
+                  width: "50%",
+                  borderRadius: 20,
+                  boxShadow: "none",
+                  "&:hover": { backgroundColor: "#000", color: "#fff" },
                 }}
+                onClick={() => addToCart(product)}
               >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    textTransform: "uppercase",
-                    marginTop: "0.5rem",
-                    marginBottom: 0,
-                    underline: "none",
-                  }}
-                >
-                  {drink.name}
+                <Typography variant="body2" sx={{}}>
+                  ADD TO CART
                 </Typography>
-                <Typography variant="body2">EUR {drink.price}€</Typography>
-              </CardContent>
-            </CardActionArea>
-
-            {/* Overlay for buttons */}
-            <Box
-              className="hover-overlay"
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                backgroundColor: "#FAFAFB",
-                color: "#fff",
-                display: {
-                  xs: "flex",
-                  md: "none",
-                },
-                "@media (min-width: 900px) and (max-width: 1024px)": {
-                  display: "flex", // Lägg till i tema
-                },
-                justifyContent: "space-around",
-                alignItems: "center",
-                padding: "0.2rem",
-                zIndex: 1,
-              }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: "#000",
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  width: "100%",
-                  boxSizing: "border-box",
-                }}
-              >
-                ADD TO BAG
               </Button>
-            </Box>
-
-            <Box
-              className="hover-overlay-desktop"
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                backgroundColor: "#FAFAFB",
-                color: "#fff",
-                display: {
-                  xs: "none",
-                  md: "flex",
-                },
-                "@media (min-width: 900px) and (max-width: 1024px)": {
-                  display: "none", // Lägg till i tema
-                },
-                justifyContent: "space-around",
-                alignItems: "center",
-                padding: "0.2rem",
-                transform: "translateY(100%)",
-                transition: "transform 0.3s ease",
-                ...(hoveredCard === drink.id && {
-                  transform: "translateY(0)",
-                }),
-              }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: "#000",
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  width: "48%",
-                  boxSizing: "border-box",
-                }}
-              >
-                ADD TO BAG
-              </Button>
-              <Link
-                key={drink.id}
-                href={`/product/${drink.slug}`}
-                passHref
-                style={{
-                  textDecoration: "none",
-                  width: "45%",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    backgroundColor: "#000",
-                    borderRadius: 0,
-                    boxShadow: "none",
-                    width: "100%",
-                    boxSizing: "border-box",
-                  }}
-                >
-                  VIEW MORE
-                </Button>
-              </Link>
-            </Box>
+            </CardContent>
           </Card>
         ))}
       </Box>

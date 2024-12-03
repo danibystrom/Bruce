@@ -13,12 +13,14 @@ import {
 import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useCart } from "../context/CartContext";
 import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function SuggestedRefills() {
   const [refills, setRefills] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const refillRef = useRef<HTMLDivElement | null>(null);
+  const { addToCart } = useCart();
 
   const handleRefillScroll = (scrollOffset: number) => {
     if (refillRef.current) {
@@ -157,25 +159,28 @@ export default function SuggestedRefills() {
                   {refill.price}€
                 </Typography>
 
-                <Link
-                  key={refill.id}
-                  href={`/product/${refill.slug}`}
-                  passHref
-                  style={{
-                    textDecoration: "none",
+                <Button
+                  disableRipple
+                  variant="outlined"
+                  sx={{
+                    backgroundColor: "transparent",
+                    color: "#000",
+                    boxShadow: "none",
+                    border: "none",
+                    "&:hover": { fontWeight: 700 },
                   }}
+                  onClick={() => addToCart(refill)}
                 >
                   <Typography
                     variant="h6"
                     sx={{
-                      color: "#000",
-                      fontWeight: 700,
                       textTransform: "uppercase",
+                      "&:hover": { fontWeight: "bold" },
                     }}
                   >
                     Shop
                   </Typography>
-                </Link>
+                </Button>
               </Box>
             </Box>
           </Card>
