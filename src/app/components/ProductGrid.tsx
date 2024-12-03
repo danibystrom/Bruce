@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Link,
   Typography,
 } from "@mui/material";
 import { Product } from "@prisma/client";
@@ -92,17 +93,18 @@ export default function ProductGrid() {
               overflow: "hidden",
             }}
           >
-            <CardMedia
-              component="img"
-              src={product.image}
-              alt={product.name}
-              sx={{
-                height: "300px",
-                objectFit: "scale-down",
-                backgroundColor: "#f5f5f5",
-              }}
-            />
-
+            <Link href={`/product/${product.slug}`}>
+              <CardMedia
+                component="img"
+                src={product.image}
+                alt={product.name}
+                sx={{
+                  height: "300px",
+                  objectFit: "scale-down",
+                  backgroundColor: "#f5f5f5",
+                }}
+              />
+            </Link>
             <CardContent sx={{ padding: "0.5rem", textAlign: "left" }}>
               <Typography variant="body1" sx={{ textTransform: "uppercase" }}>
                 {product.name}

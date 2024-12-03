@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "@prisma/client";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { getBestSellers } from "../server-actions/products/handler";
@@ -94,16 +95,18 @@ export default function BestSellerSlider() {
               overflow: "hidden",
             }}
           >
-            <CardMedia
-              component="img"
-              src={product.image}
-              alt={product.name}
-              sx={{
-                height: "300px",
-                objectFit: "scale-down",
-                backgroundColor: "#f5f5f5",
-              }}
-            />
+            <Link href={`/product/${product.slug}`} passHref>
+              <CardMedia
+                component="img"
+                src={product.image}
+                alt={product.name}
+                sx={{
+                  height: "300px",
+                  objectFit: "scale-down",
+                  backgroundColor: "#f5f5f5",
+                }}
+              />
+            </Link>
 
             <CardContent sx={{ padding: "0.5rem", textAlign: "left" }}>
               <Typography variant="body1" sx={{ textTransform: "uppercase" }}>
