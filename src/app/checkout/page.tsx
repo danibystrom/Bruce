@@ -132,7 +132,7 @@ export default function CheckoutPage() {
                           marginBottom: "0.5rem",
                         }}
                       >
-                        EUR{item.product.price}€
+                        EUR {item.product.price}€
                       </Typography>
                       <Box
                         sx={{
