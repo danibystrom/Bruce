@@ -14,10 +14,12 @@ import { Product } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { getBestSellers } from "../server-actions/products/handler";
+import Toast from "./Toast";
 
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
   const [bestSeller, setBestSeller] = useState<Product[]>([]);
+  const [open, setOpen] = useState(false);
   const { addToCart } = useCart();
 
   const fetchBestSellers = async () => {
@@ -41,6 +43,13 @@ export default function BestSellerSlider() {
       });
     }
   };
+
+  const handleClick = (product: Product) => {
+    addToCart(product);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   return (
     <Box
@@ -102,6 +111,7 @@ export default function BestSellerSlider() {
                 CHF {product.price}
               </Typography>
               <Button
+                onClick={() => handleClick(product)}
                 variant="outlined"
                 sx={{
                   backgroundColor: "#fff",
@@ -113,12 +123,12 @@ export default function BestSellerSlider() {
                   boxShadow: "none",
                   "&:hover": { backgroundColor: "#000", color: "#fff" },
                 }}
-                onClick={() => addToCart(product)}
               >
                 <Typography variant="body2" sx={{}}>
                   ADD TO CART
                 </Typography>
               </Button>
+              <Toast open={open} onClose={handleClose} />
             </CardContent>
           </Card>
         ))}

@@ -11,10 +11,13 @@ import { Product } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { getProductsByCategory } from "../server-actions/products/handler";
+import Toast from "./Toast";
 
 export default function ProductGrid() {
   const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState(false);
+
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -31,6 +34,13 @@ export default function ProductGrid() {
 
     fetchProducts();
   }, []);
+
+  const handleClick = (product: Product) => {
+    addToCart(product);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   if (loading) {
     return <Typography>Loading...</Typography>;
@@ -111,12 +121,13 @@ export default function ProductGrid() {
                   boxShadow: "none",
                   "&:hover": { backgroundColor: "#000", color: "#fff" },
                 }}
-                onClick={() => addToCart(product)}
+                onClick={() => handleClick(product)}
               >
                 <Typography variant="body2" sx={{}}>
                   ADD TO CART
                 </Typography>
               </Button>
+              <Toast open={open} onClose={handleClose} />
             </CardContent>
           </Card>
         ))}

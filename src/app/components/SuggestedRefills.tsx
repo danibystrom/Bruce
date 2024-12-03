@@ -15,10 +15,12 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { getProductsByCategory } from "../server-actions/products/handler";
+import Toast from "./Toast";
 
 export default function SuggestedRefills() {
   const [refills, setRefills] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState(false);
   const refillRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
@@ -45,6 +47,13 @@ export default function SuggestedRefills() {
 
     fetchProducts();
   }, []);
+
+  const handleClick = (product: Product) => {
+    addToCart(product);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   if (loading) {
     return <Typography>Loading...</Typography>;
@@ -169,7 +178,7 @@ export default function SuggestedRefills() {
                     border: "none",
                     "&:hover": { fontWeight: 700 },
                   }}
-                  onClick={() => addToCart(refill)}
+                  onClick={() => handleClick(refill)}
                 >
                   <Typography
                     variant="h6"
@@ -181,6 +190,7 @@ export default function SuggestedRefills() {
                     Shop
                   </Typography>
                 </Button>
+                <Toast open={open} onClose={handleClose} />
               </Box>
             </Box>
           </Card>
