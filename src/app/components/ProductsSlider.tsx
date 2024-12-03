@@ -15,10 +15,13 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { getProductsByCategory } from "../server-actions/products/handler";
+import Toast from "./Toast";
 
 export default function ProductsSlider() {
   const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const productRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
@@ -45,6 +48,14 @@ export default function ProductsSlider() {
 
     fetchProducts();
   }, []);
+
+  const handleClick = (product: Product) => {
+    addToCart(product);
+    setSelectedProduct(product);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   if (loading) {
     return <Typography>Loading...</Typography>;
@@ -170,7 +181,7 @@ export default function ProductsSlider() {
                     border: "none",
                     "&:hover": { fontWeight: 700 },
                   }}
-                  onClick={() => addToCart(drink)}
+                  onClick={() => handleClick(drink)}
                 >
                   <Typography
                     variant="h6"
@@ -186,6 +197,7 @@ export default function ProductsSlider() {
             </Box>
           </Card>
         ))}
+        <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
 
       <IconButton

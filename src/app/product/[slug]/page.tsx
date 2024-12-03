@@ -2,6 +2,7 @@
 import SuggestedProducts from "@/app/components/SuggestedProducts";
 import SuggestedRefills from "@/app/components/SuggestedRefills";
 import SustainabilitySection from "@/app/components/SustainabilitySection";
+import Toast from "@/app/components/Toast";
 import { useCart } from "@/app/context/CartContext";
 import { getProductBySlug } from "@/app/server-actions/products/handler";
 import { Box, Button, CardMedia, Grid, Link, Typography } from "@mui/material";
@@ -14,6 +15,8 @@ export default function ProductPage({ params }: PageProps) {
   type ProductWithCategories = Product & { categories: Category[] };
   const [product, setProduct] = useState<ProductWithCategories | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { slug } = params;
   const { addToCart } = useCart();
 
@@ -34,6 +37,14 @@ export default function ProductPage({ params }: PageProps) {
 
     fetchProduct();
   }, [slug]);
+
+  const handleClick = (product: Product) => {
+    addToCart(product);
+    setSelectedProduct(product);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   if (error) {
     return (
@@ -159,10 +170,15 @@ export default function ProductPage({ params }: PageProps) {
                     width: "100%",
                     boxSizing: "border-box",
                   }}
-                  onClick={() => addToCart(product)}
+                  onClick={() => handleClick(product)}
                 >
                   ADD TO BAG
                 </Button>
+                <Toast
+                  open={open}
+                  onClose={handleClose}
+                  product={selectedProduct}
+                />
               </Box>
             </Box>
           </Grid>
