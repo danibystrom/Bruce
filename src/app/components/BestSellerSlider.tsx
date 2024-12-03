@@ -17,7 +17,6 @@ import { getBestSellers } from "../server-actions/products/handler";
 
 export default function BestSellerSlider() {
   const bestSellerRef = useRef<HTMLDivElement | null>(null);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [bestSeller, setBestSeller] = useState<Product[]>([]);
   const { addToCart } = useCart();
 
@@ -84,7 +83,6 @@ export default function BestSellerSlider() {
               overflow: "hidden",
             }}
           >
-            {/* Bild */}
             <CardMedia
               component="img"
               src={product.image}
@@ -96,7 +94,6 @@ export default function BestSellerSlider() {
               }}
             />
 
-            {/* Text och knapp */}
             <CardContent sx={{ padding: "0.5rem", textAlign: "left" }}>
               <Typography variant="body1" sx={{ textTransform: "uppercase" }}>
                 {product.name}

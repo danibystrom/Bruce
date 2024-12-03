@@ -81,7 +81,6 @@ export default function ProductGrid() {
               overflow: "hidden",
             }}
           >
-            {/* Bild */}
             <CardMedia
               component="img"
               src={product.image}
@@ -93,7 +92,6 @@ export default function ProductGrid() {
               }}
             />
 
-            {/* Text och knapp */}
             <CardContent sx={{ padding: "0.5rem", textAlign: "left" }}>
               <Typography variant="body1" sx={{ textTransform: "uppercase" }}>
                 {product.name}

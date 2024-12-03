@@ -13,12 +13,14 @@ import {
 import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useCart } from "../context/CartContext";
 import { getProductsByCategory } from "../server-actions/products/handler";
 
 export default function SuggestedProducts() {
   const [drinks, setDrinks] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const productRef = useRef<HTMLDivElement | null>(null);
+  const { addToCart } = useCart();
 
   const handleProductScroll = (scrollOffset: number) => {
     if (productRef.current) {
@@ -158,25 +160,28 @@ export default function SuggestedProducts() {
                   {drink.price}€
                 </Typography>
 
-                <Link
-                  key={drink.id}
-                  href={`/product/${drink.slug}`}
-                  passHref
-                  style={{
-                    textDecoration: "none",
+                <Button
+                  disableRipple
+                  variant="outlined"
+                  sx={{
+                    backgroundColor: "transparent",
+                    color: "#000",
+                    boxShadow: "none",
+                    border: "none",
+                    "&:hover": { fontWeight: 700 },
                   }}
+                  onClick={() => addToCart(drink)}
                 >
                   <Typography
                     variant="h6"
                     sx={{
-                      color: "#000",
-                      fontWeight: 700,
                       textTransform: "uppercase",
+                      "&:hover": { fontWeight: "bold" },
                     }}
                   >
                     Shop
                   </Typography>
-                </Link>
+                </Button>
               </Box>
             </Box>
           </Card>
