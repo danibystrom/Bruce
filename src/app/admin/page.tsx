@@ -1,5 +1,12 @@
 "use client";
-import { Box, Button, CardContent, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CardContent,
+  Grid,
+  Link,
+  Typography,
+} from "@mui/material";
 import { Product } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../server-actions/products/handler";
@@ -87,23 +94,23 @@ export default function AdminPage() {
 
               <Box sx={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
                 <Box sx={{ width: "48%" }}>
-                  {/* <Link href={`/admin/product/edit/${product.id}`} passHref> */}
-                  <Button
-                    disableRipple
-                    variant="outlined"
-                    size="small"
-                    sx={{
-                      borderRadius: "20px",
-                      width: "100%",
-                      color: "#000",
-                      backgroundColor: "transparent",
-                      borderColor: "#000",
-                      "&:hover": { backgroundColor: "#000", color: "#fff" },
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  {/* </Link> */}
+                  <Link href={`/admin/product/${product.id}`}>
+                    <Button
+                      disableRipple
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        borderRadius: "20px",
+                        width: "100%",
+                        color: "#000",
+                        backgroundColor: "transparent",
+                        borderColor: "#000",
+                        "&:hover": { backgroundColor: "#000", color: "#fff" },
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  </Link>
                 </Box>
                 <Button
                   disableRipple
