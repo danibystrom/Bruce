@@ -1,12 +1,35 @@
 "use client";
+import { getProductById } from "@/app/server-actions/products/handler";
 import { Box, Button, Divider, Typography } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import EditProductForm from "./components/EditProductForm";
 
 type Props = { params: { id: string } };
 
 export default function EditProductPage({ params }: Props) {
+  const [fetchedProduct, setFetchedProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const productId = params.id;
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const fetchedProduct = await getProductById(Number(productId));
+        setFetchedProduct(fetchedProduct);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [productId]);
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
 
   return (
     <Box
@@ -51,7 +74,7 @@ export default function EditProductPage({ params }: Props) {
         }}
       >
         <Box sx={{ flex: 1, paddingRight: { md: "20px" } }}>
-          <EditProductForm />
+          <EditProductForm product={fetchedProduct} />
         </Box>
         <Divider
           orientation="vertical"
@@ -72,7 +95,7 @@ export default function EditProductPage({ params }: Props) {
           }}
         >
           <img
-            src="./public/bruce-case.png"
+            src={fetchedProduct?.image || ""}
             alt="Product"
             style={{
               maxWidth: "100%",

@@ -44,3 +44,15 @@ export async function getAllProducts() {
   });
   return products;
 }
+
+export async function getProductById(productId: number) {
+  const product = await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+    include: {
+      categories: true,
+    },
+  });
+  return product;
+}

@@ -1,8 +1,31 @@
+import { showAllCategories } from "@/app/server-actions/categories/handler";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Product } from "@prisma/client";
+import { useEffect, useState } from "react";
 
-export default function EditProductForm() {
+type EditProductFormProps = {
+  product: (Product & { categories: { id: string; name: string }[] }) | null;
+};
+
+export default function EditProductForm({ product }: EditProductFormProps) {
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>(
+    []
+  );
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const allCategories = await showAllCategories();
+        setCategories(allCategories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   return (
     <Box
       component="form"
@@ -35,6 +58,7 @@ export default function EditProductForm() {
           id="standard-size-small"
           size="small"
           variant="standard"
+          defaultValue={product?.name || ""}
         />
 
         <TextField
@@ -42,18 +66,21 @@ export default function EditProductForm() {
           id="standard-size-small"
           size="small"
           variant="standard"
+          defaultValue={product?.ingredients || ""}
         />
         <TextField
           label="Alc. %"
           id="standard-size-small"
           size="small"
           variant="standard"
+          // defaultValue={product?.alcohol || ""}
         />
         <TextField
           label="Price"
           id="standard-size-small"
           size="small"
           variant="standard"
+          defaultValue={product?.price || ""}
         />
         <TextField
           id="standard-multiline-static"
@@ -61,6 +88,7 @@ export default function EditProductForm() {
           multiline
           rows={4}
           variant="standard"
+          defaultValue={product?.description || ""}
         />
         <FormControl variant="standard" sx={{ m: 1, width: "100%" }}>
           <InputLabel
@@ -76,14 +104,16 @@ export default function EditProductForm() {
             label="Category"
             labelId="category-label"
             id="category"
-            defaultValue=""
+            defaultValue={product?.categories[0]?.id || ""}
             sx={{
               color: "#000",
             }}
           >
-            <MenuItem value={10}>Option 1</MenuItem>
-            <MenuItem value={20}>Option 2</MenuItem>
-            <MenuItem value={30}>Option 3</MenuItem>
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
