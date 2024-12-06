@@ -9,7 +9,10 @@ import EditProductForm from "./components/EditProductForm";
 type Props = { params: { id: string } };
 
 export default function EditProductPage({ params }: Props) {
-  const [fetchedProduct, setFetchedProduct] = useState<Product | null>(null);
+  const [fetchedProduct, setFetchedProduct] = useState<
+    (Product & { categories: { id: string; name: string }[] }) | null
+  >(null);
+
   const [loading, setLoading] = useState<boolean>(true);
   const productId = params.id;
 
