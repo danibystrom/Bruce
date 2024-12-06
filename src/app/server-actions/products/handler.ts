@@ -36,3 +36,23 @@ export async function getProductsByCategory(category: string) {
   });
   return products;
 }
+
+export async function getAllProducts() {
+  const products = await db.product.findMany({
+    include: { categories: true },
+    orderBy: { productId: "asc" },
+  });
+  return products;
+}
+
+export async function getProductById(productId: number) {
+  const product = await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+    include: {
+      categories: true,
+    },
+  });
+  return product;
+}
