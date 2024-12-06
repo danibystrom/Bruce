@@ -1,34 +1,61 @@
-import { showAllCategories } from "@/app/server-actions/categories/handler";
+"use client";
+import { EditProduct } from "@/app/server-actions/admin/handler";
+import { ProductFormData } from "@/app/validation/validation";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Product } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 
-type EditProductFormProps = {
-  product: (Product & { categories: { id: string; name: string }[] }) | null;
+interface Category {
+  id: string;
+  name: string;
+}
+
+type Props = {
+  product: {
+    id: number;
+    productId: number;
+    name: string;
+    slug: string;
+    ingredients: string;
+    description: string;
+    price: number;
+    image: string;
+    isBestSeller: boolean;
+  };
+  categories: Category[];
 };
 
-export default function EditProductForm({ product }: EditProductFormProps) {
-  const [categories, setCategories] = useState<{ id: string; name: string }[]>(
-    []
-  );
+export default function EditProductForm({ product, categories }: Props) {
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ProductFormData>();
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const allCategories = await showAllCategories();
-        setCategories(allCategories);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-    fetchCategories();
-  }, []);
+  const handleEditProduct = async (formData: ProductFormData) => {
+    try {
+     
+      const updatedData = {
+        ...formData,
+        price: parseFloat(formData.price.toString()), 
+      };
+
+      
+      await EditProduct(updatedData, product.productId.toString());
+
+      alert("Product updated successfully!"); 
+    } catch (error) {
+      console.error("Failed to update product:", error);
+      alert("An error occurred while updating the product."); 
+    }
+  };
 
   return (
     <Box
       component="form"
+      onSubmit={handleSubmit(handleEditProduct)}
       sx={{
         "& .MuiTextField-root": { m: 1, width: "100%" },
         "& .MuiInputBase-input": { color: "#000", fontSize: "0.8rem" },
@@ -54,7 +81,10 @@ export default function EditProductForm({ product }: EditProductFormProps) {
     >
       <div>
         <TextField
-          label="Name"
+          label="NAME"
+          {...register("name")}
+          error={Boolean(errors.name)}
+          helperText={errors.name?.message}
           id="standard-size-small"
           size="small"
           variant="standard"
@@ -62,29 +92,39 @@ export default function EditProductForm({ product }: EditProductFormProps) {
         />
 
         <TextField
-          label="Ingredients"
+          label="INGREDIENTS"
+          {...register("ingredients")}
+          error={Boolean(errors.ingredients)}
+          helperText={errors.ingredients?.message}
           id="standard-size-small"
           size="small"
           variant="standard"
           defaultValue={product?.ingredients || ""}
         />
-        <TextField
+        {/* <TextField
           label="Alc. %"
           id="standard-size-small"
           size="small"
           variant="standard"
           // defaultValue={product?.alcohol || ""}
-        />
+        /> */}
         <TextField
-          label="Price"
+          label="PRICE"
+          {...register("price")}
+          error={Boolean(errors.price)}
+          helperText={errors.price?.message}
           id="standard-size-small"
           size="small"
+          type="number"
           variant="standard"
           defaultValue={product?.price || ""}
         />
         <TextField
+          label="DESCRIPTION"
+          {...register("description")}
+          error={Boolean(errors.description)}
+          helperText={errors.description?.message}
           id="standard-multiline-static"
-          label="Description"
           multiline
           rows={4}
           variant="standard"
@@ -100,22 +140,36 @@ export default function EditProductForm({ product }: EditProductFormProps) {
           >
             Category
           </InputLabel>
-          <Select
-            label="Category"
-            labelId="category-label"
-            id="category"
-            defaultValue={product?.categories[0]?.id || ""}
-            sx={{
-              color: "#000",
-            }}
-          >
-            {categories.map((category) => (
-              <MenuItem key={category.id} value={category.id}>
-                {category.name}
-              </MenuItem>
-            ))}
-          </Select>
+          <Controller
+            name="categories"
+            control={control}
+            defaultValue={[]}
+            render={({ field }) => (
+              <Select {...field} multiple variant="outlined">
+                {categories.map((category) => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
         </FormControl>
+        <button
+          type="submit"
+          style={{
+            background: "#0072e4",
+            border: "none",
+            padding: "0.5rem",
+            borderRadius: "20px",
+            color: "white",
+            cursor: "pointer",
+            width: "100%",
+            marginTop: "1rem",
+          }}
+        >
+          UPDATE
+        </button>
       </div>
     </Box>
   );

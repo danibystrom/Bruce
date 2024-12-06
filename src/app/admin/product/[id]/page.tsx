@@ -1,37 +1,36 @@
 "use client";
-import { getProductById } from "@/app/server-actions/products/handler";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import EditProductForm from "./components/EditProductForm";
 
 type Props = { params: { id: string } };
 
-export default function EditProductPage({ params }: Props) {
-  const [fetchedProduct, setFetchedProduct] = useState<
-    (Product & { categories: { id: string; name: string }[] }) | null
-  >(null);
-
-  const [loading, setLoading] = useState<boolean>(true);
-  const productId = params.id;
+export default function EditProductPage(props: Props) {
+  const [product, setProduct] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const fetchedProduct = await getProductById(Number(productId));
-        setFetchedProduct(fetchedProduct);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setLoading(false);
+    const fetchData = async () => {
+     
+      const productRes = await fetch(`/api/products/${props.params.id}`);
+      if (productRes.ok) {
+        const productData = await productRes.json();
+        setProduct(productData);
+      }
+
+     
+      const categoriesRes = await fetch("/api/categories");
+      if (categoriesRes.ok) {
+        const categoriesData = await categoriesRes.json();
+        setCategories(categoriesData);
       }
     };
-    fetchProduct();
-  }, [productId]);
+    fetchData();
+  }, [props.params.id]);
 
-  if (loading) {
-    return <Typography>Loading...</Typography>;
+  if (!product) {
+    return <Typography variant="body1">Loading...</Typography>;
   }
 
   return (
@@ -53,7 +52,7 @@ export default function EditProductPage({ params }: Props) {
           fontSize: { xs: "1.5rem", md: "2rem" },
         }}
       >
-        Edit Product with id: {productId}
+        Edit Product with id: {props.params.id}
       </Typography>
       <Divider
         sx={{
@@ -77,7 +76,7 @@ export default function EditProductPage({ params }: Props) {
         }}
       >
         <Box sx={{ flex: 1, paddingRight: { md: "20px" } }}>
-          <EditProductForm product={fetchedProduct} />
+          <EditProductForm product={product} categories={categories} />
         </Box>
         <Divider
           orientation="vertical"
@@ -98,7 +97,7 @@ export default function EditProductPage({ params }: Props) {
           }}
         >
           <img
-            src={fetchedProduct?.image || ""}
+            // src={product.image}
             alt="Product"
             style={{
               maxWidth: "100%",
