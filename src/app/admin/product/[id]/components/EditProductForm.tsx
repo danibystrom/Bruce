@@ -12,7 +12,9 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import Toast from "./Toast";
 
 interface Category {
   id: string;
@@ -42,6 +44,8 @@ export default function EditProductForm({ product, categories }: Props) {
     handleSubmit,
     formState: { errors },
   } = useForm<ProductFormData>();
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const handleEditProduct = async (formData: ProductFormData) => {
     try {
@@ -52,10 +56,12 @@ export default function EditProductForm({ product, categories }: Props) {
 
       await EditProduct(updatedData, product.productId.toString());
 
-      alert("Product updated successfully!");
+      setToastMessage("Bruce approves! Product updated.");
+      setToastOpen(true);
     } catch (error) {
       console.error("Failed to update product:", error);
-      alert("An error occurred while updating the product.");
+      setToastMessage("Something went wrong, try again.");
+      setToastOpen(true);
     }
   };
 
@@ -233,6 +239,12 @@ export default function EditProductForm({ product, categories }: Props) {
           </Link>
         </Box>
       </Box>
+
+      <Toast
+        open={toastOpen}
+        message={toastMessage}
+        onClose={() => setToastOpen(false)}
+      />
 
       {/* Image Section */}
       <Divider
