@@ -43,7 +43,7 @@ export default function AdminPage() {
           textTransform: "uppercase",
         }}
       >
-        Admin - Hantera Produkter
+        Bruce Likes to Handle Things
       </Typography>
 
       <Grid container spacing={1}>
@@ -71,23 +71,26 @@ export default function AdminPage() {
               />
               <CardContent sx={{ padding: 0 }}>
                 <Typography
-                  sx={{ fontSize: "1rem", textTransform: "uppercase" }}
+                  sx={{
+                    fontSize: "1rem",
+                    textTransform: "uppercase",
+                    marginBottom: "0.3rem",
+                  }}
                 >
                   {product.name}
                 </Typography>
-                <Typography sx={{ fontSize: "0.6rem", fontWeight: "200" }}>
-                  {product.description}
-                </Typography>
+
                 <Typography
                   sx={{
                     fontSize: "0.6rem",
                     fontWeight: "200",
                     fontStyle: "italic",
+                    marginBottom: "0.3rem",
                   }}
                 >
-                  {product.ingredients}
+                  WITH: {product.ingredients}
                 </Typography>
-                <Typography sx={{ fontSize: "1rem", fontWeight: "200" }}>
+                <Typography sx={{ fontSize: "0.7rem", fontWeight: "200" }}>
                   EUR {product.price}€
                 </Typography>
               </CardContent>

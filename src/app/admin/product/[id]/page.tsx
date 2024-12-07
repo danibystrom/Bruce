@@ -75,35 +75,6 @@ export default function EditProductPage(props: Props) {
         <Box sx={{ flex: 1, paddingRight: { md: "20px" } }}>
           <EditProductForm product={product} categories={categories} />
         </Box>
-        <Divider
-          orientation="vertical"
-          flexItem
-          sx={{
-            margin: { xs: "20px 0", md: "0 20px" },
-            borderColor: "#000",
-          }}
-        />
-
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-          }}
-        >
-          <img
-            // src={product.image}
-            alt="Product"
-            style={{
-              maxWidth: "100%",
-              maxHeight: "300px",
-              objectFit: "contain",
-              borderRadius: "8px",
-            }}
-          />
-        </Box>
       </Box>
     </Box>
   );

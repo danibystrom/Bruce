@@ -3,6 +3,7 @@ import { EditProduct } from "@/app/server-actions/admin/handler";
 import { ProductFormData } from "@/app/validation/validation";
 import {
   Button,
+  Divider,
   FormControl,
   InputLabel,
   Link,
@@ -29,6 +30,7 @@ type Props = {
     price: number;
     image: string;
     isBestSeller: boolean;
+    categoryId: string[];
   };
   categories: Category[];
 };
@@ -59,32 +61,45 @@ export default function EditProductForm({ product, categories }: Props) {
 
   return (
     <Box
-      component="form"
-      onSubmit={handleSubmit(handleEditProduct)}
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "100%" },
-        "& .MuiInputBase-input": { color: "#000", fontSize: "0.8rem" },
-        "& .MuiInput-underline:before": { borderBottomColor: "#000" },
-        "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-          borderBottomColor: "#000",
-        },
-        "& .MuiInput-underline:after": { borderBottomColor: "#000" },
-        "& .MuiFormLabel-root": { color: "#000" },
-        "& .MuiFormLabel-root.Mui-focused": { color: "#000" },
-        "& .MuiSelect-select": { color: "#000" },
-        "& .MuiOutlinedInput-notchedOutline": { borderColor: "#000" },
-        "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "#000",
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-          {
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        gap: "20px",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+        minHeight: "100%",
+      }}
+    >
+      {/* Form Section */}
+      <Box
+        component="form"
+        onSubmit={handleSubmit(handleEditProduct)}
+        sx={{
+          flex: 1,
+          maxWidth: "500px",
+          "& .MuiTextField-root": { m: 1, width: "100%" },
+          "& .MuiInputBase-input": { color: "#000", fontSize: "0.8rem" },
+          "& .MuiInput-underline:before": { borderBottomColor: "#000" },
+          "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+            borderBottomColor: "#000",
+          },
+          "& .MuiInput-underline:after": { borderBottomColor: "#000" },
+          "& .MuiFormLabel-root": { color: "#000" },
+          "& .MuiFormLabel-root.Mui-focused": { color: "#000" },
+          "& .MuiSelect-select": { color: "#000" },
+          "& .MuiOutlinedInput-notchedOutline": { borderColor: "#000" },
+          "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#000",
           },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+            {
+              borderColor: "#000",
+            },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <TextField
           label="NAME"
           {...register("name")}
@@ -139,11 +154,13 @@ export default function EditProductForm({ product, categories }: Props) {
           <InputLabel
             sx={{
               color: "#000",
+              textTransform: "uppercase",
+              fontSize: "0.8rem",
               "&.Mui-focused": { color: "#000" },
             }}
             id="category-label"
           >
-            Category
+            Change category
           </InputLabel>
           <Controller
             name="categories"
@@ -160,58 +177,91 @@ export default function EditProductForm({ product, categories }: Props) {
             )}
           />
         </FormControl>
-      </div>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "80%",
+            maxWidth: "1000px",
+            marginTop: "20px",
+            gap: "1rem",
+          }}
+        >
+          <Link href="" style={{ textDecoration: "none", width: "150px" }}>
+            <Button
+              disableRipple
+              variant="outlined"
+              size="small"
+              type="submit"
+              sx={{
+                borderRadius: "20px",
+                color: "#000",
+                width: "100%",
+                marginRight: "0.8rem",
+                backgroundColor: "transparent",
+                borderColor: "#000",
+                "&:hover": { backgroundColor: "#000", color: "#fff" },
+              }}
+            >
+              Save changes
+            </Button>
+          </Link>
+          <Link
+            href="/admin"
+            style={{ textDecoration: "none", width: "150px" }}
+          >
+            <Button
+              disableRipple
+              variant="outlined"
+              size="small"
+              sx={{
+                borderRadius: "20px",
+                backgroundColor: "#000",
+                width: "100%",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  boxShadow: "none",
+                  borderColor: "#000",
+                },
+              }}
+            >
+              Cancel
+            </Button>
+          </Link>
+        </Box>
+      </Box>
+
+      {/* Image Section */}
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{
+          margin: { xs: "20px 0", md: "0 20px" },
+          borderColor: "#000",
+        }}
+      />
       <Box
         sx={{
+          flex: 1,
           display: "flex",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "center",
-          width: "80%",
-          maxWidth: "1000px",
-          marginTop: "20px",
-          gap: "1rem",
+          maxWidth: "500px",
         }}
       >
-        <Link href="" style={{ textDecoration: "none", width: "150px" }}>
-          <Button
-            disableRipple
-            variant="outlined"
-            size="small"
-            type="submit"
-            sx={{
-              borderRadius: "20px",
-              color: "#000",
-              width: "100%",
-              marginRight: "0.8rem",
-              backgroundColor: "transparent",
-              borderColor: "#000",
-              "&:hover": { backgroundColor: "#000", color: "#fff" },
-            }}
-          >
-            Save changes
-          </Button>
-        </Link>
-        <Link href="/admin" style={{ textDecoration: "none", width: "150px" }}>
-          <Button
-            disableRipple
-            variant="outlined"
-            size="small"
-            sx={{
-              borderRadius: "20px",
-              backgroundColor: "#000",
-              width: "100%",
-              color: "#fff",
-              "&:hover": {
-                backgroundColor: "#fff",
-                color: "#000",
-                boxShadow: "none",
-                borderColor: "#000",
-              },
-            }}
-          >
-            Cancel
-          </Button>
-        </Link>
+        <img
+          src={product.image}
+          alt="Product"
+          style={{
+            maxWidth: "100%",
+            maxHeight: "300px",
+            objectFit: "contain",
+            borderRadius: "8px",
+          }}
+        />
       </Box>
     </Box>
   );
