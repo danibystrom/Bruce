@@ -34,6 +34,7 @@ export default function Header() {
     { label: "Sustainability", href: "/sustainability" },
     { label: "Products", href: "/products" },
     { label: "Refill", href: "/refill" },
+    { label: "Bruce’s Control Room", href: "/admin" },
   ];
 
   const subItems = [
