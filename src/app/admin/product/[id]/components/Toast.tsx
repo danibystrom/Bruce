@@ -1,6 +1,6 @@
 import { Slide } from "@mui/material";
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
-import * as React from "react";
+import { SyntheticEvent } from "react";
 
 interface ToastProps {
   open: boolean;
@@ -10,7 +10,7 @@ interface ToastProps {
 
 export default function Toast({ open, onClose, message }: ToastProps) {
   const handleClose = (
-    event: React.SyntheticEvent | Event,
+    event: SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
     if (reason === "clickaway") {
