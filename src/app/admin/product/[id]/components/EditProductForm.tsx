@@ -1,7 +1,14 @@
 "use client";
 import { EditProduct } from "@/app/server-actions/admin/handler";
 import { ProductFormData } from "@/app/validation/validation";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  Link,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Controller, useForm } from "react-hook-form";
@@ -36,19 +43,17 @@ export default function EditProductForm({ product, categories }: Props) {
 
   const handleEditProduct = async (formData: ProductFormData) => {
     try {
-     
       const updatedData = {
         ...formData,
-        price: parseFloat(formData.price.toString()), 
+        price: parseFloat(formData.price.toString()),
       };
 
-      
       await EditProduct(updatedData, product.productId.toString());
 
-      alert("Product updated successfully!"); 
+      alert("Product updated successfully!");
     } catch (error) {
       console.error("Failed to update product:", error);
-      alert("An error occurred while updating the product."); 
+      alert("An error occurred while updating the product.");
     }
   };
 
@@ -145,7 +150,7 @@ export default function EditProductForm({ product, categories }: Props) {
             control={control}
             defaultValue={[]}
             render={({ field }) => (
-              <Select {...field} multiple variant="outlined">
+              <Select {...field} multiple variant="standard">
                 {categories.map((category) => (
                   <MenuItem key={category.id} value={category.id}>
                     {category.name}
@@ -155,22 +160,59 @@ export default function EditProductForm({ product, categories }: Props) {
             )}
           />
         </FormControl>
-        <button
-          type="submit"
-          style={{
-            background: "#0072e4",
-            border: "none",
-            padding: "0.5rem",
-            borderRadius: "20px",
-            color: "white",
-            cursor: "pointer",
-            width: "100%",
-            marginTop: "1rem",
-          }}
-        >
-          UPDATE
-        </button>
       </div>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          width: "80%",
+          maxWidth: "1000px",
+          marginTop: "20px",
+          gap: "1rem",
+        }}
+      >
+        <Link href="" style={{ textDecoration: "none", width: "150px" }}>
+          <Button
+            disableRipple
+            variant="outlined"
+            size="small"
+            type="submit"
+            sx={{
+              borderRadius: "20px",
+              color: "#000",
+              width: "100%",
+              marginRight: "0.8rem",
+              backgroundColor: "transparent",
+              borderColor: "#000",
+              "&:hover": { backgroundColor: "#000", color: "#fff" },
+            }}
+          >
+            Save changes
+          </Button>
+        </Link>
+        <Link href="/admin" style={{ textDecoration: "none", width: "150px" }}>
+          <Button
+            disableRipple
+            variant="outlined"
+            size="small"
+            sx={{
+              borderRadius: "20px",
+              backgroundColor: "#000",
+              width: "100%",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#000",
+                boxShadow: "none",
+                borderColor: "#000",
+              },
+            }}
+          >
+            Cancel
+          </Button>
+        </Link>
+      </Box>
     </Box>
   );
 }
