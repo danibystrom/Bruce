@@ -1,6 +1,5 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { db } from "../../../../prisma/db";
 
 export async function EditProduct(data: any, productId: string) {
@@ -23,10 +22,8 @@ export async function EditProduct(data: any, productId: string) {
       },
     });
 
-    return updateProduct;
-    console.log("Product updated:", updateProduct);
     revalidatePath("/admin");
-    redirect("/admin");
+    return updateProduct;
   } catch (error) {
     console.error("Error updating product:", error);
     throw error;

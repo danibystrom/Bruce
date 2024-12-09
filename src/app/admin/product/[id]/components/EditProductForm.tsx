@@ -58,6 +58,10 @@ export default function EditProductForm({ product, categories }: Props) {
 
       setToastMessage("Bruce approves! Product updated.");
       setToastOpen(true);
+
+      setTimeout(() => {
+        window.location.href = "/admin";
+      }, 1000);
     } catch (error) {
       console.error("Failed to update product:", error);
       setToastMessage("Something went wrong, try again.");
