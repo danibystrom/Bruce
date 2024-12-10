@@ -1,4 +1,4 @@
-import { Slide } from "@mui/material";
+import { Slide, SlideProps } from "@mui/material";
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import { SyntheticEvent } from "react";
 
@@ -23,7 +23,7 @@ export default function Toast({ open, onClose, product }: ToastProps) {
     onClose();
   };
 
-  const SlideTransition = (props: any) => {
+  const SlideTransition = (props: SlideProps) => {
     return <Slide {...props} direction="up" />;
   };
 

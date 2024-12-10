@@ -24,7 +24,6 @@ type Props = {
 
 export default function EditProductForm({ product }: Props) {
   const {
-    control,
     register,
     handleSubmit,
     formState: { errors },
