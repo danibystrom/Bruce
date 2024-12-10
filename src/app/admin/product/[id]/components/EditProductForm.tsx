@@ -1,25 +1,12 @@
 "use client";
 import { EditProduct } from "@/app/server-actions/admin/handler";
 import { ProductFormData } from "@/app/validation/validation";
-import {
-  Button,
-  Divider,
-  FormControl,
-  InputLabel,
-  Link,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { Button, Divider, Link } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Toast from "./Toast";
-
-interface Category {
-  id: string;
-  name: string;
-}
 
 type Props = {
   product: {
@@ -32,12 +19,10 @@ type Props = {
     price: number;
     image: string;
     isBestSeller: boolean;
-    categoryId: string[];
   };
-  categories: Category[];
 };
 
-export default function EditProductForm({ product, categories }: Props) {
+export default function EditProductForm({ product }: Props) {
   const {
     control,
     register,
@@ -160,33 +145,6 @@ export default function EditProductForm({ product, categories }: Props) {
           variant="standard"
           defaultValue={product?.description || ""}
         />
-        <FormControl variant="standard" sx={{ m: 1, width: "100%" }}>
-          <InputLabel
-            sx={{
-              color: "#000",
-              textTransform: "uppercase",
-              fontSize: "0.8rem",
-              "&.Mui-focused": { color: "#000" },
-            }}
-            id="category-label"
-          >
-            Change category
-          </InputLabel>
-          <Controller
-            name="categories"
-            control={control}
-            defaultValue={[]}
-            render={({ field }) => (
-              <Select {...field} multiple variant="standard">
-                {categories.map((category) => (
-                  <MenuItem key={category.id} value={category.id}>
-                    {category.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            )}
-          />
-        </FormControl>
         <Box
           sx={{
             display: "flex",

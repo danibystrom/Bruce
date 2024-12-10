@@ -73,7 +73,7 @@ export default function EditProductPage(props: Props) {
         }}
       >
         <Box sx={{ flex: 1, paddingRight: { md: "20px" } }}>
-          <EditProductForm product={product} categories={categories} />
+          <EditProductForm product={product} />
         </Box>
       </Box>
     </Box>
