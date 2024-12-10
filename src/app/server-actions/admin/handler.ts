@@ -4,8 +4,6 @@ import { db } from "../../../../prisma/db";
 
 export async function EditProduct(data: any, productId: string) {
   try {
-    const selectedCategoryIds = data.categories;
-
     const parsedPrice = parseFloat(data.price);
     if (isNaN(parsedPrice)) {
       throw new Error("Invalid price value.");
@@ -16,9 +14,6 @@ export async function EditProduct(data: any, productId: string) {
       data: {
         ...data,
         price: parsedPrice,
-        categories: {
-          set: selectedCategoryIds.map((id: string) => ({ id: Number(id) })),
-        },
       },
     });
 
