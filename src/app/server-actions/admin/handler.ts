@@ -2,9 +2,17 @@
 import { revalidatePath } from "next/cache";
 import { db } from "../../../../prisma/db";
 
-export async function EditProduct(data: any, productId: string) {
+interface ProductData {
+  name: string;
+  description: string;
+  price: number;
+  ingredients: string;
+  image: string;
+}
+
+export async function EditProduct(data: ProductData, productId: string) {
   try {
-    const parsedPrice = parseFloat(data.price);
+    const parsedPrice = parseFloat(data.price.toString());
     if (isNaN(parsedPrice)) {
       throw new Error("Invalid price value.");
     }
