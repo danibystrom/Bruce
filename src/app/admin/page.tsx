@@ -9,11 +9,15 @@ import {
 } from "@mui/material";
 import { Product } from "@prisma/client";
 import { useEffect, useState } from "react";
+import ConfirmDelete from "../components/ConfirmDelete";
+import { DeleteProduct } from "../server-actions/admin/handler";
 import { getAllProducts } from "../server-actions/products/handler";
 
 export default function AdminPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,6 +32,24 @@ export default function AdminPage() {
     };
     fetchProducts();
   }, []);
+
+  const handleDeleteClick = (product: Product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!selectedProduct) return;
+
+    try {
+      await DeleteProduct(selectedProduct.id.toString());
+      setProducts((prev) => prev.filter((p) => p.id !== selectedProduct.id));
+      setModalOpen(false);
+      setSelectedProduct(null);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
 
   if (loading) {
     return <Typography>Loading...</Typography>;
@@ -131,6 +153,7 @@ export default function AdminPage() {
                       borderColor: "#000",
                     },
                   }}
+                  onClick={() => handleDeleteClick(product)}
                 >
                   Delete
                 </Button>
@@ -139,6 +162,12 @@ export default function AdminPage() {
           </Grid>
         ))}
       </Grid>
+      <ConfirmDelete
+        open={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        onConfirm={handleConfirmDelete}
+        productName={selectedProduct?.name || ""}
+      />
     </Box>
   );
 }

@@ -32,3 +32,17 @@ export async function EditProduct(data: ProductData, productId: string) {
     throw error;
   }
 }
+
+export async function DeleteProduct(productId: string) {
+  try {
+    const deletedProduct = await db.product.delete({
+      where: { id: Number(productId) },
+    });
+
+    revalidatePath("/admin");
+    return deletedProduct;
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw error;
+  }
+}
