@@ -8,6 +8,8 @@ interface ProductData {
   price: number;
   ingredients: string;
   image: string;
+  productId: number;
+  isBestSeller?: boolean;
 }
 
 export async function EditProduct(data: ProductData, productId: string) {
@@ -43,6 +45,45 @@ export async function DeleteProduct(productId: string) {
     return deletedProduct;
   } catch (error) {
     console.error("Error deleting product:", error);
+    throw error;
+  }
+}
+
+export async function AddNewProduct(
+  newProduct: ProductData & { categories: string[] }
+) {
+  try {
+    const parsedPrice = parseFloat(newProduct.price.toString());
+    if (isNaN(parsedPrice)) {
+      throw new Error("Invalid price value.");
+    }
+
+    const maxProductId = await db.product.aggregate({
+      _max: {
+        productId: true,
+      },
+    });
+
+    const newProductId = (maxProductId._max.productId || 0) + 1;
+
+    const createdProduct = await db.product.create({
+      data: {
+        ...newProduct,
+        price: parsedPrice,
+        productId: newProductId,
+        slug: newProduct.name.toLowerCase().replace(/ /g, "-"),
+        categories: {
+          connect: newProduct.categories.map((categoryId) => ({
+            id: categoryId,
+          })),
+        },
+      },
+    });
+
+    revalidatePath("/admin");
+    return createdProduct;
+  } catch (error) {
+    console.error("Error creating product:", error);
     throw error;
   }
 }

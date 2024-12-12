@@ -10,6 +10,7 @@ export const ProductSchema = z.object({
   slug: z.string().min(1),
   price: z.number().positive(),
   isBestSeller: z.boolean(),
+  categories: z.array(z.string()),
 });
 
 export type ProductFormData = z.infer<typeof ProductSchema>;

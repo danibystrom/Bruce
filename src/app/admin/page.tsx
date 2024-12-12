@@ -57,16 +57,40 @@ export default function AdminPage() {
 
   return (
     <Box sx={{ padding: "2rem" }}>
-      <Typography
-        variant="h4"
+      <Box
         sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           marginBottom: "2rem",
-          textAlign: "center",
-          textTransform: "uppercase",
         }}
       >
-        Bruce Likes to Handle Things
-      </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            textTransform: "uppercase",
+          }}
+        >
+          Bruce Likes to Handle Things
+        </Typography>
+        <Link href={`/admin/add-product`}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#000",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#000",
+                borderColor: "#000",
+              },
+            }}
+          >
+            Add Product
+          </Button>
+        </Link>
+      </Box>
 
       <Grid container spacing={1}>
         {products.map((product) => (
