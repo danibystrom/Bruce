@@ -10,6 +10,7 @@ interface ProductData {
   image: string;
   productId: number;
   isBestSeller?: boolean;
+  alcohol?: number;
 }
 
 export async function EditProduct(data: ProductData, productId: string) {
@@ -72,6 +73,7 @@ export async function AddNewProduct(
         price: parsedPrice,
         productId: newProductId,
         slug: newProduct.name.toLowerCase().replace(/ /g, "-"),
+        alcohol: newProduct.alcohol ?? 0,
         categories: {
           connect: newProduct.categories.map((categoryId) => ({
             id: categoryId,

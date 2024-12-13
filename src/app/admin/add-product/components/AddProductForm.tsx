@@ -41,9 +41,10 @@ export default function EditProductForm({ product, categories }: Props) {
       const newProduct = {
         ...formData,
         price: parseFloat(formData.price.toString()),
+        alcohol: parseFloat(formData.alcohol.toString()),
         image: product?.image || "",
         isBestSeller: product?.isBestSeller || false,
-        categories: formData.categories || [], 
+        categories: formData.categories || [],
       };
 
       await AddNewProduct(newProduct);
@@ -123,7 +124,7 @@ export default function EditProductForm({ product, categories }: Props) {
         />
         <TextField
           label="Alc. %"
-          {...register("ingredients")}
+          {...register("alcohol")}
           error={Boolean(errors.ingredients)}
           helperText={errors.ingredients?.message}
           id="standard-size-small"

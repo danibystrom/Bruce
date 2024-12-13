@@ -7,7 +7,6 @@ type Props = { params: { id: string } };
 
 export default function EditProductPage(props: Props) {
   const [product, setProduct] = useState(null);
-  // const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,11 +16,6 @@ export default function EditProductPage(props: Props) {
         setProduct(productData);
       }
 
-      // const categoriesRes = await fetch("/api/categories");
-      // if (categoriesRes.ok) {
-      //   const categoriesData = await categoriesRes.json();
-      //   setCategories(categoriesData);
-      // }
     };
     fetchData();
   }, [props.params.id]);

@@ -19,6 +19,7 @@ type Props = {
     price: number;
     image: string;
     isBestSeller: boolean;
+    alcohol: number;
   };
 };
 
@@ -36,6 +37,7 @@ export default function EditProductForm({ product }: Props) {
       const updatedData = {
         ...formData,
         price: parseFloat(formData.price.toString()),
+        alcohol: parseFloat(formData.alcohol.toString()),
       };
 
       await EditProduct(updatedData, product.productId.toString());
@@ -115,13 +117,17 @@ export default function EditProductForm({ product }: Props) {
           variant="standard"
           defaultValue={product?.ingredients || ""}
         />
-        {/* <TextField
-          label="Alc. %"
+        <TextField
+          label="ALC. %"
+          {...register("alcohol")}
+          error={Boolean(errors.price)}
+          helperText={errors.price?.message}
           id="standard-size-small"
           size="small"
+          type="number"
           variant="standard"
-          // defaultValue={product?.alcohol || ""}
-        /> */}
+          defaultValue={product?.alcohol || ""}
+        />
         <TextField
           label="PRICE"
           {...register("price")}

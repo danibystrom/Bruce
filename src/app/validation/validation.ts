@@ -11,6 +11,7 @@ export const ProductSchema = z.object({
   price: z.number().positive(),
   isBestSeller: z.boolean(),
   categories: z.array(z.string()),
+  alcohol: z.number().positive(),
 });
 
 export type ProductFormData = z.infer<typeof ProductSchema>;
