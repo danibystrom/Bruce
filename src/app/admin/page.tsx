@@ -77,13 +77,19 @@ export default function AdminPage() {
         <Link href={`/admin/add-product`}>
           <Button
             variant="contained"
+            disableRipple
             sx={{
-              backgroundColor: "#000",
-              color: "#fff",
+              backgroundColor: "#fff",
+              border: "1px solid #000",
+              color: "#000",
+              borderRadius: "20px",
+              boxShadow: "none",
+              width: "150px",
               "&:hover": {
                 backgroundColor: "#fff",
                 color: "#000",
                 borderColor: "#000",
+                boxShadow: "none",
               },
             }}
           >
