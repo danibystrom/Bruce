@@ -1,29 +1,9 @@
-"use client";
+import { showAllCategories } from "@/app/server-actions/categories/handler";
 import { Box, Divider, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import EditProductForm from "./components/EditProductForm";
+import AddProductForm from "./components/AddProductForm";
 
-type Props = { params: { id: string } };
-
-export default function EditProductPage(props: Props) {
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const productRes = await fetch(`/api/products/${props.params.id}`);
-      if (productRes.ok) {
-        const productData = await productRes.json();
-        setProduct(productData);
-      }
-
-    };
-    fetchData();
-  }, [props.params.id]);
-
-  if (!product) {
-    return <Typography variant="body1">Loading...</Typography>;
-  }
-
+export default async function AddNewProduct() {
+  const categories = await showAllCategories();
   return (
     <Box
       sx={{
@@ -43,7 +23,7 @@ export default function EditProductPage(props: Props) {
           fontSize: { xs: "1.5rem", md: "2rem" },
         }}
       >
-        Edit Product with id: {props.params.id}
+        Edit Product with id:
       </Typography>
       <Divider
         sx={{
@@ -67,7 +47,7 @@ export default function EditProductPage(props: Props) {
         }}
       >
         <Box sx={{ flex: 1, paddingRight: { md: "20px" } }}>
-          <EditProductForm product={product} />
+          <AddProductForm categories={categories} />
         </Box>
       </Box>
     </Box>

@@ -17,6 +17,7 @@ model Product {
   description  String
   ingredients  String
   image        String
+  alcohol      Float
   slug         String  @unique
   price        Float
   isBestSeller Boolean @default(false)

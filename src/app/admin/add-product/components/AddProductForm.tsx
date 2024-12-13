@@ -1,30 +1,34 @@
 "use client";
-import { EditProduct } from "@/app/server-actions/admin/handler";
+import { AddNewProduct } from "@/app/server-actions/admin/handler";
 import { ProductFormData } from "@/app/validation/validation";
-import { Button, Divider, Link } from "@mui/material";
+import {
+  Button,
+  Divider,
+  FormControl,
+  Link,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Toast from "./Toast";
 
-type Props = {
-  product: {
-    id: number;
-    productId: number;
-    name: string;
-    slug: string;
-    ingredients: string;
-    description: string;
-    price: number;
-    image: string;
-    isBestSeller: boolean;
-    alcohol: number;
-  };
-};
+interface Category {
+  id: string;
+  name: string;
+}
 
-export default function EditProductForm({ product }: Props) {
+interface Props {
+  product?: ProductFormData;
+  categories: Category[];
+}
+
+export default function EditProductForm({ product, categories }: Props) {
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -32,17 +36,20 @@ export default function EditProductForm({ product }: Props) {
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
-  const handleEditProduct = async (formData: ProductFormData) => {
+  const handleCreateProduct = async (formData: ProductFormData) => {
     try {
-      const updatedData = {
+      const newProduct = {
         ...formData,
         price: parseFloat(formData.price.toString()),
         alcohol: parseFloat(formData.alcohol.toString()),
+        image: product?.image || "",
+        isBestSeller: product?.isBestSeller || false,
+        categories: formData.categories || [],
       };
 
-      await EditProduct(updatedData, product.productId.toString());
+      await AddNewProduct(newProduct);
 
-      setToastMessage("Bruce approves! Product updated.");
+      setToastMessage("Welcome to the gang Bruce! You've been added.");
       setToastOpen(true);
 
       setTimeout(() => {
@@ -70,7 +77,7 @@ export default function EditProductForm({ product }: Props) {
       {/* Form Section */}
       <Box
         component="form"
-        onSubmit={handleSubmit(handleEditProduct)}
+        onSubmit={handleSubmit(handleCreateProduct)}
         sx={{
           flex: 1,
           maxWidth: "500px",
@@ -81,7 +88,7 @@ export default function EditProductForm({ product }: Props) {
             borderBottomColor: "#000",
           },
           "& .MuiInput-underline:after": { borderBottomColor: "#000" },
-          "& .MuiFormLabel-root": { color: "#000" },
+          "& .MuiFormLabel-root": { color: "#000", fontSize: "0.8rem" },
           "& .MuiFormLabel-root.Mui-focused": { color: "#000" },
           "& .MuiSelect-select": { color: "#000" },
           "& .MuiOutlinedInput-notchedOutline": { borderColor: "#000" },
@@ -104,7 +111,6 @@ export default function EditProductForm({ product }: Props) {
           id="standard-size-small"
           size="small"
           variant="standard"
-          defaultValue={product?.name || ""}
         />
 
         <TextField
@@ -115,18 +121,15 @@ export default function EditProductForm({ product }: Props) {
           id="standard-size-small"
           size="small"
           variant="standard"
-          defaultValue={product?.ingredients || ""}
         />
         <TextField
-          label="ALC. %"
+          label="Alc. %"
           {...register("alcohol")}
-          error={Boolean(errors.price)}
-          helperText={errors.price?.message}
+          error={Boolean(errors.ingredients)}
+          helperText={errors.ingredients?.message}
           id="standard-size-small"
           size="small"
-          type="number"
           variant="standard"
-          defaultValue={product?.alcohol || ""}
         />
         <TextField
           label="PRICE"
@@ -137,7 +140,6 @@ export default function EditProductForm({ product }: Props) {
           size="small"
           type="number"
           variant="standard"
-          defaultValue={product?.price || ""}
         />
         <TextField
           label="DESCRIPTION"
@@ -148,8 +150,26 @@ export default function EditProductForm({ product }: Props) {
           multiline
           rows={4}
           variant="standard"
-          defaultValue={product?.description || ""}
         />
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <Typography sx={{ fontSize: "0.8rem", textTransform: "uppercase" }}>
+            Choose categories
+          </Typography>
+          <Controller
+            name="categories"
+            control={control}
+            defaultValue={[]}
+            render={({ field }) => (
+              <Select {...field} multiple variant="standard">
+                {categories.map((category) => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+        </FormControl>
         <Box
           sx={{
             display: "flex",
@@ -232,7 +252,7 @@ export default function EditProductForm({ product }: Props) {
         }}
       >
         <img
-          src={product.image}
+          // src={product.image}
           alt="Product"
           style={{
             maxWidth: "100%",
