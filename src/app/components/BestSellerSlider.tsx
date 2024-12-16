@@ -62,16 +62,63 @@ export default function BestSellerSlider() {
         position: "relative",
       }}
     >
-      <Typography
-        variant="h4"
+      <Box
         sx={{
-          color: "#000000",
-          padding: "1rem",
-          fontWeight: 700,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        SHOP BEST SELLERS
-      </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#000000",
+            padding: "1rem",
+            fontWeight: 700,
+          }}
+        >
+          SHOP BEST SELLERS
+        </Typography>
+
+        <Box sx={{ padding: "1rem" }}>
+          <IconButton
+            color="primary"
+            onClick={() => handleBestSellerScroll(-300)}
+            disableRipple
+            disableFocusRipple
+            sx={{
+              background: "none",
+              border: "none",
+              boxShadow: "none",
+              padding: 0,
+              marginRight: "0.5rem",
+              "&:hover": { background: "none" },
+            }}
+          >
+            <NavigateBeforeSharpIcon
+              sx={{ color: "#000000", fontSize: "3rem" }}
+            />
+          </IconButton>
+
+          <IconButton
+            color="primary"
+            onClick={() => handleBestSellerScroll(300)}
+            disableRipple
+            disableFocusRipple
+            sx={{
+              background: "none",
+              border: "none",
+              boxShadow: "none",
+              padding: 0,
+              "&:hover": { background: "none" },
+            }}
+          >
+            <NavigateNextSharpIcon
+              sx={{ color: "#000000", fontSize: "3rem" }}
+            />
+          </IconButton>
+        </Box>
+      </Box>
 
       <Box
         ref={bestSellerRef}
@@ -138,54 +185,6 @@ export default function BestSellerSlider() {
         ))}
         <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
-
-      <IconButton
-        color="primary"
-        onClick={() => handleBestSellerScroll(-300)}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          position: "absolute",
-          left: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          "&:hover": {
-            background: "none",
-          },
-        }}
-      >
-        <NavigateBeforeSharpIcon
-          sx={{ color: "#000000", background: "none" }}
-        />
-      </IconButton>
-
-      <IconButton
-        color="primary"
-        onClick={() => handleBestSellerScroll(300)}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          position: "absolute",
-          right: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          "&:hover": {
-            background: "none",
-          },
-        }}
-      >
-        <NavigateNextSharpIcon sx={{ color: "#000000", background: "none" }} />
-      </IconButton>
     </Box>
   );
 }

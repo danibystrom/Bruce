@@ -69,17 +69,48 @@ export default function SuggestedProducts() {
         position: "relative",
       }}
     >
-      <Typography
-        variant="h4"
+      <Box
         sx={{
-          color: "#000000",
-          padding: "1rem",
-          fontWeight: 700,
-          textTransform: "uppercase",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        Suggested for you
-      </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#000000",
+            padding: "1rem",
+            fontWeight: 700,
+            textTransform: "uppercase",
+          }}
+        >
+          Suggested for you
+        </Typography>
+
+        <Box sx={{ padding: "1rem" }}>
+          <IconButton
+            onClick={() => handleProductScroll(-300)}
+            disableRipple
+            disableFocusRipple
+            sx={{
+              color: "#000000",
+            }}
+          >
+            <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
+          </IconButton>
+          <IconButton
+            onClick={() => handleProductScroll(300)}
+            disableRipple
+            disableFocusRipple
+            sx={{
+              color: "#000000",
+            }}
+          >
+            <NavigateNextSharpIcon sx={{ fontSize: "3rem" }} />
+          </IconButton>
+        </Box>
+      </Box>
 
       <Box
         ref={productRef}
@@ -199,54 +230,6 @@ export default function SuggestedProducts() {
         ))}
         <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
-
-      <IconButton
-        color="primary"
-        onClick={() => handleProductScroll(-300)}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          position: "absolute",
-          left: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          "&:hover": {
-            background: "none",
-          },
-        }}
-      >
-        <NavigateBeforeSharpIcon
-          sx={{ color: "#000000", background: "none" }}
-        />
-      </IconButton>
-
-      <IconButton
-        color="primary"
-        onClick={() => handleProductScroll(300)}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          position: "absolute",
-          right: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          "&:hover": {
-            background: "none",
-          },
-        }}
-      >
-        <NavigateNextSharpIcon sx={{ color: "#000000", background: "none" }} />
-      </IconButton>
 
       <Box
         sx={{

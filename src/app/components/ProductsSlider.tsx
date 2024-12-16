@@ -69,17 +69,48 @@ export default function ProductsSlider() {
         position: "relative",
       }}
     >
-      <Typography
-        variant="h4"
+      <Box
         sx={{
-          color: "#000000",
-          padding: "1rem",
-          fontWeight: 700,
-          textTransform: "uppercase",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        One Big Bruce Family
-      </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            color: "#000000",
+            padding: "1rem",
+            fontWeight: 700,
+            textTransform: "uppercase",
+          }}
+        >
+          One Big Bruce Family
+        </Typography>
+        
+        <Box sx={{ padding: "1rem" }}>
+          <IconButton
+            onClick={() => handleProductScroll(-300)}
+            disableRipple
+            disableFocusRipple
+            sx={{
+              color: "#000000",
+            }}
+          >
+            <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
+          </IconButton>
+          <IconButton
+            onClick={() => handleProductScroll(300)}
+            disableRipple
+            disableFocusRipple
+            sx={{
+              color: "#000000",
+            }}
+          >
+            <NavigateNextSharpIcon sx={{ fontSize: "3rem" }} />
+          </IconButton>
+        </Box>
+      </Box>
 
       <Box
         ref={productRef}
@@ -200,7 +231,7 @@ export default function ProductsSlider() {
         <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
 
-      <IconButton
+      {/* <IconButton
         color="primary"
         onClick={() => handleProductScroll(-300)}
         disableRipple
@@ -246,7 +277,7 @@ export default function ProductsSlider() {
         }}
       >
         <NavigateNextSharpIcon sx={{ color: "#000000", background: "none" }} />
-      </IconButton>
+      </IconButton> */}
 
       <Box
         sx={{
