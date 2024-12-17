@@ -87,7 +87,7 @@ export default function ProductsSlider() {
         >
           One Big Bruce Family
         </Typography>
-        
+
         <Box sx={{ padding: "1rem" }}>
           <IconButton
             onClick={() => handleProductScroll(-300)}
@@ -231,54 +231,6 @@ export default function ProductsSlider() {
         <Toast open={open} onClose={handleClose} product={selectedProduct} />
       </Box>
 
-      {/* <IconButton
-        color="primary"
-        onClick={() => handleProductScroll(-300)}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          position: "absolute",
-          left: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          "&:hover": {
-            background: "none",
-          },
-        }}
-      >
-        <NavigateBeforeSharpIcon
-          sx={{ color: "#000000", background: "none" }}
-        />
-      </IconButton>
-
-      <IconButton
-        color="primary"
-        onClick={() => handleProductScroll(300)}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          position: "absolute",
-          right: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          background: "none",
-          border: "none",
-          boxShadow: "none",
-          padding: 0,
-          "&:hover": {
-            background: "none",
-          },
-        }}
-      >
-        <NavigateNextSharpIcon sx={{ color: "#000000", background: "none" }} />
-      </IconButton> */}
-
       <Box
         sx={{
           display: "flex",
@@ -292,13 +244,22 @@ export default function ProductsSlider() {
             color="primary"
             disableRipple
             sx={{
-              backgroundColor: "#000",
-              borderRadius: 0,
+              backgroundColor: "#F2F961",
+              color: "#000",
+              borderRadius: "20px",
               boxShadow: "none",
-              width: "auto",
-              paddingX: "2rem",
+              width: "210px",
+              transition: "all 0.3s ease",
+
               "&:hover": {
+                boxShadow: "8px 8px #E1EC09",
+                transition: "all 0.3s ease",
+                backgroundColor: "#F2F961",
+              },
+              "&:active": {
+                backgroundColor: "transparent",
                 boxShadow: "none",
+                outline: "none",
               },
             }}
           >

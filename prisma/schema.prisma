@@ -11,16 +11,17 @@ datasource db {
 }
 
 model Product {
-  id           Int     @id @default(autoincrement())
-  productId    Int     @unique
-  name         String
-  description  String
-  ingredients  String
-  image        String
-  alcohol      Float
-  slug         String  @unique
-  price        Float
-  isBestSeller Boolean @default(false)
+  id             Int     @id @default(autoincrement())
+  productId      Int     @unique
+  name           String
+  description    String
+  ingredients    String
+  image          String
+  alcohol        Float
+  tabletQuantity Int
+  slug           String  @unique
+  price          Float
+  isBestSeller   Boolean @default(false)
 
   categories Category[]
 }

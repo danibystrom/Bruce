@@ -173,7 +173,16 @@ export default function BestSellerSlider() {
                   width: "50%",
                   borderRadius: 20,
                   boxShadow: "none",
-                  "&:hover": { backgroundColor: "#000", color: "#fff" },
+                  "&:hover": {
+                    boxShadow: "5px 5px #F2F961",
+                    transition: "all 0.3s ease",
+                    backgroundColor: "#fff",
+                  },
+                  "&:active": {
+                    backgroundColor: "#F2F961",
+                    boxShadow: "none",
+                    outline: "none",
+                  },
                 }}
               >
                 <Typography variant="body2" sx={{}}>

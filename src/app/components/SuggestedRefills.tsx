@@ -241,16 +241,25 @@ export default function SuggestedRefills() {
         <Link href="/refill" passHref>
           <Button
             variant="contained"
-            color="primary"
             disableRipple
             sx={{
-              backgroundColor: "#000",
-              borderRadius: 0,
+              backgroundColor: "#F2F961",
+              color: "#000",
+              borderRadius: "20px",
               boxShadow: "none",
               width: "auto",
               paddingX: "2rem",
+              whiteSpace: "nowrap",
+              transition: "all 0.3s ease",
               "&:hover": {
+                boxShadow: "8px 8px #E1EC09",
+                transition: "all 0.3s ease",
+                backgroundColor: "#F2F961",
+              },
+              "&:active": {
+                backgroundColor: "transparent",
                 boxShadow: "none",
+                outline: "none",
               },
             }}
           >
