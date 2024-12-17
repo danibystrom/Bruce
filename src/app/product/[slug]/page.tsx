@@ -132,23 +132,26 @@ export default function ProductPage({ params }: PageProps) {
                   gap: "0.25rem",
                 }}
               >
-                <Typography sx={{ fontSize: "1.25rem", fontWeight: "700" }}>
-                  {product.name}
-                </Typography>
-                <Typography sx={{ fontSize: "0.6rem", fontWeight: "200" }}>
-                  {product.description}
-                </Typography>
+                <Typography variant="h4">{product.name}</Typography>
                 <Typography
                   sx={{
-                    fontSize: "0.6rem",
-                    fontWeight: "200",
+                    fontSize: "1,5rem",
+                    fontWeight: "400",
+                    mb: "1rem",
                     fontStyle: "italic",
                   }}
                 >
-                  {product.ingredients}
+                  {product.tabletQuantity} pills, {product.alcohol}% ABV
+                  (alcohol by volume)
                 </Typography>
-                <Typography sx={{ fontSize: "1rem", fontWeight: "200" }}>
-                  EUR {product.price}€
+                <Typography variant="body1">{product.description}</Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontStyle: "italic",
+                  }}
+                >
+                  Ingredients: {product.ingredients}
                 </Typography>
               </Box>
               <Box
@@ -161,18 +164,30 @@ export default function ProductPage({ params }: PageProps) {
 
               <Box>
                 <Button
+                  disableRipple
                   variant="contained"
-                  color="primary"
                   sx={{
-                    backgroundColor: "#000",
-                    borderRadius: 0,
+                    backgroundColor: "#F2F961",
+                    color: "#000",
+                    borderRadius: "20px",
                     boxShadow: "none",
                     width: "100%",
-                    boxSizing: "border-box",
+                    transition: "all 0.3s ease",
+
+                    "&:hover": {
+                      boxShadow: "8px 8px #E1EC09",
+                      transition: "all 0.3s ease",
+                      backgroundColor: "#F2F961",
+                    },
+                    "&:active": {
+                      backgroundColor: "transparent",
+                      boxShadow: "none",
+                      outline: "none",
+                    },
                   }}
                   onClick={() => handleClick(product)}
                 >
-                  ADD TO BAG
+                  ADD TO BAG - EUR {product.price}€
                 </Button>
                 <Toast
                   open={open}

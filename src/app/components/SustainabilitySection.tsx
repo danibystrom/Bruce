@@ -62,14 +62,17 @@ export default function SustainabilitySection() {
             color="primary"
             disableRipple
             sx={{
-              backgroundColor: "#000",
-              borderRadius: 0,
+              backgroundColor: "#F2F961",
+              color: "#000",
+              borderRadius: "20px",
               boxShadow: "none",
               marginTop: "1rem",
-              width: "auto",
-              paddingX: "2rem",
+              width: "210px",
+              transition: "all 0.3s ease",
               "&:hover": {
                 boxShadow: "none",
+                transition: "all 0.3s ease",
+                backgroundColor: "#EBF613",
               },
             }}
           >
