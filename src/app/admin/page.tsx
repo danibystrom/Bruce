@@ -8,16 +8,30 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ConfirmDelete from "../components/ConfirmDelete";
 import { DeleteProduct } from "../server-actions/admin/handler";
 import { getAllProducts } from "../server-actions/products/handler";
 
 export default function AdminPage() {
+  const { status } = useSession();
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push(
+        `/api/auth/signin?callbackUrl=${encodeURIComponent(
+          window.location.pathname
+        )}`
+      );
+    }
+  }, [status, router]);
 
   useEffect(() => {
     const fetchProducts = async () => {
