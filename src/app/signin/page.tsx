@@ -7,8 +7,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import Toast from "../signin/components/Toast";
 export default function SignInPage() {
   const [name, setName] = useState("");
@@ -17,6 +17,15 @@ export default function SignInPage() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session !== undefined) {
+      setLoading(false);
+    }
+  }, [session]);
 
   const handleLogin = async () => {
     try {
@@ -58,6 +67,89 @@ export default function SignInPage() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut({ redirect: false });
+      setToastMessage("You have been logged out. Come back soon!");
+      setToastOpen(true);
+    } catch (error) {
+      console.error("Logout failed", error);
+      setToastMessage("Something went wrong, try again.");
+      setToastOpen(true);
+    }
+  };
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          maxWidth: "400px",
+          margin: "auto",
+          marginY: "5rem",
+          padding: "2rem",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h4">One sec...</Typography>
+      </Box>
+    );
+  }
+
+  if (session) {
+    return (
+      <Box
+        sx={{
+          maxWidth: "400px",
+          margin: "auto",
+          marginY: "5rem",
+          padding: "2rem",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h4" mb={2} sx={{ textTransform: "uppercase" }}>
+          "You’re already Bruce’d!"
+        </Typography>
+        <Typography variant="body1" mb={2}>
+          "Bruce knows you’re in, but if you need to take a break, just hit the
+          button below!"
+        </Typography>
+
+        <Button
+          disableRipple
+          variant="outlined"
+          fullWidth
+          sx={{
+            backgroundColor: "#fff",
+            border: "1px solid #000",
+            marginTop: "0.5rem",
+            color: "#000",
+            borderRadius: 20,
+            boxShadow: "none",
+            "&:hover": {
+              boxShadow: "5px 5px #F2F961",
+              transition: "all 0.3s ease",
+              backgroundColor: "#fff",
+            },
+          }}
+          onClick={handleLogout}
+        >
+          Log Out
+        </Button>
+
+        <Toast
+          open={toastOpen}
+          message={toastMessage}
+          onClose={() => setToastOpen(false)}
+          key={toastMessage}
+        />
+      </Box>
+    );
+  }
+
   return (
     <Box
       sx={{
@@ -70,7 +162,7 @@ export default function SignInPage() {
         textAlign: "center",
       }}
     >
-      <Typography variant="h4" mb={2}>
+      <Typography variant="h4" mb={2} sx={{ textTransform: "uppercase" }}>
         {isRegistering
           ? "Bruce Says: Time to Join the Fun!"
           : "Get in, Get Bruce’d!"}
