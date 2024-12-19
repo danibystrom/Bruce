@@ -95,18 +95,23 @@ export default function Header() {
           </Link>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
-            <IconButton
-              disableRipple
-              color="inherit"
-              sx={{
-                paddingRight: 0.1,
-                "&:hover": {
-                  backgroundColor: "transparent",
-                },
-              }}
+            <Link
+              href="/signin"
+              sx={{ textDecoration: "none", underline: "none", color: "black" }}
             >
-              <PersonOutlineOutlinedIcon />
-            </IconButton>
+              <IconButton
+                disableRipple
+                color="inherit"
+                sx={{
+                  paddingRight: 0.1,
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <PersonOutlineOutlinedIcon />
+              </IconButton>
+            </Link>
             <ShopCartWithBadge />
           </Box>
         </Toolbar>
