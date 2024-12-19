@@ -9,12 +9,14 @@ import {
 } from "@mui/material";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-
+import Toast from "../signin/components/Toast";
 export default function SignInPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const handleLogin = async () => {
     try {
@@ -22,7 +24,7 @@ export default function SignInPage() {
         email,
         password,
         redirect: true,
-        callbackUrl: "/", 
+        callbackUrl: "/",
       });
       console.log(result);
     } catch (error) {
@@ -41,14 +43,18 @@ export default function SignInPage() {
       });
 
       if (response.ok) {
-        alert("Account created! You can now log in.");
+        setToastMessage("You Did It. Bruce is Proud!");
+        setToastOpen(true);
         setIsRegistering(false);
       } else {
         const error = await response.json();
-        alert(error.message || "Something went wrong");
+        setToastMessage(error.message || "Something went wrong");
+        setToastOpen(true);
       }
     } catch (error) {
       console.error("Registration failed", error);
+      setToastMessage("Something went wrong, try again.");
+      setToastOpen(true);
     }
   };
 
@@ -57,6 +63,7 @@ export default function SignInPage() {
       sx={{
         maxWidth: "400px",
         margin: "auto",
+        marginY: "5rem",
         padding: "2rem",
         border: "1px solid #ddd",
         borderRadius: "8px",
@@ -64,7 +71,14 @@ export default function SignInPage() {
       }}
     >
       <Typography variant="h4" mb={2}>
-        {isRegistering ? "Register" : "Sign In"}
+        {isRegistering
+          ? "Bruce Says: Time to Join the Fun!"
+          : "Get in, Get Bruce’d!"}
+      </Typography>
+      <Typography variant="body1" mb={2}>
+        {isRegistering
+          ? "No Bruce? No problem. Sign up now and let’s make your world a whole lot more refreshing. Bruce believes in you"
+          : "Bruce knows you’re ready. Log in to unlock the full Bruce experience, where the drinks are always better and the fun never stops."}
       </Typography>
 
       {isRegistering && (
@@ -72,7 +86,7 @@ export default function SignInPage() {
           fullWidth
           label="Name"
           type="text"
-          variant="outlined"
+          variant="standard"
           value={name}
           onChange={(e) => setName(e.target.value)}
           margin="normal"
@@ -83,7 +97,7 @@ export default function SignInPage() {
         fullWidth
         label="Email"
         type="email"
-        variant="outlined"
+        variant="standard"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         margin="normal"
@@ -92,17 +106,34 @@ export default function SignInPage() {
         fullWidth
         label="Password"
         type="password"
-        variant="outlined"
+        variant="standard"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         margin="normal"
       />
 
       <Button
-        variant="contained"
-        color="primary"
+        disableRipple
+        variant="outlined"
         fullWidth
-        sx={{ mt: 2 }}
+        sx={{
+          backgroundColor: "#fff",
+          border: "1px solid #000",
+          marginTop: "0.5rem",
+          color: "#000",
+          borderRadius: 20,
+          boxShadow: "none",
+          "&:hover": {
+            boxShadow: "5px 5px #F2F961",
+            transition: "all 0.3s ease",
+            backgroundColor: "#fff",
+          },
+          "&:active": {
+            backgroundColor: "#fff",
+            boxShadow: "none",
+            outline: "none",
+          },
+        }}
         onClick={isRegistering ? handleRegister : handleLogin}
       >
         {isRegistering ? "Register" : "Sign In"}
@@ -133,6 +164,12 @@ export default function SignInPage() {
           </>
         )}
       </Typography>
+      <Toast
+        open={toastOpen}
+        message={toastMessage}
+        onClose={() => setToastOpen(false)}
+        key={toastMessage}
+      />
     </Box>
   );
 }
