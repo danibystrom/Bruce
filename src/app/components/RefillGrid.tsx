@@ -16,7 +16,6 @@ import Toast from "./Toast";
 
 export default function RefillGrid() {
   const [refills, setRefills] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
@@ -26,10 +25,8 @@ export default function RefillGrid() {
       try {
         const fetchedProducts = await getProductsByCategory("Refills");
         setRefills(fetchedProducts);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
-        setLoading(false);
       }
     };
 
@@ -43,10 +40,6 @@ export default function RefillGrid() {
   };
 
   const handleClose = () => setOpen(false);
-
-  if (loading) {
-    return <Typography>Loading...</Typography>;
-  }
 
   return (
     <Box

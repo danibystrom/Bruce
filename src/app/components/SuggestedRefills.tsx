@@ -19,7 +19,6 @@ import Toast from "./Toast";
 
 export default function SuggestedRefills() {
   const [refills, setRefills] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const refillRef = useRef<HTMLDivElement | null>(null);
@@ -39,10 +38,8 @@ export default function SuggestedRefills() {
       try {
         const fetchedProducts = await getProductsByCategory("Refills");
         setRefills(fetchedProducts);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
-        setLoading(false);
       }
     };
 
@@ -57,9 +54,6 @@ export default function SuggestedRefills() {
 
   const handleClose = () => setOpen(false);
 
-  if (loading) {
-    return <Typography>Loading...</Typography>;
-  }
   return (
     <Box
       sx={{
