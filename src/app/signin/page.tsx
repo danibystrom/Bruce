@@ -101,8 +101,8 @@ export default function SignInPage() {
           You’re already Bruce’d!
         </Typography>
         <Typography variant="body1" mb={2}>
-          "Bruce knows you’re in, but if you need to take a break, just hit the
-          button below!"
+          Bruce knows you’re in, but if you need to take a break, just hit the
+          button below!
         </Typography>
 
         <Button
