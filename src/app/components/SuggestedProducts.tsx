@@ -19,7 +19,6 @@ import Toast from "./Toast";
 
 export default function SuggestedProducts() {
   const [drinks, setDrinks] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const productRef = useRef<HTMLDivElement | null>(null);
@@ -39,10 +38,8 @@ export default function SuggestedProducts() {
       try {
         const fetchedProducts = await getProductsByCategory("Cocktails");
         setDrinks(fetchedProducts);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
-        setLoading(false);
       }
     };
 
@@ -56,10 +53,6 @@ export default function SuggestedProducts() {
   };
 
   const handleClose = () => setOpen(false);
-
-  if (loading) {
-    return <Typography>Loading...</Typography>;
-  }
 
   return (
     <Box

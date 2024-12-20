@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/app/components/LoadingAnimation";
 import SuggestedProducts from "@/app/components/SuggestedProducts";
 import SuggestedRefills from "@/app/components/SuggestedRefills";
 import SustainabilitySection from "@/app/components/SustainabilitySection";
@@ -28,7 +29,7 @@ export default function ProductPage({ params }: PageProps) {
           setError(`The product with id "${slug}" does not exist.`);
           return;
         }
-        setProduct(fetchedProduct);
+        setTimeout(() => setProduct(fetchedProduct), 1000);
       } catch (err) {
         setError("An error occurred while fetching the product.");
         console.error(err);
@@ -62,7 +63,7 @@ export default function ProductPage({ params }: PageProps) {
   }
 
   if (!product) {
-    return <Typography variant="h2">Loading...</Typography>;
+    return <Loading />;
   }
 
   return (
