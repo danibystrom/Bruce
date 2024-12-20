@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import Loading from "../components/LoadingAnimation";
 import Toast from "../signin/components/Toast";
 export default function SignInPage() {
   const [name, setName] = useState("");
@@ -23,7 +24,7 @@ export default function SignInPage() {
 
   useEffect(() => {
     if (session !== undefined) {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 2000);
     }
   }, [session]);
 
@@ -80,21 +81,7 @@ export default function SignInPage() {
   };
 
   if (loading) {
-    return (
-      <Box
-        sx={{
-          maxWidth: "400px",
-          margin: "auto",
-          marginY: "5rem",
-          padding: "2rem",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-          textAlign: "center",
-        }}
-      >
-        <Typography variant="h4">One sec...</Typography>
-      </Box>
-    );
+    return <Loading />;
   }
 
   if (session) {
@@ -111,7 +98,7 @@ export default function SignInPage() {
         }}
       >
         <Typography variant="h4" mb={2} sx={{ textTransform: "uppercase" }}>
-          "You’re already Bruce’d!"
+          You’re already Bruce’d!
         </Typography>
         <Typography variant="body1" mb={2}>
           "Bruce knows you’re in, but if you need to take a break, just hit the

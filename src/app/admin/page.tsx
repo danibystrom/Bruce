@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ConfirmDelete from "../components/ConfirmDelete";
+import Loading from "../components/LoadingAnimation";
 import { DeleteProduct } from "../server-actions/admin/handler";
 import { getAllProducts } from "../server-actions/products/handler";
 
@@ -38,7 +39,7 @@ export default function AdminPage() {
       try {
         const fetchedProducts = await getAllProducts();
         setProducts(fetchedProducts);
-        setLoading(false);
+        setTimeout(() => setLoading(false), 1500);
       } catch (error) {
         console.error("Error fetching products:", error);
         setLoading(false);
@@ -66,7 +67,7 @@ export default function AdminPage() {
   };
 
   if (loading) {
-    return <Typography>Loading...</Typography>;
+    return <Loading />;
   }
 
   return (
