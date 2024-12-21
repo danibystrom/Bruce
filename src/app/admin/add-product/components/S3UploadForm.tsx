@@ -1,26 +1,20 @@
 "use client";
+import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 
-const UploadForm = () => {
+interface UploadFormProps {
+  onUploadSuccess: (url: string) => void;
+}
+
+export default function S3UploadForm({ onUploadSuccess }: UploadFormProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
-interface FileChangeEvent extends React.ChangeEvent<HTMLInputElement> {
-    target: HTMLInputElement & EventTarget;
-}
-
-const handleFileChange = (e: FileChangeEvent): void => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setFile(e.target.files?.[0] || null);
-};
+  };
 
-interface HandleSubmitEvent extends React.FormEvent<HTMLFormElement> {}
-
-interface ApiResponse {
-    status: string;
-}
-
-const handleSubmit = async (e: HandleSubmitEvent): Promise<void> => {
-    e.preventDefault();
+  const handleUpload = async (): Promise<void> => {
     if (!file) return;
 
     setUploading(true);
@@ -28,32 +22,37 @@ const handleSubmit = async (e: HandleSubmitEvent): Promise<void> => {
     formData.append("file", file);
 
     try {
-        const response = await fetch("/api/s3-upload", {
-            method: "POST",
-            body: formData,
-        });
+      const response = await fetch("/api/s3-upload", {
+        method: "POST",
+        body: formData,
+      });
 
-        const data: ApiResponse = await response.json();
-        console.log(data.status);
-        setUploading(false);
+      const data = await response.json();
+      if (data.success) {
+        // Returnera URL:en till AddProductForm
+        onUploadSuccess(data.url);
+      } else {
+        console.error(data.error);
+      }
     } catch (error) {
-        console.log(error);
-        setUploading(false);
+      console.error(error);
+    } finally {
+      setUploading(false);
     }
-};
+  };
 
   return (
-    <>
-      <h1>Upload Files to S3 Bucket</h1>
-
-      <form onSubmit={handleSubmit}>
-        <input type="file" accept="image/*" onChange={handleFileChange} />
-        <button type="submit" disabled={!file || uploading}>
-          {uploading ? "Uploading..." : "Upload"}
-        </button>
-      </form>
-    </>
+    <div>
+      <Typography>Upload an image</Typography>
+      <input type="file" onChange={handleFileChange} />
+      <Button
+        onClick={handleUpload}
+        disabled={uploading || !file}
+        variant="contained"
+        color="primary"
+      >
+        {uploading ? "Uploading..." : "Upload"}
+      </Button>
+    </div>
   );
-};
-
-export default UploadForm;
+}

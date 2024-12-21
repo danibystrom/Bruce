@@ -24,14 +24,20 @@ export async function uploadImage(formData: FormData) {
 
     const fileName = `${randomUUID()}.${fileExtension}`;
 
+    console.log("Starting upload...");
+    console.log("File:", file);
+    console.log("Bucket:", process.env.AWS_S3_BUCKET_NAME);
+
     const command = new PutObjectCommand({
-      Bucket: process.env.AWS_S3_BUCKET_NAME, 
+      Bucket: process.env.AWS_S3_BUCKET_NAME,
       Key: `uploads/${fileName}`,
-      Body: buffer, 
-      ContentType: file.type, 
+      Body: buffer,
+      ContentType: file.type,
     });
+    console.log("Command:", command);
 
     await s3Client.send(command);
+    console.log("Upload successful!");
 
     const fileUrl = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_S3_BUCKET_REGION}.amazonaws.com/uploads/${fileName}`;
 

@@ -66,6 +66,8 @@ export async function AddNewProduct(
       },
     });
 
+    console.log("Creating product with data:", newProduct);
+
     const newProductId = (maxProductId._max.productId || 0) + 1;
 
     const createdProduct = await db.product.create({

@@ -36,6 +36,11 @@ export default function EditProductForm({ product, categories }: Props) {
   } = useForm<ProductFormData>();
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  const handleImageUploadSuccess = (url: string) => {
+    setImageUrl(url);
+  };
 
   const handleCreateProduct = async (formData: ProductFormData) => {
     try {
@@ -43,7 +48,7 @@ export default function EditProductForm({ product, categories }: Props) {
         ...formData,
         price: parseFloat(formData.price.toString()),
         alcohol: parseFloat(formData.alcohol.toString()),
-        image: product?.image || "",
+        image: imageUrl,
         isBestSeller: product?.isBestSeller || false,
         categories: formData.categories || [],
       };
@@ -171,7 +176,7 @@ export default function EditProductForm({ product, categories }: Props) {
             )}
           />
         </FormControl>
-        <S3UploadForm />
+        <S3UploadForm onUploadSuccess={handleImageUploadSuccess} />
         <Box
           sx={{
             display: "flex",
@@ -253,16 +258,17 @@ export default function EditProductForm({ product, categories }: Props) {
           maxWidth: "500px",
         }}
       >
-        <img
-          // src={product.image}
-          alt="Product"
-          style={{
-            maxWidth: "100%",
-            maxHeight: "300px",
-            objectFit: "contain",
-            borderRadius: "8px",
-          }}
-        />
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt="Preview"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "300px",
+              objectFit: "contain",
+            }}
+          />
+        )}
       </Box>
     </Box>
   );
