@@ -11,6 +11,7 @@ interface ProductData {
   productId: number;
   isBestSeller?: boolean;
   alcohol?: number;
+  tabletQuantity?: number;
 }
 
 export async function EditProduct(data: ProductData, productId: string) {
@@ -74,6 +75,7 @@ export async function AddNewProduct(
         productId: newProductId,
         slug: newProduct.name.toLowerCase().replace(/ /g, "-"),
         alcohol: newProduct.alcohol ?? 0,
+        tabletQuantity: newProduct.tabletQuantity ?? 0,
         categories: {
           connect: newProduct.categories.map((categoryId) => ({
             id: categoryId,

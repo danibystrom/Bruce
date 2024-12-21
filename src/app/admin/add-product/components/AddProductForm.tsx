@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import S3UploadForm from "./S3UploadForm";
 import Toast from "./Toast";
 
 interface Category {
@@ -170,6 +171,7 @@ export default function EditProductForm({ product, categories }: Props) {
             )}
           />
         </FormControl>
+        <S3UploadForm />
         <Box
           sx={{
             display: "flex",
