@@ -172,32 +172,45 @@ export default function ProductPage({ params }: PageProps) {
                 }}
               ></Box>
               <Box sx={{ marginY: "1rem" }}>
-                <Typography variant="body1">Choose your case color:</Typography>
-                <Box sx={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-                  {product.caseColors.map((color, index) => {
-                    const subColor = product.subColors[index] || color; // Om subColor inte finns, använd samma som main color.
-                    return (
-                      <Box
-                        key={color}
-                        onClick={() => setSelectedColor(color)}
-                        sx={{
-                          width: "20px",
-                          height: "20px",
-                          borderRadius: "50%",
-                          border: "0.5px solid black",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          cursor: "pointer",
-                          position: "relative",
-                          backgroundImage: getBackgroundImage(color, subColor), // Använd funktionen här
-                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Glansig effekt
-                          transition: "all 0.3s ease", // Smidig övergång
-                        }}
-                      />
-                    );
-                  })}
-                </Box>
+                {product.caseColors && product.caseColors.length > 0 && (
+                  <>
+                    <Typography variant="body2">
+                      Choose your case color:
+                    </Typography>
+                    <Box
+                      sx={{ display: "flex", gap: "10px", marginTop: "10px" }}
+                    >
+                      {product.caseColors.map((color, index) => {
+                        const subColor = product.subColors[index] || color;
+                        return (
+                          <Box
+                            key={color}
+                            onClick={() => setSelectedColor(color)}
+                            sx={{
+                              width: "15px",
+                              height: "15px",
+                              borderRadius: "50%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              cursor: "pointer",
+                              position: "relative",
+                              backgroundImage: getBackgroundImage(
+                                color,
+                                subColor
+                              ),
+                              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                              border:
+                                selectedColor === color
+                                  ? "1px solid black"
+                                  : "1px solid gray",
+                            }}
+                          />
+                        );
+                      })}
+                    </Box>
+                  </>
+                )}
               </Box>
 
               <Box>
