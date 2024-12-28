@@ -52,6 +52,10 @@ export default function ProductPage({ params }: PageProps) {
 
   const handleClose = () => setOpen(false);
 
+  const getBackgroundImage = (color: string, subColor: string) => {
+    return `conic-gradient(from 315deg, ${color} 0deg, ${color} 180deg, ${subColor} 180deg, ${subColor} 360deg)`;
+  };
+
   if (error) {
     return (
       <div>
@@ -170,23 +174,29 @@ export default function ProductPage({ params }: PageProps) {
               <Box sx={{ marginY: "1rem" }}>
                 <Typography variant="body1">Choose your case color:</Typography>
                 <Box sx={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-                  {product.caseColors.map((color) => (
-                    <Box
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      sx={{
-                        width: "30px",
-                        height: "30px",
-                        borderRadius: "50%",
-                        backgroundColor: color,
-                        cursor: "pointer",
-                        border:
-                          selectedColor === color
-                            ? "3px solid black"
-                            : "1px solid gray",
-                      }}
-                    />
-                  ))}
+                  {product.caseColors.map((color, index) => {
+                    const subColor = product.subColors[index] || color; // Om subColor inte finns, använd samma som main color.
+                    return (
+                      <Box
+                        key={color}
+                        onClick={() => setSelectedColor(color)}
+                        sx={{
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                          border: "0.5px solid black",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          cursor: "pointer",
+                          position: "relative",
+                          backgroundImage: getBackgroundImage(color, subColor), // Använd funktionen här
+                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Glansig effekt
+                          transition: "all 0.3s ease", // Smidig övergång
+                        }}
+                      />
+                    );
+                  })}
                 </Box>
               </Box>
 
