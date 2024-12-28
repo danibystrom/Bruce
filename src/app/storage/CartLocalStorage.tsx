@@ -36,17 +36,18 @@ export default function useLocalStorageCart(initialValue: CartItem[]) {
     saveCartToLocalStorage(updatedCart);
   };
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: Product, selectedColor: string | null) => {
     const existingCartItem = cart.find(
-      (item) => item.product.id === product.id
+      (item) =>
+        item.product.id === product.id && item.selectedColor === selectedColor
     );
 
     if (existingCartItem) {
       changeQuantity(product.id, existingCartItem.quantity + 1);
     } else {
-      const newCartItem: CartItem = { product, quantity: 1 };
+      const newCartItem: CartItem = { product, quantity: 1, selectedColor };
       const updatedCart = [...cart, newCartItem];
-      console.log("Adding product:", product);
+      console.log("Adding product:", product, "Selected color:", selectedColor);
       setCart(updatedCart);
       saveCartToLocalStorage(updatedCart);
     }

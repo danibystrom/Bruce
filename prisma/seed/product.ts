@@ -30,6 +30,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["green", "yellow", "pink", "blue"],
     },
     {
       productId: 2,
@@ -43,6 +44,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["green", "yellow", "pink", "blue"],
     },
     {
       productId: 3,
@@ -56,6 +58,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["green", "yellow", "pink", "blue"],
     },
     {
       productId: 4,
@@ -69,6 +72,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["green", "yellow", "pink", "blue"],
     },
     // Refills
     {
@@ -83,6 +87,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      caseColors: [],
     },
     {
       productId: 6,
@@ -96,6 +101,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      caseColors: [],
     },
     {
       productId: 7,
@@ -109,6 +115,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      caseColors: [],
     },
     {
       productId: 8,
@@ -122,6 +129,7 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      caseColors: [],
     },
   ];
 
@@ -141,6 +149,7 @@ export async function seedProducts(db: PrismaClient) {
         alcohol: product.alcohol,
         tabletQuantity: product.tabletQuantity,
         isBestSeller: product.isBestSeller,
+        caseColors: product.caseColors,
         categories: { connect: { id: product.categoryId } },
       },
     });

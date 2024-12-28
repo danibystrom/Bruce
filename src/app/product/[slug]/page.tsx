@@ -18,6 +18,7 @@ export default function ProductPage({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const { slug } = params;
   const { addToCart } = useCart();
 
@@ -40,7 +41,11 @@ export default function ProductPage({ params }: PageProps) {
   }, [slug]);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    if (!selectedColor) {
+      alert("Please select a case color.");
+      return;
+    }
+    addToCart(product, selectedColor);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -162,6 +167,28 @@ export default function ProductPage({ params }: PageProps) {
                   gap: "0.5rem",
                 }}
               ></Box>
+              <Box sx={{ marginY: "1rem" }}>
+                <Typography variant="body1">Choose your case color:</Typography>
+                <Box sx={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                  {product.caseColors.map((color) => (
+                    <Box
+                      key={color}
+                      onClick={() => setSelectedColor(color)}
+                      sx={{
+                        width: "30px",
+                        height: "30px",
+                        borderRadius: "50%",
+                        backgroundColor: color,
+                        cursor: "pointer",
+                        border:
+                          selectedColor === color
+                            ? "3px solid black"
+                            : "1px solid gray",
+                      }}
+                    />
+                  ))}
+                </Box>
+              </Box>
 
               <Box>
                 <Button
