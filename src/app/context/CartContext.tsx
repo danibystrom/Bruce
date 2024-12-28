@@ -7,7 +7,7 @@ import { CartItem } from "../types";
 
 interface ContextValue {
   cart: CartItem[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, selectedColor: string | null) => void;
   changeQuantity: (productId: number, newQuantity: number) => void;
   removeFromCart: (productId: number) => void;
   clearLocalStorage: () => void;

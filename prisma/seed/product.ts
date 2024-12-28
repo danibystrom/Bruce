@@ -30,6 +30,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["#51A638", "#ffd93c", "#F149B3", "#147AB5"],
+      subColors: ["#81EE42", "#fffa7d", "#FAE5EB", "#C6F3FA"],
     },
     {
       productId: 2,
@@ -43,6 +45,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["#51A638", "#ffd93c", "#F149B3", "#147AB5"],
+      subColors: ["#81EE42", "#fffa7d", "#FAE5EB", "#C6F3FA"],
     },
     {
       productId: 3,
@@ -56,6 +60,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["#51A638", "#ffd93c", "#F149B3", "#147AB5"],
+      subColors: ["#81EE42", "#fffa7d", "#FAE5EB", "#C6F3FA"],
     },
     {
       productId: 4,
@@ -69,6 +75,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: cocktailCategory.id,
+      caseColors: ["#51A638", "#ffd93c", "#F149B3", "#147AB5"],
+      subColors: ["#81EE42", "#fffa7d", "#FAE5EB", "#C6F3FA"],
     },
     // Refills
     {
@@ -83,6 +91,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      caseColors: [],
+      subColors: [],
     },
     {
       productId: 6,
@@ -96,6 +106,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      subColors: [],
+      caseColors: [],
     },
     {
       productId: 7,
@@ -109,6 +121,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      subColors: [],
+      caseColors: [],
     },
     {
       productId: 8,
@@ -122,6 +136,8 @@ export async function seedProducts(db: PrismaClient) {
       tabletQuantity: 18,
       isBestSeller: true,
       categoryId: refillCategory.id,
+      subColors: [],
+      caseColors: [],
     },
   ];
 
@@ -129,7 +145,10 @@ export async function seedProducts(db: PrismaClient) {
   for (const product of products) {
     await db.product.upsert({
       where: { productId: product.productId },
-      update: {},
+      update: {
+        caseColors: product.caseColors,
+        subColors: product.subColors,
+      },
       create: {
         productId: product.productId,
         name: product.name,
@@ -141,6 +160,8 @@ export async function seedProducts(db: PrismaClient) {
         alcohol: product.alcohol,
         tabletQuantity: product.tabletQuantity,
         isBestSeller: product.isBestSeller,
+        caseColors: product.caseColors,
+        subColors: product.subColors,
         categories: { connect: { id: product.categoryId } },
       },
     });

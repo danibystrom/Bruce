@@ -18,6 +18,7 @@ export default function ProductPage({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const { slug } = params;
   const { addToCart } = useCart();
 
@@ -40,12 +41,20 @@ export default function ProductPage({ params }: PageProps) {
   }, [slug]);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    if (!selectedColor) {
+      alert("Please select a case color.");
+      return;
+    }
+    addToCart(product, selectedColor);
     setSelectedProduct(product);
     setOpen(true);
   };
 
   const handleClose = () => setOpen(false);
+
+  const getBackgroundImage = (color: string, subColor: string) => {
+    return `conic-gradient(from 315deg, ${color} 0deg, ${color} 180deg, ${subColor} 180deg, ${subColor} 360deg)`;
+  };
 
   if (error) {
     return (
@@ -162,6 +171,47 @@ export default function ProductPage({ params }: PageProps) {
                   gap: "0.5rem",
                 }}
               ></Box>
+              <Box sx={{ marginY: "1rem" }}>
+                {product.caseColors && product.caseColors.length > 0 && (
+                  <>
+                    <Typography variant="body2">
+                      Choose your case color:
+                    </Typography>
+                    <Box
+                      sx={{ display: "flex", gap: "10px", marginTop: "10px" }}
+                    >
+                      {product.caseColors.map((color, index) => {
+                        const subColor = product.subColors[index] || color;
+                        return (
+                          <Box
+                            key={color}
+                            onClick={() => setSelectedColor(color)}
+                            sx={{
+                              width: "15px",
+                              height: "15px",
+                              borderRadius: "50%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              cursor: "pointer",
+                              position: "relative",
+                              backgroundImage: getBackgroundImage(
+                                color,
+                                subColor
+                              ),
+                              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                              border:
+                                selectedColor === color
+                                  ? "1px solid black"
+                                  : "1px solid gray",
+                            }}
+                          />
+                        );
+                      })}
+                    </Box>
+                  </>
+                )}
+              </Box>
 
               <Box>
                 <Button
