@@ -14,11 +14,13 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import ShopCartWithBadge from "./ShopCartWithBadge";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -34,13 +36,12 @@ export default function Header() {
     { label: "Sustainability", href: "/sustainability" },
     { label: "Products", href: "/products" },
     { label: "Refill", href: "/refill" },
-    { label: "Bruce’s Control Room", href: "/admin" },
   ];
 
   const subItems = [
     { label: "Contact", href: "/contact" },
     { label: "Sign In", href: "/signin" },
-    { label: "Admin", href: "/admin" },
+    ...(session ? [{ label: "Bruce’s Control Room", href: "/admin" }] : []),
   ];
 
   return (
