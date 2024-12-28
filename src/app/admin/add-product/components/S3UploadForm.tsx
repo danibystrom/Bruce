@@ -18,24 +18,24 @@ export default function S3UploadForm({ onUploadSuccess }: UploadFormProps) {
     if (!file) return;
 
     setUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
+      const formData = new FormData();
+      formData.append("file", file);
+
       const response = await fetch("/api/s3-upload", {
         method: "POST",
         body: formData,
       });
 
-      const data = await response.json();
-      if (data.success) {
-        // Returnera URL:en till AddProductForm
-        onUploadSuccess(data.url);
+      const result = await response.json();
+
+      if (result.success) {
+        onUploadSuccess(result.url); // Detta skickar den uppladdade bildens URL till `AddProductForm`.
       } else {
-        console.error(data.error);
+        console.error("Failed to upload file:", result.error);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error while uploading file:", error);
     } finally {
       setUploading(false);
     }

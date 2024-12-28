@@ -39,6 +39,7 @@ export default function EditProductForm({ product, categories }: Props) {
   const [imageUrl, setImageUrl] = useState("");
 
   const handleImageUploadSuccess = (url: string) => {
+    console.log("Image uploaded successfully:", url);
     setImageUrl(url);
   };
 
