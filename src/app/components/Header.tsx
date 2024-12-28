@@ -40,7 +40,7 @@ export default function Header() {
 
   const subItems = [
     { label: "Contact", href: "/contact" },
-    { label: "Sign In", href: "/signin" },
+    { label: session ? "My Page" : "Sign In", href: "/signin" },
     ...(session ? [{ label: "Bruce’s Control Room", href: "/admin" }] : []),
   ];
 
@@ -150,19 +150,18 @@ export default function Header() {
               },
             }}
           >
-            <CloseIcon />
+            <CloseIcon sx={{ color: "#000", fontSize: "medium" }} />
           </IconButton>
 
           <List
             sx={{
               paddingTop: 0,
-              gap: "2px",
               display: "flex",
               flexDirection: "column",
             }}
           >
             {menuItems.map((item, index) => (
-              <ListItem key={index} sx={{ padding: "2px 0" }}>
+              <ListItem key={index} sx={{ padding: 0 }}>
                 <Link
                   href={item.href}
                   sx={{ textDecoration: "none", width: "100%" }}
@@ -176,7 +175,12 @@ export default function Header() {
                       pointerEvents: "none",
                     }}
                   >
-                    <Typography sx={{ fontSize: "1.2rem", color: "black" }}>
+                    <Typography
+                      sx={{
+                        fontSize: "1.2rem",
+                        color: "black",
+                      }}
+                    >
                       {item.label}
                     </Typography>
                   </ListItemButton>
