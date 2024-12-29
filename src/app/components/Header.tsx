@@ -91,7 +91,7 @@ export default function Header() {
                 fontWeight: "bold",
               }}
             >
-              BRUCE
+              bruce
             </Typography>
           </Link>
 
