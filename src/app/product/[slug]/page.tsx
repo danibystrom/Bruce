@@ -19,6 +19,7 @@ export default function ProductPage({ params }: PageProps) {
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { slug } = params;
   const { addToCart } = useCart();
 
@@ -30,7 +31,10 @@ export default function ProductPage({ params }: PageProps) {
           setError(`The product with id "${slug}" does not exist.`);
           return;
         }
-        setTimeout(() => setProduct(fetchedProduct), 1000);
+        setTimeout(() => {
+          setProduct(fetchedProduct);
+          setSelectedImage(fetchedProduct.image);
+        }, 1000);
       } catch (err) {
         setError("An error occurred while fetching the product.");
         console.error(err);
@@ -51,6 +55,10 @@ export default function ProductPage({ params }: PageProps) {
   };
 
   const handleClose = () => setOpen(false);
+
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image);
+  };
 
   const getBackgroundImage = (color: string, subColor: string) => {
     return `conic-gradient(from 315deg, ${color} 0deg, ${color} 180deg, ${subColor} 180deg, ${subColor} 360deg)`;
@@ -99,15 +107,51 @@ export default function ProductPage({ params }: PageProps) {
             >
               <CardMedia
                 component="img"
-                src={product.image}
+                src={selectedImage || ""}
                 alt={`Product Image ${product.name}`}
                 sx={{
                   maxHeight: "100%",
                   maxWidth: "100%",
-                  objectFit: "contain",
+                  objectFit: "cover",
                   backgroundColor: "#FAFAFB",
                 }}
               />
+            </Box>
+
+            {/* Smaller Images */}
+            <Box
+              sx={{
+                display: "flex",
+                overflowX: "auto",
+              }}
+            >
+              <CardMedia
+                component="img"
+                src={product.image}
+                alt={`Primary Image ${product.name}`}
+                onClick={() => handleImageClick(product.image)}
+                sx={{
+                  width: "90px",
+                  height: "90px",
+                  objectFit: "cover",
+                  cursor: "pointer",
+                }}
+              />
+              {product.caseImages.map((caseImage, index) => (
+                <CardMedia
+                  key={index}
+                  component="img"
+                  src={caseImage}
+                  alt={`Case Image ${index}`}
+                  onClick={() => handleImageClick(caseImage)}
+                  sx={{
+                    width: "90px",
+                    height: "90px",
+                    objectFit: "cover",
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
             </Box>
           </Grid>
           <Grid
