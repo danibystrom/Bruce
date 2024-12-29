@@ -50,7 +50,7 @@ export default function ProductsSlider() {
   }, []);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    addToCart(product, null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -127,9 +127,9 @@ export default function ProductsSlider() {
           <Card
             key={drink.id}
             sx={{
-              width: 650,
+              width: 550,
               flexShrink: 0,
-              height: 700,
+              // height: 700,
               borderRadius: 0,
               border: "none",
               boxShadow: "none",
@@ -148,11 +148,10 @@ export default function ProductsSlider() {
                 height: "80%",
                 display: "flex",
                 justifyContent: "center",
-                paddingTop: "3rem",
                 paddingBottom: "5rem",
                 alignItems: "center",
                 overflow: "hidden",
-                backgroundColor: "#FAFAFB",
+                backgroundColor: "transparent",
               }}
             >
               <Link
@@ -171,8 +170,8 @@ export default function ProductsSlider() {
                   sx={{
                     maxHeight: "80%",
                     maxWidth: "100%",
-                    objectFit: "contain",
-                    backgroundColor: "#FAFAFB",
+                    objectFit: "cover",
+                    backgroundColor: "transparent",
                   }}
                 />
               </Link>
@@ -182,13 +181,13 @@ export default function ProductsSlider() {
                   bottom: "0",
                   left: "0",
                   width: "94%",
-                  padding: "1rem",
+                  padding: "0.51rem",
                   backgroundColor: "transparent",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
                   boxsizing: "border-box",
-                  color: "#ffffff",
+                  color: "#000",
                 }}
               >
                 <Typography

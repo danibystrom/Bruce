@@ -34,7 +34,7 @@ export default function RefillGrid() {
   }, []);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    addToCart(product, null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -65,8 +65,8 @@ export default function RefillGrid() {
         sx={{
           display: "grid",
           gridTemplateColumns: {
-            xs: "repeat(2, 1fr)",
-            sm: "repeat(3, 1fr)",
+            xs: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
             md: "repeat(4, 1fr)",
           },
           gap: "0.3rem",
@@ -93,7 +93,7 @@ export default function RefillGrid() {
                 alt={product.name}
                 sx={{
                   height: "300px",
-                  objectFit: "scale-down",
+                  objectFit: "cover",
                   backgroundColor: "#f5f5f5",
                 }}
               />

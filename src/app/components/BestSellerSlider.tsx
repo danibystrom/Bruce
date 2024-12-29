@@ -47,7 +47,7 @@ export default function BestSellerSlider() {
   };
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    addToCart(product, null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -149,7 +149,7 @@ export default function BestSellerSlider() {
                 alt={product.name}
                 sx={{
                   height: "300px",
-                  objectFit: "scale-down",
+                  objectFit: "cover",
                   backgroundColor: "#f5f5f5",
                 }}
               />
