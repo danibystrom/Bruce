@@ -1,5 +1,5 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 
 export default function Footer() {
   return (
@@ -78,9 +78,21 @@ export default function Footer() {
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography sx={{ color: "#000000" }}>HOME</Typography>
-          <Typography sx={{ color: "#000000" }}>BEST SELLERS</Typography>
-          <Typography sx={{ color: "#000000" }}>PRODUCST</Typography>
+          <Link href="/" sx={{ textDecoration: "none", underline: "none" }}>
+            <Typography sx={{ color: "#000000" }}>HOME</Typography>
+          </Link>
+          <Link
+            href="/about"
+            sx={{ textDecoration: "none", underline: "none" }}
+          >
+            <Typography sx={{ color: "#000000" }}>ABOUT US</Typography>
+          </Link>
+          <Link
+            href="/sustainability"
+            sx={{ textDecoration: "none", underline: "none" }}
+          >
+            <Typography sx={{ color: "#000000" }}>SUSTAINABILITY</Typography>
+          </Link>
         </Box>
         <Box
           sx={{
@@ -90,8 +102,18 @@ export default function Footer() {
             justifyContent: "flex-end",
           }}
         >
-          <Typography sx={{ color: "#000000" }}>MY PAGE</Typography>
-          <Typography sx={{ color: "#000000" }}>ADMIN</Typography>
+          <Link
+            href="/products"
+            sx={{ textDecoration: "none", underline: "none" }}
+          >
+            <Typography sx={{ color: "#000000" }}>PRODUCST</Typography>
+          </Link>
+          <Link
+            href="/refill"
+            sx={{ textDecoration: "none", underline: "none" }}
+          >
+            <Typography sx={{ color: "#000000" }}>REFILLS</Typography>
+          </Link>
         </Box>
       </Box>
     </Box>
