@@ -122,7 +122,9 @@ export default function ProductPage({ params }: PageProps) {
             <Box
               sx={{
                 display: "flex",
-                overflowX: "auto",
+                overflowX: "hidden",
+                width: "100%",
+                paddingBottom: "1rem",
               }}
             >
               <CardMedia
@@ -131,8 +133,9 @@ export default function ProductPage({ params }: PageProps) {
                 alt={`Primary Image ${product.name}`}
                 onClick={() => handleImageClick(product.image)}
                 sx={{
-                  width: "90px",
-                  height: "90px",
+                  width: "calc(20%)",
+
+                  height: "auto",
                   objectFit: "cover",
                   cursor: "pointer",
                 }}
@@ -145,8 +148,8 @@ export default function ProductPage({ params }: PageProps) {
                   alt={`Case Image ${index}`}
                   onClick={() => handleImageClick(caseImage)}
                   sx={{
-                    width: "90px",
-                    height: "90px",
+                    width: "calc(20%)",
+                    height: "auto",
                     objectFit: "cover",
                     cursor: "pointer",
                   }}
@@ -167,7 +170,7 @@ export default function ProductPage({ params }: PageProps) {
               alignItems: "flex-start",
               height: "auto",
               zIndex: 1,
-              padding: "20px",
+              padding: "40px",
             }}
           >
             <Box
