@@ -29,7 +29,7 @@ export default function ProductsSlider() {
     if (productRef.current) {
       const cardWidth =
         productRef.current.firstElementChild?.getBoundingClientRect().width ||
-        550; // Fallback till 550 om bredden inte hittas
+        550;
       const scrollOffset = direction === "left" ? -cardWidth : cardWidth;
       productRef.current.scrollBy({
         left: scrollOffset,
@@ -133,7 +133,6 @@ export default function ProductsSlider() {
             sx={{
               width: 550,
               flexShrink: 0,
-              // height: 700,
               borderRadius: 0,
               border: "none",
               boxShadow: "none",
@@ -185,7 +184,7 @@ export default function ProductsSlider() {
                   bottom: "0",
                   left: "0",
                   width: "94%",
-                  padding: "0.51rem",
+                  padding: "0.5rem",
                   backgroundColor: "transparent",
                   display: "flex",
                   justifyContent: "space-between",
@@ -238,7 +237,7 @@ export default function ProductsSlider() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginY: "3rem",
+          marginY: "1rem",
         }}
       >
         <Link href="/products" passHref>

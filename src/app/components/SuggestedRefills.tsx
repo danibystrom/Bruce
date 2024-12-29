@@ -24,8 +24,12 @@ export default function SuggestedRefills() {
   const refillRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
-  const handleRefillScroll = (scrollOffset: number) => {
+  const handleRefillScroll = (direction: "left" | "right") => {
     if (refillRef.current) {
+      const cardWidth =
+        refillRef.current.firstElementChild?.getBoundingClientRect().width ||
+        550;
+      const scrollOffset = direction === "left" ? -cardWidth : cardWidth;
       refillRef.current.scrollBy({
         left: scrollOffset,
         behavior: "smooth",
@@ -47,7 +51,7 @@ export default function SuggestedRefills() {
   }, []);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    addToCart(product, null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -83,7 +87,7 @@ export default function SuggestedRefills() {
 
         <Box sx={{ padding: "1rem" }}>
           <IconButton
-            onClick={() => handleRefillScroll(-300)}
+            onClick={() => handleRefillScroll("left")}
             disableRipple
             disableFocusRipple
             sx={{
@@ -93,7 +97,7 @@ export default function SuggestedRefills() {
             <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
           </IconButton>
           <IconButton
-            onClick={() => handleRefillScroll(300)}
+            onClick={() => handleRefillScroll("right")}
             disableRipple
             disableFocusRipple
             sx={{
@@ -120,9 +124,8 @@ export default function SuggestedRefills() {
           <Card
             key={refill.id}
             sx={{
-              width: 650,
+              width: 550,
               flexShrink: 0,
-              height: 700,
               borderRadius: 0,
               border: "none",
               boxShadow: "none",
@@ -141,11 +144,10 @@ export default function SuggestedRefills() {
                 height: "80%",
                 display: "flex",
                 justifyContent: "center",
-                paddingTop: "3rem",
                 paddingBottom: "5rem",
                 alignItems: "center",
                 overflow: "hidden",
-                backgroundColor: "#FAFAFB",
+                backgroundColor: "transparent",
               }}
             >
               <Link
@@ -164,8 +166,8 @@ export default function SuggestedRefills() {
                   sx={{
                     maxHeight: "80%",
                     maxWidth: "100%",
-                    objectFit: "contain",
-                    backgroundColor: "#FAFAFB",
+                    objectFit: "cover",
+                    backgroundColor: "transparent",
                   }}
                 />
               </Link>
@@ -175,13 +177,13 @@ export default function SuggestedRefills() {
                   bottom: "0",
                   left: "0",
                   width: "94%",
-                  padding: "1rem",
+                  padding: "0.5rem",
                   backgroundColor: "transparent",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
                   boxsizing: "border-box",
-                  color: "#ffffff",
+                  color: "#000",
                 }}
               >
                 <Typography
