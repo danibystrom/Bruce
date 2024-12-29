@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bruce 
+## Introducing the world's easiest cocktail – just drop, fizz, and sip!
 
-## Getting Started
+Let me introduce you to Bruce. The guy who always serves the best drinks and the one who brings the best vibes. Bruce is the game-changer you never knew you needed – created for those who always have their bag full of ingredients for the perfect evening cocktail. But what if you never had to worry about that again? With Bruce, all you need is water, and BAM – you've got a first-class drink in seconds. Choose from some of the world's most classic cocktails and impress your friends like a pro.
 
-First, run the development server:
+Oh, and did we mention? Bruce is a big fan of Mother Earth too. Grab a case, and you'll forever be set for refills, saving the planet one drink at a time. Cheers to that!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About the project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In this project, we individually planned and executed a product from start to finish, applying all the knowledge and skills we've gained throughout our training. The goal was to challenge ourselves, put theories into practice, and create a product that reflects our personal development as front-end developers. By blending creativity with technical expertise, we explored our own ideas and made our unique mark on the project.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project covered the entire process, from planning and research to development and deployment. We conducted audience analysis, created prototypes, and implemented solutions using modern JavaScript frameworks. Along the way, we focused on key UX/UI design principles and made important technical decisions. The final report documents our process and any challenges we faced along the way.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+For this project, we used **React.js** to build dynamic and interactive user interfaces, making state management and rendering efficient. **Next.js** was chosen for its server-side rendering capabilities, ensuring fast load times and improved SEO. To achieve a polished and consistent design, we integrated **Material UI**, offering pre-designed components that ensured a responsive UI. For the backend, **Prisma** was used as an ORM to streamline database queries and migrations, simplifying backend processes.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repository:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/danibystrom/Bruce.git
+   cd bruce
 
-## Deploy on Vercel
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install Dependencies**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+3. **Run the Application**
+
+   ```bash
+   npm run dev
+   ```
+
+## Contributors 💪🏼
+  Daniela Byström [@danibystrom](https://github.com/danibystrom)
