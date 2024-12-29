@@ -25,8 +25,12 @@ export default function ProductsSlider() {
   const productRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
-  const handleProductScroll = (scrollOffset: number) => {
+  const handleProductScroll = (direction: "left" | "right") => {
     if (productRef.current) {
+      const cardWidth =
+        productRef.current.firstElementChild?.getBoundingClientRect().width ||
+        550; // Fallback till 550 om bredden inte hittas
+      const scrollOffset = direction === "left" ? -cardWidth : cardWidth;
       productRef.current.scrollBy({
         left: scrollOffset,
         behavior: "smooth",
@@ -90,7 +94,7 @@ export default function ProductsSlider() {
 
         <Box sx={{ padding: "1rem" }}>
           <IconButton
-            onClick={() => handleProductScroll(-300)}
+            onClick={() => handleProductScroll("left")}
             disableRipple
             disableFocusRipple
             sx={{
@@ -100,7 +104,7 @@ export default function ProductsSlider() {
             <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
           </IconButton>
           <IconButton
-            onClick={() => handleProductScroll(300)}
+            onClick={() => handleProductScroll("right")}
             disableRipple
             disableFocusRipple
             sx={{
