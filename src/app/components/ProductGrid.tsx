@@ -34,7 +34,7 @@ export default function ProductGrid() {
   }, []);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    addToCart(product, null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -67,7 +67,7 @@ export default function ProductGrid() {
           gridTemplateColumns: {
             xs: "repeat(1, 1fr)",
             sm: "repeat(2, 1fr)",
-            md: "repeat(3, 1fr)",
+            md: "repeat(4, 1fr)",
           },
           gap: "0.3rem",
           overflowY: "auto",
@@ -93,7 +93,7 @@ export default function ProductGrid() {
                 alt={product.name}
                 sx={{
                   height: "300px",
-                  objectFit: "scale-down",
+                  objectFit: "fill",
                   backgroundColor: "#f5f5f5",
                 }}
               />

@@ -10,8 +10,6 @@ import {
   Divider,
   Grid,
   IconButton,
-  MenuItem,
-  Select,
   Typography,
 } from "@mui/material";
 import { useCart } from "../context/CartContext";
@@ -82,15 +80,16 @@ export default function CheckoutPage() {
                   backgroundColor: "#fff",
                 }}
               >
-                <Grid container alignItems="center" spacing={2}>
+                <Grid container alignItems="center">
                   <Grid item xs={12} sm={3}>
                     <img
                       src={item.product.image}
                       alt={item.product.name}
                       style={{
-                        width: "100%",
+                        display: "block",
+                        // width: "100%",
                         height: "120px",
-                        objectFit: "cover",
+                        objectFit: "contain",
                         marginBottom: "1rem",
                       }}
                     />
@@ -144,34 +143,6 @@ export default function CheckoutPage() {
                           },
                         }}
                       >
-                        <Select
-                          value={item.quantity}
-                          onChange={(event) =>
-                            changeQuantity(
-                              item.product.id,
-                              Number(event.target.value)
-                            )
-                          }
-                          size="small"
-                          style={{
-                            fontSize: "0.8rem",
-                            width: "40%",
-                          }}
-                          MenuProps={{
-                            PaperProps: {
-                              style: {
-                                maxHeight: 300,
-                                width: "20ch",
-                              },
-                            },
-                          }}
-                        >
-                          {Array.from(Array(100).keys()).map((number) => (
-                            <MenuItem value={number + 1} key={number}>
-                              {number + 1}
-                            </MenuItem>
-                          ))}
-                        </Select>
                         <Box sx={{ display: "flex", gap: "8px" }}>
                           <IconButton>
                             <RemoveIcon

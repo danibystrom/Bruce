@@ -25,8 +25,12 @@ export default function ProductsSlider() {
   const productRef = useRef<HTMLDivElement | null>(null);
   const { addToCart } = useCart();
 
-  const handleProductScroll = (scrollOffset: number) => {
+  const handleProductScroll = (direction: "left" | "right") => {
     if (productRef.current) {
+      const cardWidth =
+        productRef.current.firstElementChild?.getBoundingClientRect().width ||
+        550;
+      const scrollOffset = direction === "left" ? -cardWidth : cardWidth;
       productRef.current.scrollBy({
         left: scrollOffset,
         behavior: "smooth",
@@ -50,7 +54,7 @@ export default function ProductsSlider() {
   }, []);
 
   const handleClick = (product: Product) => {
-    addToCart(product);
+    addToCart(product, null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -90,7 +94,7 @@ export default function ProductsSlider() {
 
         <Box sx={{ padding: "1rem" }}>
           <IconButton
-            onClick={() => handleProductScroll(-300)}
+            onClick={() => handleProductScroll("left")}
             disableRipple
             disableFocusRipple
             sx={{
@@ -100,7 +104,7 @@ export default function ProductsSlider() {
             <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
           </IconButton>
           <IconButton
-            onClick={() => handleProductScroll(300)}
+            onClick={() => handleProductScroll("right")}
             disableRipple
             disableFocusRipple
             sx={{
@@ -127,9 +131,8 @@ export default function ProductsSlider() {
           <Card
             key={drink.id}
             sx={{
-              width: 650,
+              width: 550,
               flexShrink: 0,
-              height: 700,
               borderRadius: 0,
               border: "none",
               boxShadow: "none",
@@ -148,11 +151,10 @@ export default function ProductsSlider() {
                 height: "80%",
                 display: "flex",
                 justifyContent: "center",
-                paddingTop: "3rem",
                 paddingBottom: "5rem",
                 alignItems: "center",
                 overflow: "hidden",
-                backgroundColor: "#FAFAFB",
+                backgroundColor: "transparent",
               }}
             >
               <Link
@@ -171,8 +173,8 @@ export default function ProductsSlider() {
                   sx={{
                     maxHeight: "80%",
                     maxWidth: "100%",
-                    objectFit: "contain",
-                    backgroundColor: "#FAFAFB",
+                    objectFit: "cover",
+                    backgroundColor: "transparent",
                   }}
                 />
               </Link>
@@ -182,13 +184,13 @@ export default function ProductsSlider() {
                   bottom: "0",
                   left: "0",
                   width: "94%",
-                  padding: "1rem",
+                  padding: "0.5rem",
                   backgroundColor: "transparent",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
                   boxsizing: "border-box",
-                  color: "#ffffff",
+                  color: "#000",
                 }}
               >
                 <Typography
@@ -235,7 +237,7 @@ export default function ProductsSlider() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginY: "3rem",
+          marginY: "1rem",
         }}
       >
         <Link href="/products" passHref>
