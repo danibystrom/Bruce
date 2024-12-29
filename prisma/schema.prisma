@@ -15,19 +15,21 @@ model User {
 }
 
 model Product {
-  id             Int      @id @default(autoincrement())
-  productId      Int      @unique
+  id             Int     @id @default(autoincrement())
+  productId      Int     @unique
   name           String
   description    String
   ingredients    String
   image          String
   alcohol        Float
   tabletQuantity Int
-  slug           String   @unique
+  slug           String  @unique
   price          Float
-  isBestSeller   Boolean  @default(false)
-  caseColors     String[] @default([])
-  subColors      String[] @default([])
+  isBestSeller   Boolean @default(false)
+
+  caseColors String[] @default([])
+  subColors  String[] @default([])
+  caseImages String[] @default([])
 
   categories Category[] @relation("ProductCategories")
 }
