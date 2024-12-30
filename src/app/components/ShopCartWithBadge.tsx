@@ -28,10 +28,11 @@ export default function ShopCartWithBadge() {
           sx={{
             marginBottom: "1px",
             "& .MuiBadge-badge": {
-              backgroundColor: "#000",
-              minWidth: "18px",
-              height: "18px",
-              fontSize: "8px",
+              backgroundColor: "#F2F961",
+              minWidth: "20px",
+              height: "20px",
+              fontSize: "11px",
+              color: "#000",
             },
             "& .MuiSvgIcon-root": {
               color: "#000",

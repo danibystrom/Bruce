@@ -12,11 +12,14 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import CheckOutModal from "./components/CheckOutModal";
 import KlarnaButton from "./components/KlarnaButton";
 
 export default function CheckoutPage() {
   const { cart, removeFromCart, changeQuantity } = useCart();
+  const [openModal, setOpenModal] = useState(false);
 
   const handleRemoveFromCart = (productId: number) => {
     removeFromCart(productId);
@@ -44,6 +47,14 @@ export default function CheckoutPage() {
   );
   const estDeliveryCost = 10;
   const totalCost = subTotal + estDeliveryCost;
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   return (
     <>
@@ -88,7 +99,6 @@ export default function CheckoutPage() {
                       alt={item.product.name}
                       style={{
                         display: "block",
-                        // width: "100%",
                         height: "120px",
                         objectFit: "contain",
                         marginBottom: "1rem",
@@ -219,14 +229,28 @@ export default function CheckoutPage() {
               <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
               <Button
                 variant="outlined"
+                disableRipple
                 sx={{
-                  width: "100%",
-                  borderRadius: "20px",
-                  borderColor: "#000",
+                  backgroundColor: "#fff",
+                  border: "1px solid #000",
+                  marginY: "0.3em",
                   color: "#000",
-                  textTransform: "none",
-                  fontSize: "1.1rem",
+                  width: "100%",
+                  borderRadius: 20,
+                  boxShadow: "none",
+                  fontSize: "1rem",
+                  "&:hover": {
+                    boxShadow: "5px 5px #F2F961",
+                    transition: "all 0.3s ease",
+                    backgroundColor: "#fff",
+                  },
+                  "&:active": {
+                    backgroundColor: "#F2F961",
+                    boxShadow: "none",
+                    outline: "none",
+                  },
                 }}
+                onClick={handleOpenModal}
               >
                 Checkout
               </Button>
@@ -234,6 +258,7 @@ export default function CheckoutPage() {
             </Box>
           </Grid>
         </Grid>
+        <CheckOutModal open={openModal} onClose={handleCloseModal} />
       </Box>
     </>
   );

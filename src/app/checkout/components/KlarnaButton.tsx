@@ -4,6 +4,7 @@ export default function KlarnaButton() {
   return (
     <Button
       variant="outlined"
+      disableRipple
       sx={{
         width: "100%",
         borderRadius: "20px",
@@ -13,8 +14,7 @@ export default function KlarnaButton() {
         marginTop: "0.5rem",
         fontWeight: "bold",
         textTransform: "none",
-        fontSize: "1.1rem",
-
+        fontSize: "1rem",
       }}
     >
       Klarna.
