@@ -80,6 +80,7 @@ export default function SuggestedProducts() {
             padding: "1rem",
             fontWeight: 700,
             textTransform: "uppercase",
+            fontSize: { xs: "1.5rem", sm: "2rem" },
           }}
         >
           Suggested for you
@@ -92,9 +93,12 @@ export default function SuggestedProducts() {
             disableFocusRipple
             sx={{
               color: "#000000",
+              padding: 0,
             }}
           >
-            <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
+            <NavigateBeforeSharpIcon
+              sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+            />
           </IconButton>
           <IconButton
             onClick={() => handleProductScroll("right")}
@@ -102,9 +106,12 @@ export default function SuggestedProducts() {
             disableFocusRipple
             sx={{
               color: "#000000",
+              padding: 0,
             }}
           >
-            <NavigateNextSharpIcon sx={{ fontSize: "3rem" }} />
+            <NavigateNextSharpIcon
+              sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+            />
           </IconButton>
         </Box>
       </Box>
