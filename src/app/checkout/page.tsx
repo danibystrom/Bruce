@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useCart } from "../context/CartContext";
+import KlarnaButton from "./components/KlarnaButton";
 
 export default function CheckoutPage() {
   const { cart, removeFromCart, changeQuantity } = useCart();
@@ -223,24 +224,13 @@ export default function CheckoutPage() {
                   borderRadius: "20px",
                   borderColor: "#000",
                   color: "#000",
+                  textTransform: "none",
+                  fontSize: "1.1rem",
                 }}
               >
                 Checkout
               </Button>
-              <Button
-                variant="outlined"
-                sx={{
-                  width: "100%",
-                  borderRadius: "20px",
-                  border: "none",
-                  backgroundColor: "#FFC33A",
-                  color: "#049CDE",
-                  marginTop: "0.5rem",
-                  fontWeight: "bold",
-                }}
-              >
-                PayPal
-              </Button>
+              <KlarnaButton />
             </Box>
           </Grid>
         </Grid>
