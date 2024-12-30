@@ -74,12 +74,13 @@ export default function SuggestedRefills() {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             color: "#000000",
             padding: "1rem",
             fontWeight: 700,
             textTransform: "uppercase",
+            fontSize: { xs: "1.5rem", sm: "2rem" },
           }}
         >
           Suggested for you
@@ -91,20 +92,26 @@ export default function SuggestedRefills() {
             disableRipple
             disableFocusRipple
             sx={{
+              padding: 0,
               color: "#000000",
             }}
           >
-            <NavigateBeforeSharpIcon sx={{ fontSize: "3rem" }} />
+            <NavigateBeforeSharpIcon
+              sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+            />
           </IconButton>
           <IconButton
             onClick={() => handleRefillScroll("right")}
             disableRipple
             disableFocusRipple
             sx={{
+              padding: 0,
               color: "#000000",
             }}
           >
-            <NavigateNextSharpIcon sx={{ fontSize: "3rem" }} />
+            <NavigateNextSharpIcon
+              sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+            />
           </IconButton>
         </Box>
       </Box>

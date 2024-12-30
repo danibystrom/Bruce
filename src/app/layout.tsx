@@ -1,9 +1,10 @@
-import { Box, Grid } from "@mui/material";
+import { Box, CssBaseline, Grid, ThemeProvider } from "@mui/material";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { CartProvider } from "./context/CartContext";
 import "./globals.css";
 import { Providers } from "./providers";
+import theme from "./theme";
 
 export const metadata = {
   title: "Bruce",
@@ -18,15 +19,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <CssBaseline />
         <Providers>
           <CartProvider>
-            <Grid item>
-              <Header />
-            </Grid>
-            <Grid item xs>
-              <Box component={"main"}>{children}</Box>
-            </Grid>
-            <Footer />
+            <ThemeProvider theme={theme}>
+              <Grid item>
+                <Header />
+              </Grid>
+              <Grid item xs>
+                <Box component={"main"}>{children}</Box>
+              </Grid>
+              <Footer />
+            </ThemeProvider>
           </CartProvider>
         </Providers>
       </body>

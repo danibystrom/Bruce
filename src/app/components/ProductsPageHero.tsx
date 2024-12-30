@@ -1,61 +1,117 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function ProductsPageHero() {
-  return (
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+
+  return isTablet ? (
     <Box
       sx={{
-        position: "relative",
         width: "98%",
-        height: "70vh",
         margin: "auto",
-        borderRadius: 0,
         overflow: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
       <Box
         sx={{
-          backgroundImage: 'url("/products-hero.jpeg")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "100%",
-          height: "100%",
-        }}
-      />
-
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          color: "#000",
-          textAlign: "center",
-          maxWidth: "80%",
-          wordBreak: "break-word",
+          position: "relative",
+          width: "98%",
+          height: "40vh",
+          margin: "auto",
+          borderRadius: 0,
+          overflow: "hidden",
         }}
       >
-        <Typography
-          variant="h4"
+        <Box
           sx={{
-            fontWeight: 700,
-            color: "#fff",
-            textTransform: "uppercase",
-            fontSize: {
-              xs: "2rem",
-              sm: "2.5rem",
-              md: "6rem",
-            },
-            lineHeight: 1.2,
-            opacity: 0.7,
+            backgroundImage: 'url("/products-hero-mobile.jpeg")',
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "100%",
+            height: "100%",
+          }}
+        />
+
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "#ffffff",
+            textAlign: "center",
+            width: "100%",
+            maxWidth: "90%",
+            padding: "0 1rem",
           }}
         >
-          Bruce says: Take a pill
-        </Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              fontSize: {
+                xs: "5em",
+                sm: "6rem",
+              },
+              lineHeight: 0.9,
+              fontWeight: 400,
+              fontFamily: "'Instrument Serif', sans-serif !important",
+              whiteSpace: "normal",
+              wordWrap: "break-word",
+            }}
+          >
+            Bruce says: Take a pill
+          </Typography>
+        </Box>
       </Box>
+    </Box>
+  ) : (
+    <Box sx={{ width: "98%", margin: "auto", overflow: "hidden" }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={7}>
+          <Box
+            sx={{
+              width: "100%",
+              height: "40vh",
+              backgroundImage: 'url("/products-hero.jpeg")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: 0,
+              minHeight: "450px",
+            }}
+          />
+        </Grid>
+
+        <Grid item xs={12} md={5}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              height: "100%",
+              overflow: "hidden",
+            }}
+          >
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: {
+                  xs: "2rem",
+                  sm: "4rem",
+                  md: "7rem",
+                  lg: "9rem",
+                },
+                fontWeight: 400,
+                lineHeight: 0.8,
+                fontFamily: "'Instrument Serif', sans-serif !important",
+              }}
+            >
+              Bruce says: Take a pill
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

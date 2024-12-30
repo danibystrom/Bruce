@@ -113,10 +113,19 @@ export default function RefillGrid() {
                   border: "1px solid #000",
                   marginTop: "0.5rem",
                   color: "#000",
-                  width: { xs: "70%", sm: "50%" },
+                  width: "50%",
                   borderRadius: 20,
                   boxShadow: "none",
-                  "&:hover": { backgroundColor: "#000", color: "#fff" },
+                  "&:hover": {
+                    boxShadow: "5px 5px #F2F961",
+                    transition: "all 0.3s ease",
+                    backgroundColor: "#fff",
+                  },
+                  "&:active": {
+                    backgroundColor: "#F2F961",
+                    boxShadow: "none",
+                    outline: "none",
+                  },
                 }}
                 onClick={() => handleClick(product)}
               >

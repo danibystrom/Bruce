@@ -21,13 +21,11 @@ export default function Footer() {
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
-          marginBottom: "1rem",
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <Typography
             variant="h2"
-            component="h1"
             fontWeight="bold"
             sx={{
               fontWeight: 700,
@@ -42,7 +40,6 @@ export default function Footer() {
         <Box sx={{ textAlign: "right" }}>
           <Typography
             variant="h2"
-            component="h1"
             fontWeight="bold"
             sx={{
               fontWeight: 700,
@@ -55,7 +52,6 @@ export default function Footer() {
           </Typography>
           <Typography
             variant="h2"
-            component="h1"
             fontWeight="bold"
             sx={{
               fontWeight: 700,
@@ -79,19 +75,25 @@ export default function Footer() {
       >
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <Link href="/" sx={{ textDecoration: "none", underline: "none" }}>
-            <Typography sx={{ color: "#000000" }}>HOME</Typography>
+            <Typography variant="h6" sx={{ color: "#000000" }}>
+              Home
+            </Typography>
           </Link>
           <Link
             href="/about"
             sx={{ textDecoration: "none", underline: "none" }}
           >
-            <Typography sx={{ color: "#000000" }}>ABOUT US</Typography>
+            <Typography variant="h6" sx={{ color: "#000000" }}>
+              About Us
+            </Typography>
           </Link>
           <Link
             href="/sustainability"
             sx={{ textDecoration: "none", underline: "none" }}
           >
-            <Typography sx={{ color: "#000000" }}>SUSTAINABILITY</Typography>
+            <Typography variant="h6" sx={{ color: "#000000" }}>
+              Sustainability
+            </Typography>
           </Link>
         </Box>
         <Box
@@ -106,13 +108,17 @@ export default function Footer() {
             href="/products"
             sx={{ textDecoration: "none", underline: "none" }}
           >
-            <Typography sx={{ color: "#000000" }}>PRODUCST</Typography>
+            <Typography variant="h6" sx={{ color: "#000000" }}>
+              Products
+            </Typography>
           </Link>
           <Link
             href="/refill"
             sx={{ textDecoration: "none", underline: "none" }}
           >
-            <Typography sx={{ color: "#000000" }}>REFILLS</Typography>
+            <Typography variant="h6" sx={{ color: "#000000" }}>
+              Refills
+            </Typography>
           </Link>
         </Box>
       </Box>

@@ -170,7 +170,7 @@ export default function ProductPage({ params }: PageProps) {
               alignItems: "flex-start",
               height: "auto",
               zIndex: 1,
-              padding: "40px",
+              padding: { sm: "0px", md: "40px" },
             }}
           >
             <Box
@@ -189,13 +189,12 @@ export default function ProductPage({ params }: PageProps) {
                   gap: "0.25rem",
                 }}
               >
-                <Typography variant="h4">{product.name}</Typography>
+                <Typography variant="h2">{product.name}</Typography>
                 <Typography
+                  variant="body1"
                   sx={{
-                    fontSize: "1,5rem",
                     fontWeight: "400",
                     mb: "1rem",
-                    fontStyle: "italic",
                   }}
                 >
                   {product.tabletQuantity} pills, {product.alcohol}% ABV

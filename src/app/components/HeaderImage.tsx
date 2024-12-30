@@ -3,9 +3,9 @@ import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export default function HeaderImage() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-  return isMobile ? (
+  return isTablet ? (
     <Box
       sx={{
         width: "98%",
@@ -17,7 +17,7 @@ export default function HeaderImage() {
         sx={{
           position: "relative",
           width: "98%",
-          height: "50vh",
+          height: "40vh",
           margin: "auto",
           borderRadius: 0,
           overflow: "hidden",
@@ -26,6 +26,7 @@ export default function HeaderImage() {
         <Box
           sx={{
             backgroundImage: 'url("/hero-img.jpeg")',
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
@@ -47,11 +48,11 @@ export default function HeaderImage() {
             variant="h1"
             sx={{
               fontSize: {
-                xs: "8rem",
-                sm: "10rem",
+                xs: "12em",
+                sm: "13rem",
               },
-              fontWeight: 700,
-              opacity: 0.8,
+              fontWeight: 400,
+              fontFamily: "'Instrument Serif', sans-serif !important",
             }}
           >
             bruce
@@ -60,7 +61,7 @@ export default function HeaderImage() {
       </Box>
       <Box sx={{ mb: 1, textAlign: "left", px: 1 }}>
         <Typography
-          variant="subtitle1"
+          variant="h2"
           sx={{
             fontSize: { xs: "0.9rem", sm: "1rem" },
             fontWeight: "bold",
@@ -72,7 +73,7 @@ export default function HeaderImage() {
           Delicious Cocktails, No Bar Required
         </Typography>
         <Typography
-          variant="body1"
+          variant="h2"
           sx={{
             fontSize: { xs: "1rem", sm: "1.2rem" },
             maxWidth: "700px",
@@ -118,12 +119,13 @@ export default function HeaderImage() {
               sx={{
                 fontSize: {
                   xs: "2rem",
-                  sm: "4rem",
-                  md: "8rem",
-                  lg: "13rem",
+                  sm: "8rem",
+                  md: "12rem",
+                  lg: "18rem",
                 },
-                fontWeight: 700,
+                fontWeight: 400,
                 lineHeight: 0.71,
+                fontFamily: "'Instrument Serif', sans-serif !important",
               }}
             >
               bruce

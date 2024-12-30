@@ -70,11 +70,12 @@ export default function BestSellerSlider() {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             color: "#000000",
             padding: "1rem",
             fontWeight: 700,
+            fontSize: { xs: "1.5rem", sm: "2rem" },
           }}
         >
           SHOP BEST SELLERS
@@ -91,12 +92,11 @@ export default function BestSellerSlider() {
               border: "none",
               boxShadow: "none",
               padding: 0,
-              marginRight: "0.5rem",
               "&:hover": { background: "none" },
             }}
           >
             <NavigateBeforeSharpIcon
-              sx={{ color: "#000000", fontSize: "3rem" }}
+              sx={{ color: "#000000", fontSize: { xs: "1.5rem", sm: "2rem" } }}
             />
           </IconButton>
 
@@ -114,7 +114,7 @@ export default function BestSellerSlider() {
             }}
           >
             <NavigateNextSharpIcon
-              sx={{ color: "#000000", fontSize: "3rem" }}
+              sx={{ color: "#000000", fontSize: { xs: "1.5rem", sm: "2rem" } }}
             />
           </IconButton>
         </Box>
