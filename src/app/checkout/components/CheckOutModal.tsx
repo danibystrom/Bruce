@@ -1,3 +1,4 @@
+import { CheckoutFormData } from "@/app/validation/validation";
 import {
   Box,
   Button,
@@ -9,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 interface CheckOutModalProps {
   open: boolean;
@@ -16,28 +18,16 @@ interface CheckOutModalProps {
 }
 
 export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CheckoutFormData>({});
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    postalCode: "",
-    city: "",
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleConfirmOrder = () => {
-    // Kontrollera att alla fält är ifyllda
-    const { name, address, postalCode, city } = formData;
-    if (name && address && postalCode && city) {
-      setIsOrderConfirmed(true);
-    } else {
-      alert("Please fill in all fields.");
-    }
+  const onSubmit = (data: CheckoutFormData) => {
+    console.log("Form submitted:", data);
+    setIsOrderConfirmed(true);
   };
 
   return (
@@ -59,47 +49,103 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                 padding: "1rem",
                 "& .MuiTextField-root": { m: 1, width: "100%" },
               }}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <TextField
                 required
                 label="Name"
-                name="name"
-                fullWidth
+                {...register("name")}
+                error={!!errors.name}
+                helperText={errors.name?.message}
                 variant="standard"
-                value={formData.name}
-                onChange={handleInputChange}
-                sx={{ marginBottom: "1rem" }}
               />
               <TextField
                 required
                 label="Address"
-                name="address"
-                fullWidth
+                {...register("address")}
+                error={!!errors.address}
+                helperText={errors.address?.message}
                 variant="standard"
-                value={formData.address}
-                onChange={handleInputChange}
-                sx={{ marginBottom: "1rem" }}
               />
               <TextField
                 required
                 label="Postal Code"
-                name="postalCode"
-                fullWidth
+                {...register("postalCode")}
+                error={!!errors.postalCode}
+                helperText={errors.postalCode?.message}
                 variant="standard"
-                value={formData.postalCode}
-                onChange={handleInputChange}
-                sx={{ marginBottom: "1rem" }}
               />
               <TextField
                 required
                 label="City"
-                name="city"
-                fullWidth
+                {...register("city")}
+                error={!!errors.city}
+                helperText={errors.city?.message}
                 variant="standard"
-                value={formData.city}
-                onChange={handleInputChange}
-                sx={{ marginBottom: "1rem" }}
               />
+              <DialogActions>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end", 
+                    gap: "1rem",
+                    width: "100%",
+                    padding: "1rem",
+                  }}
+                >
+                  <Button
+                    onClick={onClose}
+                    color="secondary"
+                    sx={{
+                      backgroundColor: "#fff",
+                      border: "1px solid #000",
+                      color: "#000",
+                      borderRadius: "20px",
+                      boxShadow: "none",
+                      width: "200px", 
+                      whiteSpace: "nowrap",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        boxShadow: "8px 8px #F2F961",
+                        transition: "all 0.3s ease",
+                        backgroundColor: "#fff",
+                      },
+                      "&:active": {
+                        backgroundColor: "#F2F961",
+                        boxShadow: "none",
+                        outline: "none",
+                      },
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    color="primary"
+                    sx={{
+                      backgroundColor: "#F2F961",
+                      color: "#000",
+                      borderRadius: "20px",
+                      boxShadow: "none",
+                      width: "200px", 
+                      whiteSpace: "nowrap",
+                      transition: "all 0.3s ease",
+
+                      "&:hover": {
+                        boxShadow: "8px 8px #E1EC09",
+                        transition: "all 0.3s ease",
+                        backgroundColor: "#F2F961",
+                      },
+                      "&:active": {
+                        backgroundColor: "transparent",
+                        boxShadow: "none",
+                        outline: "none",
+                      },
+                    }}
+                  >
+                    Complete Purchase
+                  </Button>
+                </Box>
+              </DialogActions>
             </Box>
           ) : (
             <Typography>
@@ -107,74 +153,13 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
             </Typography>
           )}
         </DialogContent>
-        <DialogActions>
-          {!isOrderConfirmed ? (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "right",
-                gap: "1rem",
-                width: "100%",
-                padding: "1rem",
-              }}
-            >
-              <Button
-                onClick={onClose}
-                color="secondary"
-                sx={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #000",
-                  color: "#000",
-                  borderRadius: "20px",
-                  boxShadow: "none",
-                  width: "35%",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    boxShadow: "5px 5px #F2F961",
-                    transition: "all 0.3s ease",
-                    backgroundColor: "#fff",
-                  },
-                  "&:active": {
-                    backgroundColor: "#F2F961",
-                    boxShadow: "none",
-                    outline: "none",
-                  },
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={handleConfirmOrder}
-                color="primary"
-                sx={{
-                  backgroundColor: "#F2F961",
-                  color: "#000",
-                  borderRadius: "20px",
-                  boxShadow: "none",
-                  width: "35%",
-                  transition: "all 0.3s ease",
-
-                  "&:hover": {
-                    boxShadow: "8px 8px #E1EC09",
-                    transition: "all 0.3s ease",
-                    backgroundColor: "#F2F961",
-                  },
-                  "&:active": {
-                    backgroundColor: "transparent",
-                    boxShadow: "none",
-                    outline: "none",
-                  },
-                }}
-              >
-                Complete Purchase
-              </Button>
-            </Box>
-          ) : (
+        {isOrderConfirmed && (
+          <DialogActions>
             <Button onClick={onClose} color="primary">
               Close
             </Button>
-          )}
-        </DialogActions>
+          </DialogActions>
+        )}
       </Dialog>
     </Box>
   );
