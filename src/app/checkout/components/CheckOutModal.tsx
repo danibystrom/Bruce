@@ -1,3 +1,5 @@
+"use client";
+import { useCart } from "@/app/context/CartContext";
 import { CheckoutFormData } from "@/app/validation/validation";
 import {
   Box,
@@ -9,6 +11,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -24,16 +27,25 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
     formState: { errors },
   } = useForm<CheckoutFormData>({});
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
+  const { clearLocalStorage, cart } = useCart(); 
+  const [formData, setFormData] = useState<CheckoutFormData | null>(null);
+  const router = useRouter();
 
   const onSubmit = (data: CheckoutFormData) => {
-    console.log("Form submitted:", data);
+    setFormData(data);
     setIsOrderConfirmed(true);
+  };
+
+  const handleClose = () => {
+    clearLocalStorage(); 
+    router.push("/");
+    onClose(); 
   };
 
   return (
     <Box>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>
+        <DialogTitle sx={{ textAlign: "center", fontSize: "2rem" }}>
           {isOrderConfirmed ? "Order Confirmation" : "Enter Delivery Address"}
         </DialogTitle>
         <DialogContent>
@@ -87,7 +99,7 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-end", 
+                    justifyContent: "flex-end",
                     gap: "1rem",
                     width: "100%",
                     padding: "1rem",
@@ -102,7 +114,7 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                       color: "#000",
                       borderRadius: "20px",
                       boxShadow: "none",
-                      width: "200px", 
+                      width: "200px",
                       whiteSpace: "nowrap",
                       transition: "all 0.3s ease",
                       "&:hover": {
@@ -126,7 +138,7 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                       color: "#000",
                       borderRadius: "20px",
                       boxShadow: "none",
-                      width: "200px", 
+                      width: "200px",
                       whiteSpace: "nowrap",
                       transition: "all 0.3s ease",
 
@@ -141,6 +153,7 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                         outline: "none",
                       },
                     }}
+                    onClick={handleSubmit(onSubmit)}
                   >
                     Complete Purchase
                   </Button>
@@ -148,14 +161,55 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
               </DialogActions>
             </Box>
           ) : (
-            <Typography>
-              Your order has been confirmed! Thank you for shopping with us.
-            </Typography>
+            <Box>
+              <Typography>
+                Your order has been confirmed! Thank you for shopping with us.
+              </Typography>
+              <Box sx={{ marginTop: "1rem" }}>
+                <Typography variant="h6" sx={{ marginTop: "1rem" }}>
+                  Your order will be delivered to:
+                </Typography>
+                <Typography variant="body1" sx={{ marginBottom: "1rem" }}>
+                  {`Name: ${formData?.name}, Address: ${formData?.address}, Postal Code: ${formData?.postalCode}, City: ${formData?.city}`}
+                </Typography>
+                <Typography variant="h6">Order Summary:</Typography>
+                {cart.map((item) => (
+                  <Typography variant="body1" key={item.product.id}>
+                    {item.product.name} - {item.quantity} x {item.product.price}
+                    €
+                  </Typography>
+                ))}
+              </Box>
+            </Box>
           )}
         </DialogContent>
         {isOrderConfirmed && (
           <DialogActions>
-            <Button onClick={onClose} color="primary">
+            <Button
+              onClick={handleClose}
+              color="primary"
+              sx={{
+                backgroundColor: "#fff",
+                border: "1px solid #000",
+                color: "#000",
+                borderRadius: "20px",
+                margin: "1rem",
+                boxShadow: "none",
+                width: "200px",
+                whiteSpace: "nowrap",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  boxShadow: "8px 8px #F2F961",
+                  transition: "all 0.3s ease",
+                  backgroundColor: "#fff",
+                },
+                "&:active": {
+                  backgroundColor: "#F2F961",
+                  boxShadow: "none",
+                  outline: "none",
+                },
+              }}
+            >
               Close
             </Button>
           </DialogActions>
