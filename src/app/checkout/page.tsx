@@ -12,10 +12,14 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import CheckOutModal from "./components/CheckOutModal";
+import KlarnaButton from "./components/KlarnaButton";
 
 export default function CheckoutPage() {
   const { cart, removeFromCart, changeQuantity } = useCart();
+  const [openModal, setOpenModal] = useState(false);
 
   const handleRemoveFromCart = (productId: number) => {
     removeFromCart(productId);
@@ -44,9 +48,23 @@ export default function CheckoutPage() {
   const estDeliveryCost = 10;
   const totalCost = subTotal + estDeliveryCost;
 
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          bgcolor: "#fff",
+          minHeight: "100vh",
+          width: "100%",
+        }}
+      >
         <Grid
           container
           justifyContent="center"
@@ -66,36 +84,39 @@ export default function CheckoutPage() {
               sx={{
                 fontWeight: "100",
                 marginBottom: "1rem",
+                paddingLeft: "0.5rem",
                 fontSize: { xs: "1.5rem", md: "2rem" },
               }}
             >
               My cart
             </Typography>
-            <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
-
+            <Divider
+              sx={{
+                borderColor: "#000",
+                paddingLeft: "0.5rem",
+              }}
+            />
             {cart.map((item) => (
               <Box
-                key={item.product.id}
                 sx={{
+                  padding: "1rem",
                   backgroundColor: "#fff",
+                  borderBottom: "1px solid #000",
                 }}
               >
-                <Grid container alignItems="center">
-                  <Grid item xs={12} sm={3}>
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={12} sm={2}>
                     <img
                       src={item.product.image}
                       alt={item.product.name}
                       style={{
-                        display: "block",
-                        // width: "100%",
-                        height: "120px",
-                        objectFit: "contain",
-                        marginBottom: "1rem",
+                        width: "100%",
+                        height: "auto",
                       }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={9}>
-                    <CardContent sx={{ padding: "0.5rem" }}>
+                  <Grid item xs={12} sm={10}>
+                    <CardContent>
                       <Box
                         sx={{
                           display: "flex",
@@ -106,33 +127,34 @@ export default function CheckoutPage() {
                         <Typography
                           variant="h6"
                           sx={{
-                            fontSize: "1.2rem",
+                            fontSize: "1.5rem",
                             fontWeight: "500",
+                            fontFamily:
+                              "'Futura', 'Trebuchet MS', 'Arial', sans-serif",
                           }}
                         >
                           {item.product.name}
                         </Typography>
                         <IconButton
                           aria-label="delete"
-                          color="default"
                           onClick={() => handleRemoveFromCart(item.product.id)}
+                          color="default"
                         >
-                          <CloseIcon
-                            sx={{ fontSize: "0.8rem", color: "#000" }}
-                          />
+                          <CloseIcon sx={{ fontSize: "1rem", color: "#000" }} />
                         </IconButton>
                       </Box>
-
                       <Typography
                         variant="body2"
                         color="text.secondary"
                         sx={{
-                          fontSize: "0.9rem",
-                          marginBottom: "0.5rem",
+                          fontSize: "1rem",
+                          color: "#000",
+                          marginBottom: "1rem",
                         }}
                       >
                         EUR {item.product.price}€
                       </Typography>
+
                       <Box
                         sx={{
                           display: "flex",
@@ -143,21 +165,37 @@ export default function CheckoutPage() {
                           },
                         }}
                       >
-                        <Box sx={{ display: "flex", gap: "8px" }}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            gap: "8px",
+                            alignItems: "center",
+                          }}
+                        >
                           <IconButton>
                             <RemoveIcon
                               onClick={() =>
                                 handleDecreaseQuantity(item.product.id)
                               }
-                              sx={{ fontSize: "0.8rem", color: "#000" }}
+                              sx={{ fontSize: "1rem", color: "#000" }}
                             />
                           </IconButton>
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              fontSize: "0.8rem",
+                              minWidth: "20px",
+                              textAlign: "center",
+                            }}
+                          >
+                            {item.quantity}
+                          </Typography>
                           <IconButton>
                             <AddIcon
                               onClick={() =>
                                 handleIncreaseQuantity(item.product.id)
                               }
-                              sx={{ fontSize: "0.8rem", color: "#000" }}
+                              sx={{ fontSize: "1rem", color: "#000" }}
                             />
                           </IconButton>
                         </Box>
@@ -165,7 +203,6 @@ export default function CheckoutPage() {
                     </CardContent>
                   </Grid>
                 </Grid>
-                <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
               </Box>
             ))}
           </Grid>
@@ -218,32 +255,36 @@ export default function CheckoutPage() {
               <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
               <Button
                 variant="outlined"
+                disableRipple
                 sx={{
-                  width: "100%",
-                  borderRadius: "20px",
-                  borderColor: "#000",
+                  backgroundColor: "#fff",
+                  border: "1px solid #000",
+                  marginY: "0.3em",
                   color: "#000",
+                  width: "100%",
+                  borderRadius: 20,
+                  boxShadow: "none",
+                  fontSize: "1rem",
+                  "&:hover": {
+                    boxShadow: "5px 5px #F2F961",
+                    transition: "all 0.3s ease",
+                    backgroundColor: "#fff",
+                  },
+                  "&:active": {
+                    backgroundColor: "#F2F961",
+                    boxShadow: "none",
+                    outline: "none",
+                  },
                 }}
+                onClick={handleOpenModal}
               >
                 Checkout
               </Button>
-              <Button
-                variant="outlined"
-                sx={{
-                  width: "100%",
-                  borderRadius: "20px",
-                  border: "none",
-                  backgroundColor: "#FFC33A",
-                  color: "#049CDE",
-                  marginTop: "0.5rem",
-                  fontWeight: "bold",
-                }}
-              >
-                PayPal
-              </Button>
+              <KlarnaButton />
             </Box>
           </Grid>
         </Grid>
+        <CheckOutModal open={openModal} onClose={handleCloseModal} />
       </Box>
     </>
   );

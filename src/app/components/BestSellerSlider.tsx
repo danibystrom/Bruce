@@ -163,6 +163,7 @@ export default function BestSellerSlider() {
                 CHF {product.price}
               </Typography>
               <Button
+                disableRipple
                 onClick={() => handleClick(product)}
                 variant="outlined"
                 sx={{

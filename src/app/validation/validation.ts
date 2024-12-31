@@ -14,4 +14,12 @@ export const ProductSchema = z.object({
   alcohol: z.number().positive(),
 });
 
+export const CheckoutFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  address: z.string().min(1, "Address is required"),
+  postalCode: z.string().min(1, "Postal code is required"),
+  city: z.string().min(1, "City is required"),
+});
+
 export type ProductFormData = z.infer<typeof ProductSchema>;
+export type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
