@@ -93,7 +93,17 @@ export default function CheckoutPage() {
                 }}
               >
                 <Grid container alignItems="center">
-                  <Grid item xs={12} sm={3}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={3}
+                    sx={{
+                      padding: 0,
+                      margin: 0,
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <img
                       src={item.product.image}
                       alt={item.product.name}
@@ -154,7 +164,13 @@ export default function CheckoutPage() {
                           },
                         }}
                       >
-                        <Box sx={{ display: "flex", gap: "8px" }}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            gap: "8px",
+                            alignItems: "center",
+                          }}
+                        >
                           <IconButton>
                             <RemoveIcon
                               onClick={() =>
@@ -163,6 +179,16 @@ export default function CheckoutPage() {
                               sx={{ fontSize: "0.8rem", color: "#000" }}
                             />
                           </IconButton>
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              fontSize: "0.8rem",
+                              minWidth: "20px",
+                              textAlign: "center",
+                            }}
+                          >
+                            {item.quantity}
+                          </Typography>
                           <IconButton>
                             <AddIcon
                               onClick={() =>
