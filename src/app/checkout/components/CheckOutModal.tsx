@@ -10,6 +10,8 @@ import {
   DialogTitle,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,9 +29,11 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
     formState: { errors },
   } = useForm<CheckoutFormData>({});
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
-  const { clearLocalStorage, cart } = useCart(); 
+  const { clearLocalStorage, cart } = useCart();
   const [formData, setFormData] = useState<CheckoutFormData | null>(null);
   const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const onSubmit = (data: CheckoutFormData) => {
     setFormData(data);
@@ -37,15 +41,17 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
   };
 
   const handleClose = () => {
-    clearLocalStorage(); 
+    clearLocalStorage();
     router.push("/");
-    onClose(); 
+    onClose();
   };
 
   return (
     <Box>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle sx={{ textAlign: "center", fontSize: "2rem" }}>
+        <DialogTitle
+          sx={{ textAlign: "center", fontSize: { sm: "1.2rem", md: "2rem" } }}
+        >
           {isOrderConfirmed ? "Order Confirmation" : "Enter Delivery Address"}
         </DialogTitle>
         <DialogContent>
@@ -56,10 +62,13 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "500px",
+                width: "100%",
+                maxWidth: "500px",
                 margin: "0 auto",
                 padding: "1rem",
                 "& .MuiTextField-root": { m: 1, width: "100%" },
+                "& .MuiInputBase-input": { color: "#000", fontSize: "0.8rem" },
+                "& .MuiFormLabel-root": { color: "#000", fontSize: "0.8rem" },
               }}
               onSubmit={handleSubmit(onSubmit)}
             >
@@ -99,38 +108,14 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-end",
+                    flexDirection: isMobile ? "column" : "row",
+                    justifyContent: "center",
+                    alignItems: "center",
                     gap: "1rem",
                     width: "100%",
                     padding: "1rem",
                   }}
                 >
-                  <Button
-                    onClick={onClose}
-                    color="secondary"
-                    sx={{
-                      backgroundColor: "#fff",
-                      border: "1px solid #000",
-                      color: "#000",
-                      borderRadius: "20px",
-                      boxShadow: "none",
-                      width: "200px",
-                      whiteSpace: "nowrap",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        boxShadow: "8px 8px #F2F961",
-                        transition: "all 0.3s ease",
-                        backgroundColor: "#fff",
-                      },
-                      "&:active": {
-                        backgroundColor: "#F2F961",
-                        boxShadow: "none",
-                        outline: "none",
-                      },
-                    }}
-                  >
-                    Cancel
-                  </Button>
                   <Button
                     color="primary"
                     sx={{
@@ -141,7 +126,6 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                       width: "200px",
                       whiteSpace: "nowrap",
                       transition: "all 0.3s ease",
-
                       "&:hover": {
                         boxShadow: "8px 8px #E1EC09",
                         transition: "all 0.3s ease",
@@ -155,7 +139,7 @@ export default function CheckOutModal({ open, onClose }: CheckOutModalProps) {
                     }}
                     onClick={handleSubmit(onSubmit)}
                   >
-                    Complete Purchase
+                    Place Order
                   </Button>
                 </Box>
               </DialogActions>
