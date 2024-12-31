@@ -92,11 +92,10 @@ export default function CheckoutPage() {
                   backgroundColor: "#fff",
                 }}
               >
-                <Grid container alignItems="center">
+                <Grid container alignItems="center" spacing={2}>
                   <Grid
                     item
-                    xs={12}
-                    sm={3}
+                    xs={3}
                     sx={{
                       padding: 0,
                       margin: 0,
@@ -108,14 +107,13 @@ export default function CheckoutPage() {
                       src={item.product.image}
                       alt={item.product.name}
                       style={{
-                        display: "block",
                         height: "120px",
                         objectFit: "contain",
                         marginBottom: "1rem",
                       }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={9}>
+                  <Grid item xs={9}>
                     <CardContent sx={{ padding: "0.5rem" }}>
                       <Box
                         sx={{
