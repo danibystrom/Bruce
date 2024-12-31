@@ -58,7 +58,13 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          bgcolor: "#fff",
+          minHeight: "100vh",
+          width: "100%",
+        }}
+      >
         <Grid
           container
           justifyContent="center"
@@ -78,43 +84,39 @@ export default function CheckoutPage() {
               sx={{
                 fontWeight: "100",
                 marginBottom: "1rem",
+                paddingLeft: "0.5rem",
                 fontSize: { xs: "1.5rem", md: "2rem" },
               }}
             >
               My cart
             </Typography>
-            <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
-
+            <Divider
+              sx={{
+                borderColor: "#000",
+                paddingLeft: "0.5rem",
+              }}
+            />
             {cart.map((item) => (
               <Box
-                key={item.product.id}
                 sx={{
+                  padding: "1rem",
                   backgroundColor: "#fff",
+                  borderBottom: "1px solid #000",
                 }}
               >
                 <Grid container alignItems="center" spacing={2}>
-                  <Grid
-                    item
-                    xs={3}
-                    sx={{
-                      padding: 0,
-                      margin: 0,
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <Grid item xs={12} sm={2}>
                     <img
                       src={item.product.image}
                       alt={item.product.name}
                       style={{
-                        height: "120px",
-                        objectFit: "contain",
-                        marginBottom: "1rem",
+                        width: "100%",
+                        height: "auto",
                       }}
                     />
                   </Grid>
-                  <Grid item xs={9}>
-                    <CardContent sx={{ padding: "0.5rem" }}>
+                  <Grid item xs={12} sm={10}>
+                    <CardContent>
                       <Box
                         sx={{
                           display: "flex",
@@ -125,33 +127,34 @@ export default function CheckoutPage() {
                         <Typography
                           variant="h6"
                           sx={{
-                            fontSize: "1.2rem",
+                            fontSize: "1.5rem",
                             fontWeight: "500",
+                            fontFamily:
+                              "'Futura', 'Trebuchet MS', 'Arial', sans-serif",
                           }}
                         >
                           {item.product.name}
                         </Typography>
                         <IconButton
                           aria-label="delete"
-                          color="default"
                           onClick={() => handleRemoveFromCart(item.product.id)}
+                          color="default"
                         >
-                          <CloseIcon
-                            sx={{ fontSize: "0.8rem", color: "#000" }}
-                          />
+                          <CloseIcon sx={{ fontSize: "1rem", color: "#000" }} />
                         </IconButton>
                       </Box>
-
                       <Typography
                         variant="body2"
                         color="text.secondary"
                         sx={{
-                          fontSize: "0.9rem",
-                          marginBottom: "0.5rem",
+                          fontSize: "1rem",
+                          color: "#000",
+                          marginBottom: "1rem",
                         }}
                       >
                         EUR {item.product.price}€
                       </Typography>
+
                       <Box
                         sx={{
                           display: "flex",
@@ -174,7 +177,7 @@ export default function CheckoutPage() {
                               onClick={() =>
                                 handleDecreaseQuantity(item.product.id)
                               }
-                              sx={{ fontSize: "0.8rem", color: "#000" }}
+                              sx={{ fontSize: "1rem", color: "#000" }}
                             />
                           </IconButton>
                           <Typography
@@ -192,7 +195,7 @@ export default function CheckoutPage() {
                               onClick={() =>
                                 handleIncreaseQuantity(item.product.id)
                               }
-                              sx={{ fontSize: "0.8rem", color: "#000" }}
+                              sx={{ fontSize: "1rem", color: "#000" }}
                             />
                           </IconButton>
                         </Box>
@@ -200,7 +203,6 @@ export default function CheckoutPage() {
                     </CardContent>
                   </Grid>
                 </Grid>
-                <Divider sx={{ marginBottom: "1rem", borderColor: "#000" }} />
               </Box>
             ))}
           </Grid>
