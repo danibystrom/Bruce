@@ -101,6 +101,7 @@ export default function CheckoutPage() {
             />
             {cart.map((item) => (
               <Box
+                key={item.product.id}
                 sx={{
                   padding: "1rem",
                   backgroundColor: "#fff",
