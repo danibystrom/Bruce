@@ -47,11 +47,13 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1, padding: 0 }}>
       <AppBar
-        position="static"
+        position="fixed"
         elevation={0}
         sx={{
           bgcolor: "#ffffff",
           color: "#000000",
+          top: 0, 
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar

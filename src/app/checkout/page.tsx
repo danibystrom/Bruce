@@ -41,12 +41,15 @@ export default function CheckoutPage() {
     }
   };
 
-  const subTotal = cart.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
-    0
+  const subTotal = parseFloat(
+    cart
+      .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+      .toFixed(2)
   );
-  const estDeliveryCost = 10;
-  const totalCost = subTotal + estDeliveryCost;
+
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const estDeliveryCost = totalItems > 5 ? 15 : 10;
+  const totalCost = parseFloat((subTotal + estDeliveryCost).toFixed(2));
 
   const handleOpenModal = () => {
     setOpenModal(true);
