@@ -12,6 +12,7 @@ export const ProductSchema = z.object({
   isBestSeller: z.boolean(),
   categories: z.array(z.string()),
   alcohol: z.number().positive(),
+  tabletQuantity: z.number(),
 });
 
 export const CheckoutFormSchema = z.object({
