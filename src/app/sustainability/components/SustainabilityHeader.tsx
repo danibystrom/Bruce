@@ -25,7 +25,7 @@ export default function ProductsPageHero() {
       >
         <Box
           sx={{
-            backgroundImage: 'url("/about-us-mobile.jpeg")',
+            backgroundImage: 'url("/sustainability-mobile.jpeg")',
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
@@ -73,7 +73,7 @@ export default function ProductsPageHero() {
             sx={{
               width: "100%",
               height: "40vh",
-              backgroundImage: 'url("/about-us-hero.jpg")',
+              backgroundImage: 'url("/sustainability-hero.jpeg")',
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: 0,
