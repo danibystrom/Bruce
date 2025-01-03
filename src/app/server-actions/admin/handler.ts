@@ -51,7 +51,7 @@ export async function DeleteProduct(productId: string) {
 }
 
 export async function AddNewProduct(
-  newProduct: ProductData & { categories: string[] }
+  newProduct: ProductData & { categories: string[]; tabletQuantity: number }
 ) {
   try {
     const parsedPrice = parseFloat(newProduct.price.toString());
@@ -74,6 +74,7 @@ export async function AddNewProduct(
         productId: newProductId,
         slug: newProduct.name.toLowerCase().replace(/ /g, "-"),
         alcohol: newProduct.alcohol ?? 0,
+        tabletQuantity: newProduct.tabletQuantity,
         categories: {
           connect: newProduct.categories.map((categoryId) => ({
             id: categoryId,

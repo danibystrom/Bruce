@@ -45,6 +45,7 @@ export default function EditProductForm({ product, categories }: Props) {
         image: product?.image || "",
         isBestSeller: product?.isBestSeller || false,
         categories: formData.categories || [],
+        tabletQuantity: formData.tabletQuantity || 0,
       };
 
       await AddNewProduct(newProduct);
