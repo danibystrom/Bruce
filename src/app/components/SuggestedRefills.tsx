@@ -95,6 +95,7 @@ export default function SuggestedRefills() {
               padding: 0,
               color: "#000000",
             }}
+            aria-label="Scroll left"
           >
             <NavigateBeforeSharpIcon
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
@@ -108,6 +109,7 @@ export default function SuggestedRefills() {
               padding: 0,
               color: "#000000",
             }}
+            aria-label="Scroll right"
           >
             <NavigateNextSharpIcon
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}

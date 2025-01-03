@@ -52,7 +52,7 @@ export default function Header() {
         sx={{
           bgcolor: "#ffffff",
           color: "#000000",
-          top: 0, 
+          top: 0,
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
@@ -100,10 +100,12 @@ export default function Header() {
           <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
             <Link
               href="/signin"
+              aria-label="Sign in to your account"
               sx={{ textDecoration: "none", underline: "none", color: "black" }}
             >
               <IconButton
                 disableRipple
+                aria-label="sign in"
                 color="inherit"
                 sx={{
                   paddingRight: 0.1,

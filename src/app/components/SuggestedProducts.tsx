@@ -95,6 +95,7 @@ export default function SuggestedProducts() {
               color: "#000000",
               padding: 0,
             }}
+            aria-label="Scroll left"
           >
             <NavigateBeforeSharpIcon
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
@@ -108,6 +109,7 @@ export default function SuggestedProducts() {
               color: "#000000",
               padding: 0,
             }}
+            aria-label="Scroll right"
           >
             <NavigateNextSharpIcon
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}

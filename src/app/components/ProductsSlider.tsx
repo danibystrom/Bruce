@@ -102,6 +102,7 @@ export default function ProductsSlider() {
               color: "#000000",
               padding: 0,
             }}
+            aria-label="scroll left"
           >
             <NavigateBeforeSharpIcon
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
@@ -115,6 +116,7 @@ export default function ProductsSlider() {
               color: "#000000",
               padding: 0,
             }}
+            aria-label="scroll right"
           >
             <NavigateNextSharpIcon
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}

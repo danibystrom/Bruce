@@ -176,7 +176,7 @@ export default function CheckoutPage() {
                             alignItems: "center",
                           }}
                         >
-                          <IconButton>
+                          <IconButton aria-label="decrease quantity">
                             <RemoveIcon
                               onClick={() =>
                                 handleDecreaseQuantity(item.product.id)
@@ -194,7 +194,7 @@ export default function CheckoutPage() {
                           >
                             {item.quantity}
                           </Typography>
-                          <IconButton>
+                          <IconButton aria-label="increase quantity">
                             <AddIcon
                               onClick={() =>
                                 handleIncreaseQuantity(item.product.id)
