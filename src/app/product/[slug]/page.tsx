@@ -44,12 +44,16 @@ export default function ProductPage({ params }: PageProps) {
     fetchProduct();
   }, [slug]);
 
-  const handleClick = (product: Product) => {
-    if (!selectedColor) {
+  const handleClick = (product: Product & { categories: Category[] }) => {
+    const isRefill = product.categories.some(
+      (category) => category.name.toLowerCase() === "refills"
+    );
+
+    if (!isRefill && !selectedColor) {
       alert("Please select a case color.");
       return;
     }
-    addToCart(product, selectedColor);
+    addToCart(product, selectedColor || null);
     setSelectedProduct(product);
     setOpen(true);
   };
@@ -218,45 +222,49 @@ export default function ProductPage({ params }: PageProps) {
                 }}
               ></Box>
               <Box sx={{ marginY: "1rem" }}>
-                {product.caseColors && product.caseColors.length > 0 && (
-                  <>
-                    <Typography variant="body2">
-                      Choose your case color:
-                    </Typography>
-                    <Box
-                      sx={{ display: "flex", gap: "10px", marginTop: "10px" }}
-                    >
-                      {product.caseColors.map((color, index) => {
-                        const subColor = product.subColors[index] || color;
-                        return (
-                          <Box
-                            key={color}
-                            onClick={() => setSelectedColor(color)}
-                            sx={{
-                              width: "15px",
-                              height: "15px",
-                              borderRadius: "50%",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              cursor: "pointer",
-                              position: "relative",
-                              backgroundImage: getBackgroundImage(
-                                color,
-                                subColor
-                              ),
-                              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                              border:
-                                selectedColor === color
-                                  ? "1px solid black"
-                                  : "1px solid gray",
-                            }}
-                          />
-                        );
-                      })}
-                    </Box>
-                  </>
-                )}
+                {product.caseColors &&
+                  product.caseColors.length > 0 &&
+                  !product.categories.some(
+                    (category) => category.name.toLowerCase() === "refills"
+                  ) && (
+                    <>
+                      <Typography variant="body2">
+                        Choose your case color:
+                      </Typography>
+                      <Box
+                        sx={{ display: "flex", gap: "10px", marginTop: "10px" }}
+                      >
+                        {product.caseColors.map((color, index) => {
+                          const subColor = product.subColors[index] || color;
+                          return (
+                            <Box
+                              key={color}
+                              onClick={() => setSelectedColor(color)}
+                              sx={{
+                                width: "15px",
+                                height: "15px",
+                                borderRadius: "50%",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                cursor: "pointer",
+                                position: "relative",
+                                backgroundImage: getBackgroundImage(
+                                  color,
+                                  subColor
+                                ),
+                                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                                border:
+                                  selectedColor === color
+                                    ? "1px solid black"
+                                    : "1px solid gray",
+                              }}
+                            />
+                          );
+                        })}
+                      </Box>
+                    </>
+                  )}
               </Box>
 
               <Box>
