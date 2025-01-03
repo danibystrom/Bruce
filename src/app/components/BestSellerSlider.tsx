@@ -94,6 +94,7 @@ export default function BestSellerSlider() {
               padding: 0,
               "&:hover": { background: "none" },
             }}
+            aria-label="scroll left"
           >
             <NavigateBeforeSharpIcon
               sx={{ color: "#000000", fontSize: { xs: "1.5rem", sm: "2rem" } }}
@@ -112,6 +113,7 @@ export default function BestSellerSlider() {
               padding: 0,
               "&:hover": { background: "none" },
             }}
+            aria-label="scroll right"
           >
             <NavigateNextSharpIcon
               sx={{ color: "#000000", fontSize: { xs: "1.5rem", sm: "2rem" } }}
