@@ -54,9 +54,9 @@ export default function AboutSection() {
           sx={{ marginBottom: 2, fontSize: { xs: "0.9rem", sm: "1rem" } }}
         >
           Bruce isn't just a drink; it's a revolution. Forget bottles, forget
-          cans, and definitely forget complicated mixes. We’re bringing you
+          cans, and definitely forget complicated mixes. We&apos;re bringing you
           vibrant, flavorful drinks in the form of effervescent tablets—because
-          life’s too short for anything less.
+          life&apos;s too short for anything less.
         </Typography>{" "}
         <Typography
           variant="body1"
@@ -71,8 +71,8 @@ export default function AboutSection() {
           variant="body1"
           sx={{ marginBottom: 2, fontSize: { xs: "0.9rem", sm: "1rem" } }}
         >
-          So, join us. Let’s take over the world, one sip at a time. Bruce is
-          just getting started, and we’re only getting bigger.
+          So, join us. Let&apos;s take over the world, one sip at a time. Bruce
+          is just getting started, and we&apos;re only getting bigger.
         </Typography>
       </Grid>
     </Box>

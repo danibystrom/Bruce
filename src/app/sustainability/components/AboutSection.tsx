@@ -40,7 +40,7 @@ export default function AboutSection() {
           variant="body1"
           sx={{ marginBottom: 2, fontSize: { xs: "0.9rem", sm: "1rem" } }}
         >
-          Bruce isn't just about great taste—it's about making life easier and
+          Bruce isnt just about great taste—its about making life easier and
           more sustainable. We&apos;ve reinvented the way you enjoy drinks: just
           grab a case, then refill with our eco-friendly tablets. No waste, no
           hassle, just a perfectly refreshing sip every time.
