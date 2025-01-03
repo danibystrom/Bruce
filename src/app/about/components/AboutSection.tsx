@@ -6,7 +6,6 @@ export default function AboutSection() {
     <Box
       sx={{
         width: "100%",
-        // minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         margin: "1rem",
