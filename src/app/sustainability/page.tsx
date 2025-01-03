@@ -1,7 +1,13 @@
+import SuggestedProducts from "../components/SuggestedProducts";
+import AboutSection from "./components/AboutSection";
+import SustainabilityHeader from "./components/SustainabilityHeader";
+
 export default function SustainabilityPage() {
   return (
     <>
-      <h1>Sustainability Page</h1>
+      <SustainabilityHeader />
+      <AboutSection />
+      <SuggestedProducts />
     </>
   );
 }

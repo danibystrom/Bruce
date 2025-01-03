@@ -133,7 +133,7 @@ export default function SuggestedProducts() {
           <Card
             key={drink.id}
             sx={{
-              width: 550,
+              width: { xs: "100%", sm: "550px" },
               flexShrink: 0,
               borderRadius: 0,
               border: "none",
@@ -148,12 +148,10 @@ export default function SuggestedProducts() {
           >
             <Box
               sx={{
-                position: "relative",
                 width: "100%",
-                height: "80%",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
-                paddingBottom: "5rem",
                 alignItems: "center",
                 overflow: "hidden",
                 backgroundColor: "transparent",
@@ -182,7 +180,6 @@ export default function SuggestedProducts() {
               </Link>
               <Box
                 sx={{
-                  position: "absolute",
                   bottom: "0",
                   left: "0",
                   width: "94%",
@@ -200,6 +197,9 @@ export default function SuggestedProducts() {
                   sx={{
                     color: "#000",
                     textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: { xs: "0.8rem", sm: "1.2rem" },
                   }}
                 >
                   {drink.name} <SpaceBar sx={{ color: "transparent" }} /> EUR{" "}
@@ -222,6 +222,7 @@ export default function SuggestedProducts() {
                     variant="h6"
                     sx={{
                       textTransform: "uppercase",
+                      fontSize: { xs: "0.8rem", sm: "1.2rem" },
                       "&:hover": { fontWeight: "bold" },
                     }}
                   >

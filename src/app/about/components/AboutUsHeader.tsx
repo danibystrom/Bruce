@@ -1,7 +1,7 @@
 "use client";
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
-export default function HeaderImage() {
+export default function ProductsPageHero() {
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -25,8 +25,7 @@ export default function HeaderImage() {
       >
         <Box
           sx={{
-            backgroundImage: 'url("/hero-img.jpeg")',
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundImage: 'url("/about-us-mobile.jpeg")',
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
@@ -42,49 +41,28 @@ export default function HeaderImage() {
             transform: "translate(-50%, -50%)",
             color: "#ffffff",
             textAlign: "center",
+            width: "100%",
+            maxWidth: "90%",
+            padding: "0 1rem",
           }}
         >
           <Typography
             variant="h1"
             sx={{
               fontSize: {
-                xs: "12em",
-                sm: "13rem",
+                xs: "5em",
+                sm: "6rem",
               },
+              lineHeight: 0.9,
               fontWeight: 400,
               fontFamily: "'Instrument Serif', sans-serif !important",
+              whiteSpace: "normal",
+              wordWrap: "break-word",
             }}
           >
-            bruce
+            The story of Bruce
           </Typography>
         </Box>
-      </Box>
-      <Box sx={{ mb: 1, textAlign: "left", px: 1 }}>
-        <Typography
-          variant="h2"
-          sx={{
-            fontSize: { xs: "0.9rem", sm: "1rem" },
-            fontWeight: "bold",
-            textTransform: "uppercase",
-            marginTop: "1rem",
-            mb: 1,
-          }}
-        >
-          Delicious Cocktails, No Bar Required
-        </Typography>
-        <Typography
-          variant="h2"
-          sx={{
-            fontSize: { xs: "1rem", sm: "1.2rem" },
-            maxWidth: "700px",
-            marginBottom: "2rem",
-          }}
-        >
-          He&apos;s all you need to craft the world&apos;s best drinks. One
-          tablet, some water, and you&apos;re good to go. Bruce thinks smart,
-          packs light, and always makes sure the party&apos;s with you –
-          wherever you are.
-        </Typography>
       </Box>
     </Box>
   ) : (
@@ -94,8 +72,8 @@ export default function HeaderImage() {
           <Box
             sx={{
               width: "100%",
-              height: "100%",
-              backgroundImage: 'url("/hero-img.jpeg")',
+              height: "40vh",
+              backgroundImage: 'url("/about-us-hero.jpg")',
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: 0,
@@ -119,48 +97,20 @@ export default function HeaderImage() {
               sx={{
                 fontSize: {
                   xs: "2rem",
-                  sm: "8rem",
-                  md: "12rem",
-                  lg: "18rem",
+                  sm: "4rem",
+                  md: "7rem",
+                  lg: "9rem",
                 },
                 fontWeight: 400,
-                lineHeight: 0.71,
+                lineHeight: 0.8,
                 fontFamily: "'Instrument Serif', sans-serif !important",
               }}
             >
-              bruce
+              The story of Bruce
             </Typography>
           </Box>
         </Grid>
       </Grid>
-
-      <Box sx={{ mb: 1, textAlign: "left" }}>
-        <Typography
-          variant="subtitle1"
-          sx={{
-            fontSize: { xs: "0.9rem", sm: "1rem" },
-            fontWeight: "bold",
-            textTransform: "uppercase",
-            marginTop: "1rem",
-            mb: 1,
-          }}
-        >
-          Delicious Cocktails, No Bar Required
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: { xs: "1rem", sm: "1.2rem" },
-            maxWidth: "700px",
-            marginBottom: "2rem",
-          }}
-        >
-          He&apos;s all you need to craft the world&apos;s best drinks. One
-          tablet, some water, and you&apos;re good to go. Bruce thinks smart,
-          packs light, and always makes sure the party&apos;s with you –
-          wherever you are.
-        </Typography>
-      </Box>
     </Box>
   );
 }

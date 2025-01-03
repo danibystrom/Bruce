@@ -1,7 +1,15 @@
+import SuggestedProducts from "../components/SuggestedProducts";
+import SustainabilitySection from "../components/SustainabilitySection";
+import AboutSection from "./components/AboutSection";
+import AboutUsHeader from "./components/AboutUsHeader";
+
 export default function AboutPage() {
   return (
     <>
-      <h1>About Page</h1>
+      <AboutUsHeader />
+      <AboutSection />
+      <SuggestedProducts />
+      <SustainabilitySection />
     </>
   );
 }
