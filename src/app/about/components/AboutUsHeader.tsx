@@ -25,8 +25,7 @@ export default function ProductsPageHero() {
       >
         <Box
           sx={{
-            backgroundImage: 'url("/about-us-hero.jpg")',
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundImage: 'url("/about-us-mobile.jpeg")',
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",

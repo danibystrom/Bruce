@@ -18,7 +18,7 @@ export default function HeaderImage() {
           position: "relative",
           width: "98%",
           height: "40vh",
-          margin: "auto",
+          marginTop: "3rem",
           borderRadius: 0,
           overflow: "hidden",
         }}
