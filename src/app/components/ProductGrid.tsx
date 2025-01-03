@@ -92,7 +92,7 @@ export default function ProductGrid() {
                 src={product.image}
                 alt={product.name}
                 sx={{
-                  height: "300px",
+                  height: "350px",
                   objectFit: "fill",
                   backgroundColor: "#f5f5f5",
                 }}

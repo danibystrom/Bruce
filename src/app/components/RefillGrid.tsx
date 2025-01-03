@@ -92,7 +92,7 @@ export default function RefillGrid() {
                 src={product.image}
                 alt={product.name}
                 sx={{
-                  height: "300px",
+                  height: "350px",
                   objectFit: "cover",
                   backgroundColor: "#f5f5f5",
                 }}
