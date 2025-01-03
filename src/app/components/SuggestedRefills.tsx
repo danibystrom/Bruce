@@ -148,12 +148,10 @@ export default function SuggestedRefills() {
           >
             <Box
               sx={{
-                position: "relative",
                 width: "100%",
-                height: "80%",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
-                paddingBottom: "5rem",
                 alignItems: "center",
                 overflow: "hidden",
                 backgroundColor: "transparent",
@@ -182,7 +180,6 @@ export default function SuggestedRefills() {
               </Link>
               <Box
                 sx={{
-                  position: "absolute",
                   bottom: "0",
                   left: "0",
                   width: "94%",
