@@ -45,27 +45,28 @@ export default function AboutSection() {
           complicated? At Bruce, we believe in simplicity, convenience, and,
           most importantly, flavor. Born out of a desire to shake things up,
           Bruce is here to redefine what it means to grab a drink on the go. Our
-          mission? To create the perfect beverage for those who don't want to
-          sacrifice taste for convenience—whether you're hiking a mountain or
-          rushing to your next meeting.
+          mission? To create the perfect beverage for those who don&apos;t want
+          to sacrifice taste for convenience—whether you&apos;re hiking a
+          mountain or rushing to your next meeting.
         </Typography>
         <Typography
           variant="body1"
           sx={{ marginBottom: 2, fontSize: { xs: "0.9rem", sm: "1rem" } }}
         >
-          Bruce isn't just a drink; it's a revolution. Forget bottles, forget
-          cans, and definitely forget complicated mixes. We&apos;re bringing you
-          vibrant, flavorful drinks in the form of effervescent tablets—because
-          life&apos;s too short for anything less.
+          Bruce isn&apos;t just a drink; it&apos;s a revolution. Forget bottles,
+          forget cans, and definitely forget complicated mixes. We&apos;re
+          bringing you vibrant, flavorful drinks in the form of effervescent
+          tablets—because life&apos;s too short for anything less.
         </Typography>{" "}
         <Typography
           variant="body1"
           sx={{ marginBottom: 2, fontSize: { xs: "0.9rem", sm: "1rem" } }}
         >
-          Our vision is big. Bruce isn't just a brand; it's a movement. We're
-          here to change the way you think about drinks, one tablet at a time.
-          From the busy city streets to the mountain tops, we want Bruce to be
-          your go-to, your secret weapon, your refreshment for any occasion.
+          Our vision is big. Bruce isn&apos;t just a brand; it&apos;s a
+          movement. We&apos;re here to change the way you think about drinks,
+          one tablet at a time. From the busy city streets to the mountain tops,
+          we want Bruce to be your go-to, your secret weapon, your refreshment
+          for any occasion.
         </Typography>
         <Typography
           variant="body1"
