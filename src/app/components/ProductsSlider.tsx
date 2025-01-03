@@ -140,7 +140,7 @@ export default function ProductsSlider() {
           <Card
             key={drink.id}
             sx={{
-              width: 550,
+              width: { xs: "100%", sm: "550px" },
               flexShrink: 0,
               borderRadius: 0,
               border: "none",
@@ -204,6 +204,9 @@ export default function ProductsSlider() {
                   sx={{
                     color: "#000",
                     textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: { xs: "0.8rem", sm: "1.2rem" },
                   }}
                 >
                   {drink.name} <SpaceBar sx={{ color: "transparent" }} /> EUR{" "}
@@ -226,6 +229,7 @@ export default function ProductsSlider() {
                     variant="h6"
                     sx={{
                       textTransform: "uppercase",
+                      fontSize: { xs: "0.8rem", sm: "1.2rem" },
                       "&:hover": { fontWeight: "bold" },
                     }}
                   >
