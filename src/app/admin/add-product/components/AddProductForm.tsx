@@ -171,6 +171,15 @@ export default function EditProductForm({ product, categories }: Props) {
             )}
           />
         </FormControl>
+        <TextField
+          label="IMAGE"
+          {...register("image")}
+          error={Boolean(errors.image)}
+          helperText={errors.image?.message}
+          id="standard-size-small"
+          size="small"
+          variant="standard"
+        />
         <Box
           sx={{
             display: "flex",
@@ -185,17 +194,27 @@ export default function EditProductForm({ product, categories }: Props) {
           <Link href="" style={{ textDecoration: "none", width: "150px" }}>
             <Button
               disableRipple
-              variant="outlined"
+              variant="contained"
               size="small"
               type="submit"
               sx={{
-                borderRadius: "20px",
+                backgroundColor: "#F2F961",
                 color: "#000",
+                borderRadius: "20px",
+                boxShadow: "none",
                 width: "100%",
+                transition: "all 0.3s ease",
                 marginRight: "0.8rem",
-                backgroundColor: "transparent",
-                borderColor: "#000",
-                "&:hover": { backgroundColor: "#000", color: "#fff" },
+                "&:hover": {
+                  boxShadow: "5px 5px #E1EC09",
+                  transition: "all 0.3s ease",
+                  backgroundColor: "#F2F961",
+                },
+                "&:active": {
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  outline: "none",
+                },
               }}
             >
               Save changes
@@ -210,15 +229,21 @@ export default function EditProductForm({ product, categories }: Props) {
               variant="outlined"
               size="small"
               sx={{
-                borderRadius: "20px",
-                backgroundColor: "#000",
+                backgroundColor: "#fff",
+                border: "1px solid #000",
+                color: "#000",
                 width: "100%",
-                color: "#fff",
+                borderRadius: 20,
+                boxShadow: "none",
                 "&:hover": {
+                  boxShadow: "5px 5px #F2F961",
+                  transition: "all 0.3s ease",
                   backgroundColor: "#fff",
-                  color: "#000",
+                },
+                "&:active": {
+                  backgroundColor: "#F2F961",
                   boxShadow: "none",
-                  borderColor: "#000",
+                  outline: "none",
                 },
               }}
             >

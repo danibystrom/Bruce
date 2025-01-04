@@ -71,7 +71,7 @@ export default function AdminPage() {
   }
 
   return (
-    <Box sx={{ padding: "2rem" }}>
+    <Box sx={{ padding: "2rem", mt: "3rem" }}>
       <Box
         sx={{
           display: "flex",
@@ -85,6 +85,7 @@ export default function AdminPage() {
           sx={{
             textAlign: "center",
             textTransform: "uppercase",
+            fontSize: { xs: "0.8rem", sm: "1rem", md: "1.5rem" },
           }}
         >
           Bruce Likes to Handle Things
@@ -96,19 +97,28 @@ export default function AdminPage() {
             sx={{
               backgroundColor: "#fff",
               border: "1px solid #000",
+              marginTop: "0.5rem",
               color: "#000",
-              borderRadius: "20px",
+              width: { xs: "100px", sm: "100px", md: "150px" },
+              borderRadius: 20,
               boxShadow: "none",
-              width: "150px",
               "&:hover": {
+                boxShadow: "5px 5px #F2F961",
+                transition: "all 0.3s ease",
                 backgroundColor: "#fff",
-                color: "#000",
-                borderColor: "#000",
+              },
+              "&:active": {
+                backgroundColor: "#F2F961",
                 boxShadow: "none",
+                outline: "none",
               },
             }}
           >
-            Add Product
+            <Typography
+              sx={{ fontSize: { xs: "0.8rem", sm: "1rem", md: "1rem" } }}
+            >
+              Add +
+            </Typography>
           </Button>
         </Link>
       </Box>
@@ -136,7 +146,7 @@ export default function AdminPage() {
                   marginBottom: "1rem",
                 }}
               />
-              <CardContent sx={{ padding: 0 }}>
+              <CardContent sx={{ padding: 0, height: "80px" }}>
                 <Typography
                   sx={{
                     fontSize: "1rem",
@@ -167,15 +177,26 @@ export default function AdminPage() {
                   <Link href={`/admin/product/${product.id}`}>
                     <Button
                       disableRipple
-                      variant="outlined"
+                      variant="contained"
                       size="small"
                       sx={{
-                        borderRadius: "20px",
-                        width: "100%",
+                        backgroundColor: "#F2F961",
                         color: "#000",
-                        backgroundColor: "transparent",
-                        borderColor: "#000",
-                        "&:hover": { backgroundColor: "#000", color: "#fff" },
+                        borderRadius: "20px",
+                        boxShadow: "none",
+                        width: "100%",
+                        transition: "all 0.3s ease",
+
+                        "&:hover": {
+                          boxShadow: "5px 5px #E1EC09",
+                          transition: "all 0.3s ease",
+                          backgroundColor: "#F2F961",
+                        },
+                        "&:active": {
+                          backgroundColor: "transparent",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
                       }}
                     >
                       Edit
@@ -187,15 +208,21 @@ export default function AdminPage() {
                   variant="outlined"
                   size="small"
                   sx={{
-                    borderRadius: "20px",
+                    backgroundColor: "#fff",
+                    border: "1px solid #000",
+                    color: "#000",
                     width: "48%",
-                    backgroundColor: "#000",
-                    color: "#fff",
+                    borderRadius: 20,
+                    boxShadow: "none",
                     "&:hover": {
+                      boxShadow: "5px 5px #F2F961",
+                      transition: "all 0.3s ease",
                       backgroundColor: "#fff",
-                      color: "#000",
+                    },
+                    "&:active": {
+                      backgroundColor: "#F2F961",
                       boxShadow: "none",
-                      borderColor: "#000",
+                      outline: "none",
                     },
                   }}
                   onClick={() => handleDeleteClick(product)}
