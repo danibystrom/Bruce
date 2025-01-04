@@ -162,7 +162,7 @@ export default function BestSellerSlider() {
                 {product.name}
               </Typography>
               <Typography variant="body2" sx={{}}>
-                CHF {product.price}
+                EUR {product.price}
               </Typography>
               <Button
                 disableRipple
