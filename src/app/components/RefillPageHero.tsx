@@ -61,7 +61,7 @@ export default function RefillPageHero() {
               wordWrap: "break-word",
             }}
           >
-            Bruce says: Take a pill
+            Our Vision: Sip, Refill, Repeat
           </Typography>
         </Box>
       </Box>
@@ -107,7 +107,7 @@ export default function RefillPageHero() {
                 fontFamily: "'Instrument Serif', sans-serif !important",
               }}
             >
-              Bruce says: Take a pill
+              Our Vision: Sip, Refill, Repeat
             </Typography>
           </Box>
         </Grid>

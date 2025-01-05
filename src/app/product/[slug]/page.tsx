@@ -103,8 +103,8 @@ export default function ProductPage({ params }: PageProps) {
               key={product.id}
               sx={{
                 height: {
-                  xs: "calc(40dvh)",
-                  sm: "calc(50dvh)",
+                  xs: "auto",
+                  sm: "calc(70dvh)",
                   md: "calc(90dvh)",
                 },
               }}

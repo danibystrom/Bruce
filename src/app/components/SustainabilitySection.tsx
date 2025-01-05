@@ -17,7 +17,7 @@ export default function SustainabilitySection() {
     >
       <Box
         sx={{
-          backgroundImage: 'url("/couple-drinking.jpeg")',
+          backgroundImage: 'url("/sectionimage.jpeg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
@@ -42,18 +42,16 @@ export default function SustainabilitySection() {
           sx={{
             fontWeight: 700,
             textTransform: "uppercase",
+            color: "#fff",
           }}
         >
           Bruce cares, because Bruce is more than just a fizzy tablet
         </Typography>
-        <Typography variant="body1" sx={{}}>
+        <Typography variant="body1" sx={{ color: "#fff" }}>
           Bruce cares about the planet, about you, and about the little things
-          that make a big difference. That’s why Bruce’s packaging is made from
-          100% recycled plastic. No unnecessary waste, no extra guilt. Bruce
-          also knows that sustainability is a journey, not a one-time choice.
-          With refill packs of tablets, Bruce makes it easy to reuse your bottle
-          again and again. Because being kind to the environment shouldn’t be
-          hard—it should be second nature. Bruce isn’t just refreshing for you.
+          that make a big difference. That&apos;s why Bruce&apos;s packaging is
+          made from 100% recycled plastic. Bruce makes it easy to reuse your
+          bottle again and again. Bruce isn&apos;t just refreshing for you.
           Bruce refreshes the planet too.
         </Typography>
         <Link href="/refill" passHref>

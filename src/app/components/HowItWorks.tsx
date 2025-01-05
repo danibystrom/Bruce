@@ -16,7 +16,7 @@ export default function HowItWorks() {
     >
       <Box
         sx={{
-          backgroundImage: 'url("/mojito.jpg")',
+          backgroundImage: 'url("/sectionimage2.jpeg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
@@ -27,12 +27,12 @@ export default function HowItWorks() {
       <Box
         sx={{
           position: "absolute",
-          width: "60%",
+          width: "70%",
           top: "0",
           left: "0",
           padding: "1rem",
           marginTop: "1rem",
-          color: "#000",
+          color: "#fff",
           textAlign: "left",
         }}
       >
@@ -45,8 +45,10 @@ export default function HowItWorks() {
           JUST LIKE VITAMINS, BUT BETTER
         </Typography>
         <Typography variant="body1" sx={{}}>
-          Just like vitamins, but better. Our drinks are packed with vitamins
-          and minerals to help you feel your best.
+          Just like vitamins, but way more fun. Bruce turns fizzy into the life
+          of the party. Say goodbye to boring bottles and hello to a new way of
+          kicking off a great evening. Pop, fizz, and let the good times
+          roll—Bruce has got your back.
         </Typography>
         <Button
           variant="contained"
@@ -67,7 +69,7 @@ export default function HowItWorks() {
             },
           }}
         >
-          ADD TO BAG
+          GO TO PRODUCTS
         </Button>
       </Box>
     </Box>
