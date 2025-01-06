@@ -104,7 +104,7 @@ export default function RefillGrid() {
                 {product.name}
               </Typography>
               <Typography variant="body2" sx={{}}>
-                CHF {product.price}
+                EUR {product.price}
               </Typography>
               <Button
                 variant="outlined"
