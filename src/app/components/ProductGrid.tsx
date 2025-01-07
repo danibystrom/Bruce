@@ -103,7 +103,7 @@ export default function ProductGrid() {
                 {product.name}
               </Typography>
               <Typography variant="body2" sx={{}}>
-                EUR {product.price}
+                EUR {product.price}€
               </Typography>
               <Button
                 variant="outlined"

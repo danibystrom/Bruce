@@ -35,11 +35,11 @@ export default function Header() {
     { label: "About Us", href: "/about" },
     { label: "Sustainability", href: "/sustainability" },
     { label: "Products", href: "/products" },
-    { label: "Refill", href: "/refill" },
+    { label: "Refills", href: "/refill" },
   ];
 
   const subItems = [
-    { label: "Contact", href: "/contact" },
+    { label: "Contact", href: "/" },
     { label: session ? "My Page" : "Sign In", href: "/signin" },
     ...(session ? [{ label: "Bruce’s Control Room", href: "/admin" }] : []),
   ];
