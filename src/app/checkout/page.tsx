@@ -111,7 +111,7 @@ export default function CheckoutPage() {
                 <Grid container alignItems="center" spacing={2}>
                   <Grid item xs={12} sm={2}>
                     <img
-                      src={item.product.image}
+                      src={item.product.image || "/pornstar-martini.jpg"}
                       alt={item.product.name}
                       style={{
                         width: "100%",
