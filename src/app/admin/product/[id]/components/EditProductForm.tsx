@@ -36,11 +36,15 @@ export default function EditProductForm({ product }: Props) {
     try {
       const updatedData = {
         ...formData,
+        image: formData.image || "",
         price: parseFloat(formData.price.toString()),
         alcohol: parseFloat(formData.alcohol.toString()),
       };
 
-      await EditProduct(updatedData, product.productId.toString());
+      await EditProduct(
+        { ...updatedData, image: updatedData.image || "" },
+        product.productId.toString()
+      );
 
       setToastMessage("Bruce approves! Product updated.");
       setToastOpen(true);
@@ -126,7 +130,7 @@ export default function EditProductForm({ product }: Props) {
           size="small"
           type="number"
           variant="standard"
-          defaultValue={product?.alcohol || ""}
+          defaultValue={product?.alcohol?.toString() || ""}
         />
         <TextField
           label="PRICE"
@@ -137,7 +141,7 @@ export default function EditProductForm({ product }: Props) {
           size="small"
           type="number"
           variant="standard"
-          defaultValue={product?.price || ""}
+          defaultValue={product?.price?.toString() || ""}
         />
         <TextField
           label="DESCRIPTION"
@@ -232,13 +236,12 @@ export default function EditProductForm({ product }: Props) {
         }}
       >
         <img
-          src={product.image}
+          src={product.image || "/pornstar-martini.jpg"}
           alt="Product"
           style={{
             maxWidth: "100%",
             maxHeight: "300px",
             objectFit: "contain",
-            borderRadius: "8px",
           }}
         />
       </Box>

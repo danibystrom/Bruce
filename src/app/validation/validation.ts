@@ -6,7 +6,7 @@ export const ProductSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   ingredients: z.string().min(1),
-  image: z.string().url().min(1),
+  image: z.string().url().optional().or(z.literal("")),
   slug: z.string().min(1),
   price: z.number().positive(),
   isBestSeller: z.boolean(),

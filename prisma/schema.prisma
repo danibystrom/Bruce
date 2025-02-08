@@ -20,7 +20,7 @@ model Product {
   name           String
   description    String
   ingredients    String
-  image          String
+  image          String?
   alcohol        Float
   tabletQuantity Int
   slug           String  @unique

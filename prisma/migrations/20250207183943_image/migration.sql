@@ -15,13 +15,15 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "ingredients" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
+    "image" TEXT,
     "alcohol" DOUBLE PRECISION NOT NULL,
     "tabletQuantity" INTEGER NOT NULL,
     "slug" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "isBestSeller" BOOLEAN NOT NULL DEFAULT false,
     "caseColors" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "subColors" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "caseImages" TEXT[] DEFAULT ARRAY[]::TEXT[],
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
