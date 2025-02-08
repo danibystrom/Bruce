@@ -137,7 +137,7 @@ export default function AdminPage() {
               }}
             >
               <img
-                src={product.image}
+                src={product.image || "/pornstar-martini.jpg"}
                 alt={product.name}
                 style={{
                   width: "100%",

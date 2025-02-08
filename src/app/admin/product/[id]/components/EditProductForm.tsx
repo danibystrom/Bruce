@@ -168,7 +168,7 @@ export default function EditProductForm({ product }: Props) {
           <Link href="" style={{ textDecoration: "none", width: "150px" }}>
             <Button
               disableRipple
-              variant="outlined"
+              variant="contained"
               size="small"
               type="submit"
               sx={{
@@ -176,9 +176,19 @@ export default function EditProductForm({ product }: Props) {
                 color: "#000",
                 width: "100%",
                 marginRight: "0.8rem",
-                backgroundColor: "transparent",
-                borderColor: "#000",
-                "&:hover": { backgroundColor: "#000", color: "#fff" },
+                backgroundColor: "#F2F961",
+                boxShadow: "none",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  boxShadow: "5px 5px #E1EC09",
+                  transition: "all 0.3s ease",
+                  backgroundColor: "#F2F961",
+                },
+                "&:active": {
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  outline: "none",
+                },
               }}
             >
               Save changes
@@ -190,18 +200,24 @@ export default function EditProductForm({ product }: Props) {
           >
             <Button
               disableRipple
-              variant="outlined"
+              variant="contained"
               size="small"
               sx={{
                 borderRadius: "20px",
-                backgroundColor: "#000",
+                backgroundColor: "#fff",
+                border: "1px solid #000",
+                boxShadow: "none",
                 width: "100%",
-                color: "#fff",
+                color: "#000",
                 "&:hover": {
+                  boxShadow: "5px 5px #F2F961",
+                  transition: "all 0.3s ease",
                   backgroundColor: "#fff",
-                  color: "#000",
+                },
+                "&:active": {
+                  backgroundColor: "#F2F961",
                   boxShadow: "none",
-                  borderColor: "#000",
+                  outline: "none",
                 },
               }}
             >
