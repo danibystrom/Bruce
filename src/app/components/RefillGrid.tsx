@@ -89,7 +89,7 @@ export default function RefillGrid() {
             <Link href={`/product/${product.slug}`}>
               <CardMedia
                 component="img"
-                src={product.image}
+                src={product.image || "/pornstar-martini.jpg"}
                 alt={product.name}
                 sx={{
                   height: "350px",

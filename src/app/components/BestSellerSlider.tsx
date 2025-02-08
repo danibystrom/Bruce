@@ -147,7 +147,7 @@ export default function BestSellerSlider() {
             <Link href={`/product/${product.slug}`} passHref>
               <CardMedia
                 component="img"
-                src={product.image}
+                src={product.image || "/pornstar-martini.jpg"}
                 alt={product.name}
                 sx={{
                   height: "300px",

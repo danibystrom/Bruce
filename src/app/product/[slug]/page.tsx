@@ -133,9 +133,9 @@ export default function ProductPage({ params }: PageProps) {
             >
               <CardMedia
                 component="img"
-                src={product.image}
+                src={product.image || "/pornstar-martini.jpg"}
                 alt={`Primary Image ${product.name}`}
-                onClick={() => handleImageClick(product.image)}
+                onClick={() => product.image && handleImageClick(product.image)}
                 sx={{
                   width: "calc(20%)",
 
