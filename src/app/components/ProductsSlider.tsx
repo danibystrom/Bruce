@@ -174,7 +174,7 @@ export default function ProductsSlider() {
               >
                 <CardMedia
                   component="img"
-                  src={drink.image}
+                  src={drink.image || "/pornstar-martini.jpg"}
                   alt={drink.name}
                   loading="lazy"
                   sx={{

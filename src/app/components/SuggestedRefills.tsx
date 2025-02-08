@@ -167,7 +167,7 @@ export default function SuggestedRefills() {
               >
                 <CardMedia
                   component="img"
-                  src={refill.image}
+                  src={refill.image || "/pornstar-martini.jpg"}
                   alt={refill.name}
                   loading="lazy"
                   sx={{

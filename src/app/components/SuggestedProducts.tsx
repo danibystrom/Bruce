@@ -167,7 +167,7 @@ export default function SuggestedProducts() {
               >
                 <CardMedia
                   component="img"
-                  src={drink.image}
+                  src={drink.image || "/pornstar-martini.jpg"}
                   alt={drink.name}
                   loading="lazy"
                   sx={{
