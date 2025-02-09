@@ -83,8 +83,13 @@ export async function AddNewProduct(
       },
     });
 
+    const updatedProduct = await db.product.update({
+      where: { id: createdProduct.id },
+      data: { productId: createdProduct.id },
+    });
+
     revalidatePath("/admin");
-    return createdProduct;
+    return updatedProduct;
   } catch (error) {
     console.error("Error creating product:", error);
     throw error;
