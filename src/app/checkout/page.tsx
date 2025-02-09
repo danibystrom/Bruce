@@ -66,6 +66,7 @@ export default function CheckoutPage() {
           bgcolor: "#fff",
           minHeight: "100vh",
           width: "100%",
+          marginTop: "4rem",
         }}
       >
         <Grid
