@@ -21,7 +21,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 1,
       name: "Margarita",
-      description: "A delicious and refreshing cocktail",
+      description: "Who needs a blender when Bruce delivers the perfect tangy Margarita in seconds? Just add water (and a little sass) for a fiesta in a glass. Ole!",
       ingredients: "Tequila, lime juice, triple sec",
       image: "/Margarita.jpg",
       slug: "margarita",
@@ -42,7 +42,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 2,
       name: "Mojito",
-      description: "A refreshing minty cocktail",
+      description: "Say goodbye to muddling mint! With Bruce, the Mojito magic happens instantly—refreshingly zesty, effortlessly classy, and ready when you are.",
       ingredients: "White rum, lime juice, mint leaves",
       image: "/mojito.jpg",
       slug: "mojito",
@@ -63,7 +63,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 3,
       name: "Pornstar Martini",
-      description: "A fruity and sweet cocktail",
+      description: "The drink with the most provocative name gets a Bruce makeover. Passion fruit glamour in a tablet? Yes, we went there.",
       ingredients: "Vanilla vodka, passion fruit, lime juice",
       image: "/pornstar-martini.jpg",
       slug: "pornstar-martini",
@@ -84,7 +84,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 4,
       name: "Tequila Sunrise",
-      description: "A bottle of tequila",
+      description: "Rising and shining never tasted this good. Bruce&apos;s Tequila Sunrise brings you tropical vibes without the drama of squeezing oranges.",
       ingredients: "Tequila, orange juice, grenadine",
       image: "/tequila-sunrise.jpg",
       slug: "tequila-sunrise",
@@ -106,7 +106,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 5,
       name: "Paloma",
-      description: "A bottle of tequila",
+      description: "Grapefruit, meet greatness. Bruce&apos;s Paloma tablet is the ultimate ode to refreshment with a citrusy twist that&apos;s pure perfection.",
       ingredients: "Tequila, orange juice, grenadine",
       image: "/paloma.jpg",
       slug: "paloma",
@@ -127,7 +127,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 6,
       name: "Espresso Martini",
-      description: "A bottle of tequila",
+      description: "Skip the shaker; Bruce&apos;s Espresso Martini is all you need to power through late nights—with caffeine, charm, and zero fuss.",
       ingredients: "Tequila, orange juice, grenadine",
       image: "/espresso-martini.jpg",
       slug: "espresso-martini",
@@ -148,7 +148,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 7,
       name: "Tom Collins",
-      description: "A bottle of tequila",
+      description: "Lemonade wishes and gin dreams come true. Bruce&apos;s Tom Collins tablet is your shortcut to this bubbly classic shaken? Stirred? Doesn&apos;t matter.",
       ingredients: "Tequila, orange juice, grenadine",
       image: "/tom-collins.jpg",
       slug: "tom-collins",
@@ -169,7 +169,7 @@ export async function seedProducts(db: PrismaClient) {
     {
       productId: 8,
       name: "Old Fashioned",
-      description: "A bottle of tequila",
+      description: "Old-school cool meets Bruce&apos;s innovative genius. All the smoky sophistication, none of the bar tricks. Just drop, mix, and sip.",
       ingredients: "Tequila, orange juice, grenadine",
       image: "/old-fashioned.jpg",
       slug: "old-fashioned",
